@@ -1,4 +1,4 @@
-package br.com.centralerros.centralerros;
+package br.com.centralerros.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
