@@ -1,2 +1,15 @@
 /central-erros-backend/target/
 /central-erros-backend/.idea/
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
