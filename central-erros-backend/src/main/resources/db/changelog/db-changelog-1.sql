@@ -16,7 +16,7 @@ set foreign_key_checks=1;
 
 set foreign_key_checks=0;
 
-CREATE TABLE categorory (
+CREATE TABLE category (
                             id bigint(20) NOT NULL AUTO_INCREMENT,
                             name varchar(45) NOT NULL,
                             PRIMARY KEY (id)
@@ -55,7 +55,7 @@ CREATE TABLE event (
                        KEY fk_event_enviroment_idx (enviroment_id),
                        KEY fk_event_status_idx (status_id),
                        KEY fk_event_category_idx (category_id),
-                       CONSTRAINT fk_event_category FOREIGN KEY (category_id) REFERENCES categorory (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                       CONSTRAINT fk_event_category FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                        CONSTRAINT fk_event_enviroment FOREIGN KEY (enviroment_id) REFERENCES enviroment (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                        CONSTRAINT fk_event_level FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                        CONSTRAINT fk_event_status FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION
