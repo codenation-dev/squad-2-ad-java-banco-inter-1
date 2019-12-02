@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class EventVO {
+    private String name;
 }
