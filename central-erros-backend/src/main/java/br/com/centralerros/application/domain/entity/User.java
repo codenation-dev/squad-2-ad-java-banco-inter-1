@@ -30,6 +30,13 @@ public class User {
     @Column(name = "email", nullable = false, length = 255)
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "enviroment_id")
+    private Enviroment enviroment_id;
+
+
+
+
     public User(User user) {
         super();
         this.name = user.getName();
