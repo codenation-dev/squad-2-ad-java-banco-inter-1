@@ -16,5 +16,6 @@ public interface EventService {
     Event findByEnviroment(String name);
     Event save(Event event);
     Long delete(Long id);
+    Event delete(Event event);
 
 }

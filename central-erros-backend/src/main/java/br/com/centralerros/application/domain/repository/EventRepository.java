@@ -17,19 +17,19 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Event findEventByCreated_at (@Param("created_at") LocalDateTime created_at);
 
     @Transactional
-    @Query(value = "SELECT l.name FROM centralerros.level l, centralerros.event e " +
+    @Query(value = "SELECT e.* FROM centralerros.level l, centralerros.event e " +
             "WHERE l.id = e.level_id " +
             "AND l.name = :name",nativeQuery = true)
     Event findByLevel (@Param("name") String name);
 
     @Transactional
-    @Query(value = "SELECT c.name FROM centralerros.category c, centralerros.event e " +
+    @Query(value = "SELECT e.* FROM centralerros.category c, centralerros.event e " +
             "WHERE c.id = e.category_id " +
             "AND c.name = :name",nativeQuery = true)
     Event findByCategory (@Param("name") String name);
 
     @Transactional
-    @Query(value = "SELECT en.name FROM centralerros.enviroment en, centralerros.event e " +
+    @Query(value = "SELECT e.* FROM centralerros.enviroment en, centralerros.event e " +
             "WHERE en.id = e.enviroment_id " +
             "AND en.name = :name",nativeQuery = true)
     Event findByEnviroment (@Param("name") String name);

@@ -29,6 +29,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Event delete(Event event){
+        eventRepository.delete(event);
+        return event;
+    }
+
+    @Override
     public List<Event> findAll(){
         return eventRepository.findAll();
 
