@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     protected UserService userService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
         User user = convertToUser(userVO);
         return ResponseEntity.ok(
