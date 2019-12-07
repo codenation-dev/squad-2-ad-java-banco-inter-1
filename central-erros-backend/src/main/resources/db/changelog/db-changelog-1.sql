@@ -28,7 +28,7 @@ set foreign_key_checks=1;
 
 set foreign_key_checks=0;
 
-CREATE TABLE enviroment (
+CREATE TABLE environment (
                             id bigint(20) NOT NULL,
                             name varchar(45) NOT NULL,
                             PRIMARY KEY (id)
@@ -45,18 +45,18 @@ CREATE TABLE event (
                        description text NOT NULL,
                        source varchar(45) NOT NULL,
                        created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                       enviroment_id bigint(20) NOT NULL,
+                       environment_id bigint(20) NOT NULL,
                        level_id bigint(20) NOT NULL,
                        category_id bigint(20) NOT NULL,
                        details text NOT NULL,
                        status_id bigint(20) NOT NULL,
                        PRIMARY KEY (id),
                        KEY fk_event_level_idx (level_id),
-                       KEY fk_event_enviroment_idx (enviroment_id),
+                       KEY fk_event_environment_idx (environment_id),
                        KEY fk_event_status_idx (status_id),
                        KEY fk_event_category_idx (category_id),
                        CONSTRAINT fk_event_category FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-                       CONSTRAINT fk_event_enviroment FOREIGN KEY (enviroment_id) REFERENCES enviroment (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                       CONSTRAINT fk_event_environment FOREIGN KEY (environment_id) REFERENCES environment (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                        CONSTRAINT fk_event_level FOREIGN KEY (level_id) REFERENCES level (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                        CONSTRAINT fk_event_status FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
@@ -108,7 +108,7 @@ CREATE TABLE user (
                       name varchar(255) NOT NULL,
                       email varchar(255) NOT NULL,
                       password varchar(255) NOT NULL,
-                      enviroment_id bigint(20) DEFAULT NULL,
+                      environment_id bigint(20) DEFAULT NULL,
                       role_id bigint(20) DEFAULT NULL,
                       created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                       profile int(11) NOT NULL,
@@ -116,8 +116,8 @@ CREATE TABLE user (
                       PRIMARY KEY (id),
                       UNIQUE KEY email_UNIQUE (email),
                       KEY fk_user_role_idx (role_id),
-                      KEY fk_user_enviroment_idx (enviroment_id),
-                      CONSTRAINT fk_user_enviroment FOREIGN KEY (enviroment_id) REFERENCES enviroment (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                      KEY fk_user_environment_idx (environment_id),
+                      CONSTRAINT fk_user_environment FOREIGN KEY (environment_id) REFERENCES environment (id) ON DELETE NO ACTION ON UPDATE NO ACTION,
                       CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 

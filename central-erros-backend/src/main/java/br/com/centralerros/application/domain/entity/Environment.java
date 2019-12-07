@@ -11,8 +11,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "enviroment")
-public class Enviroment {
+@Entity(name = "environment")
+public class Environment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
