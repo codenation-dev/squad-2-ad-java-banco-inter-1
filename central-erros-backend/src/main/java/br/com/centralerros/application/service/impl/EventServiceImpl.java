@@ -1,6 +1,9 @@
 package br.com.centralerros.application.service.impl;
 
+import br.com.centralerros.application.domain.entity.Category;
+import br.com.centralerros.application.domain.entity.Enviroment;
 import br.com.centralerros.application.domain.entity.Event;
+import br.com.centralerros.application.domain.entity.Level;
 import br.com.centralerros.application.domain.repository.EventRepository;
 import br.com.centralerros.application.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,50 +26,65 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Long delete(Long id){
-         eventRepository.deleteById(id);
+    public Long delete(Long id) {
+        eventRepository.deleteById(id);
         return id;
     }
 
     @Override
-    public Event delete(Event event){
+    public Event delete(Event event) {
         eventRepository.delete(event);
         return event;
     }
 
     @Override
-    public List<Event> findAll(){
+    public List<Event> findAll() {
         return eventRepository.findAll();
 
     }
 
     @Override
-    public Optional<Event> findById(Long id){
+    public Optional<Event> findById(Long id) {
         return eventRepository.findById(id);
 
     }
 
     @Override
-    public Event findEventByCreated_at(LocalDateTime created_at){
+    public List<Event> findEventByCreated_at(LocalDateTime created_at) {
         return eventRepository.findEventByCreated_at(created_at);
     }
 
     @Override
-    public Event findByLevel(String name){
+    public List<Event> findByLevel(String name) {
         return eventRepository.findByLevel(name);
 
     }
 
     @Override
-    public Event findByCategory(String name){
+    public List<Event> findByCategory(String name) {
         return eventRepository.findByCategory(name);
 
     }
 
     @Override
-    public Event findByEnviroment(String name){
+    public List<Event> findByEnviroment(String name) {
         return eventRepository.findByEnviroment(name);
 
+    }
+
+    @Override
+    public List<Event> findByCreatedAtEEnviroment(LocalDateTime created_at, Enviroment enviroment) {
+        return eventRepository.findByCreatedAtEEnviroment(created_at, enviroment);
+    }
+
+    @Override
+    public List<Event> findByCreatedAtEEnviromentECategory(LocalDateTime created_at, Enviroment enviroment, Category category) {
+        return eventRepository.findByCreatedAtEEnviromentECategory(created_at, enviroment, category);
+    }
+
+    @Override
+    public List<Event> findByDataCreatedEEnviromentECategoryELevel(LocalDateTime created_at, Enviroment enviroment, Category category, Level level) {
+        return eventRepository.findByDataCreatedEEnviromentECategoryELevel(created_at, enviroment, category, level);
     }
 
 }
