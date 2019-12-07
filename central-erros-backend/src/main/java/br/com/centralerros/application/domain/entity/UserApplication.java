@@ -19,11 +19,11 @@ public class UserApplication {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user_id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application_id;
 

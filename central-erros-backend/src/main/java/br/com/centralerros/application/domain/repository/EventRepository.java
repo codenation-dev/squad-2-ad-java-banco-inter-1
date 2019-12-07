@@ -14,6 +14,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     //findByDataCreated
     @Transactional
+    @Query(value = "SELECT e.* FROM centralerros.event e " +
+            "WHERE e.created_at = :created_at", nativeQuery = true)
     Event findEventByCreated_at (@Param("created_at") LocalDateTime created_at);
 
     @Transactional
