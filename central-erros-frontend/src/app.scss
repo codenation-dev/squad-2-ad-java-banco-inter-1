@@ -1,0 +1,11 @@
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgba(60, 196, 124, 0.6) 40%,
+    rgba(60, 196, 124, 0.20)
+  );  
+}
