@@ -34,8 +34,8 @@ public class Event {
     private LocalDateTime created_at;
 
     @ManyToOne
-    @JoinColumn(name = "enviroment_id")
-    private Enviroment enviroment_id;
+    @JoinColumn(name = "environment_id")
+    private Environment environment_id;
 
     @OneToOne
     @JoinColumn(name = "level_id")
