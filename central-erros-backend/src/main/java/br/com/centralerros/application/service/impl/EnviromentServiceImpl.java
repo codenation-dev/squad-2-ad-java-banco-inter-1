@@ -15,11 +15,9 @@ public class EnviromentServiceImpl implements EnviromentService {
     @Autowired
     EnviromentRepository enviromentRepository;
 
-
     @Override
     public Optional<Enviroment> findById(Long id){
         return enviromentRepository.findById(id);
-
     }
 
     @Override
@@ -30,7 +28,6 @@ public class EnviromentServiceImpl implements EnviromentService {
 
     @Override
     public Enviroment findByName(String name){
-
         return enviromentRepository.findEnviromentByName(name);
     }
 

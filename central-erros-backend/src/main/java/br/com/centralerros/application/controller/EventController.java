@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/event")
-public class EventController {
+public class EventController extends BasicController {
 }
