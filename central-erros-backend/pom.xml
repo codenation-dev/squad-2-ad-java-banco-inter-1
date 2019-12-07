@@ -95,7 +95,6 @@
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 			<version>2.0.1.RELEASE</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -115,11 +114,9 @@
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 					<verbose>true</verbose>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
-					<url>
-						jdbc:mysql://localhost:3306/centralerros
-					</url>
-					<username>root</username>
-					<password>rOoT@1234</password>
+					<url>jdbc:mysql://localhost:3306/centralerros</url>
+					<username>codenation</username>
+					<password>codenation</password>
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>
