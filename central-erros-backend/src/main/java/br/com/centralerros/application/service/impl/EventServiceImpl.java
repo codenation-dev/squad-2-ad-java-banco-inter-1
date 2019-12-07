@@ -5,7 +5,9 @@ import br.com.centralerros.application.domain.entity.Enviroment;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.Level;
 import br.com.centralerros.application.domain.repository.EventRepository;
+import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.service.EventService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event save(Event event) {
         return eventRepository.save(event);
+    }
+
+    @Override
+    public EventVO save(EventVO eventVO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Event event = modelMapper.map(eventVO, Event.class);
+
+        return modelMapper.map(save(event), EventVO.class);
     }
 
     @Override

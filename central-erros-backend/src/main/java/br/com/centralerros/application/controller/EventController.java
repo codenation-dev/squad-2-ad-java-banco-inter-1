@@ -1,7 +1,9 @@
 package br.com.centralerros.application.controller;
 
+import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
+import lombok.experimental.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,6 @@ public class EventController {
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody EventVO eventVO){
-        //eventService.save(eventVO);
-        return null;
+        return ResponseEntity.ok(eventService.save(eventVO));
     }
 }

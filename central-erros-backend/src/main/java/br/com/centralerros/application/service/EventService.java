@@ -4,6 +4,7 @@ import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.entity.Enviroment;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.Level;
+import br.com.centralerros.application.domain.vo.EventVO;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public interface EventService {
     List<Event> findByCreatedAtEEnviromentECategory( LocalDateTime created_at, Enviroment enviroment, Category category);
     List<Event> findByDataCreatedEEnviromentECategoryELevel(LocalDateTime created_at, Enviroment enviroment,Category category, Level level);
     Event save(Event event);
-    //Event save(EventVo eventVo);
+    EventVO save(EventVO eventVO);
     Long delete(Long id);
     Event delete(Event event);
 
