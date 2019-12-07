@@ -118,8 +118,8 @@
 					<url>
 						jdbc:mysql://localhost:3306/centralerros
 					</url>
-					<username>gabriel</username>
-					<password>Bj180115</password>
+					<username>root</username>
+					<password>rOoT@1234</password>
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>

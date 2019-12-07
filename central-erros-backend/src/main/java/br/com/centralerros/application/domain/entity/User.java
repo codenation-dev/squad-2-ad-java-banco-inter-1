@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +31,25 @@ public class User {
     @Email
     @Column(name = "email", nullable = false, length = 255)
     private String email;
+
+    @Column(name = "created_at")
+    @CreatedDate
+    private LocalDateTime created_at;
+
+    @Column(name = "last_login")
+    private LocalDateTime last_login;
+
+    @Column(name = "profile")
+    private int profile;
+
+    @ManyToOne
+    @JoinColumn(name = "enviroment_id")
+    private Enviroment enviroment_id;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role_id;
+
 
     public User(User user) {
         super();
