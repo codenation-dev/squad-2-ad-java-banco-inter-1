@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/event")
 public class EventController {
 
-    @Autowired
-    EventServiceImpl eventService;
+   // @Autowired
+    //EventServiceImpl eventService;
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody EventVO eventVO){
