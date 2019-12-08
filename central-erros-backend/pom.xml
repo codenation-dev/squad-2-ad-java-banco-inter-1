@@ -118,7 +118,7 @@
 						jdbc:mysql://localhost:3306/centralerros
 					</url>
 					<username>root</username>
-					<password>MinhaSenha#3541</password>
+					<password>rOoT@1234</password>
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>
