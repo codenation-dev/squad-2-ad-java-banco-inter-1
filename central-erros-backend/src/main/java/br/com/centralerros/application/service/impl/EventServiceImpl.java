@@ -1,7 +1,7 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Category;
-import br.com.centralerros.application.domain.entity.Enviroment;
+import br.com.centralerros.application.domain.entity.Environment;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.Level;
 import br.com.centralerros.application.domain.repository.EventRepository;
@@ -67,24 +67,26 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> findByEnviroment(String name) {
+    public List<Event> findByEnvironment(String name) {
         return eventRepository.findByEnviroment(name);
 
     }
 
     @Override
-    public List<Event> findByCreatedAtEEnviroment(LocalDateTime created_at, Enviroment enviroment) {
-        return eventRepository.findByCreatedAtEEnviroment(created_at, enviroment);
+    public List<Event> findByCreatedAtEEnvironment(LocalDateTime created_at, Environment environment) {
+        return eventRepository.findByCreatedAtEEnvironment(created_at, environment);
     }
 
     @Override
-    public List<Event> findByCreatedAtEEnviromentECategory(LocalDateTime created_at, Enviroment enviroment, Category category) {
-        return eventRepository.findByCreatedAtEEnviromentECategory(created_at, enviroment, category);
+    public List<Event> findByCreatedAtEEnvironmentECategory(LocalDateTime created_at, Environment environment, Category category) {
+        return eventRepository.findByCreatedAtEEnvironmentECategory(created_at, environment, category);
     }
 
     @Override
-    public List<Event> findByDataCreatedEEnviromentECategoryELevel(LocalDateTime created_at, Enviroment enviroment, Category category, Level level) {
-        return eventRepository.findByDataCreatedEEnviromentECategoryELevel(created_at, enviroment, category, level);
+    public List<Event> findByDataCreatedEEnvironmentECategoryELevel(LocalDateTime created_at, Environment environment, Category category, Level level) {
+        return eventRepository.findByDataCreatedEEnvironmentECategoryELevel(created_at, environment, category, level);
     }
+
+
 
 }

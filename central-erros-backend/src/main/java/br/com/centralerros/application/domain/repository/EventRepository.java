@@ -1,7 +1,7 @@
 package br.com.centralerros.application.domain.repository;
 
 import br.com.centralerros.application.domain.entity.Category;
-import br.com.centralerros.application.domain.entity.Enviroment;
+import br.com.centralerros.application.domain.entity.Environment;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.Level;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,30 +16,32 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    //findByDataCreated
+
     @Transactional
     @Query(value = "SELECT e.* FROM centralerros.event e " +
             "WHERE e.created_at = :created_at", nativeQuery = true)
     List<Event> findEventByCreated_at (@Param("created_at") LocalDateTime created_at);
 
+    @Transactional
+    @Query(value = "SELECT e.* FROM centralerros.event e " +
+            "WHERE e.created_at = :created_at " +
+            "AND environment = :environment",nativeQuery = true)
+    List<Event> findByCreatedAtEEnvironment(@Param("created_at") LocalDateTime created_at, @Param("environment") Environment environment);
 
-    @Query(value = "SELECT e FROM Event e " +
-            " WHERE e.created_at = :created_at " +
-            " AND enviroment = :enviroment")
-    List<Event> findByCreatedAtEEnviroment(@Param("created_at") LocalDateTime created_at, @Param("enviroment") Enviroment enviroment);
+    @Transactional
+    @Query(value = "SELECT e.* FROM centralerros.event e " +
+            "WHERE e.created_at = :created_at " +
+            "AND environment = :environment " +
+            "AND category = :category ",nativeQuery = true)
+    List<Event> findByCreatedAtEEnvironmentECategory(@Param("created_at") LocalDateTime created_at, @Param("environment") Environment environment, @Param("category") Category category);
 
-    @Query(value = "SELECT e FROM Event e " +
-            " WHERE e.created_at = :created_at " +
-            " AND enviroment = :enviroment " +
-            " AND category = :category ")
-    List<Event> findByCreatedAtEEnviromentECategory(@Param("created_at") LocalDateTime created_at, @Param("enviroment") Enviroment enviroment, @Param("category") Category category);
-
-    @Query(value = "SELECT e FROM Event e " +
-            " WHERE e.created_at = :created_at " +
-            " AND enviroment = :enviroment " +
-            " AND category = :category " +
-            " AND level = :level")
-    List<Event> findByDataCreatedEEnviromentECategoryELevel(@Param("created_at") LocalDateTime created_at, @Param("enviroment") Enviroment enviroment, @Param("category") Category category, @Param("level") Level level);
+    @Transactional
+    @Query(value = "SELECT e.* FROM centralerros.event e " +
+            "WHERE e.created_at = :created_at " +
+            "AND environment = :environment " +
+            "AND category = :category " +
+            "AND level = :level",nativeQuery = true)
+    List<Event> findByDataCreatedEEnvironmentECategoryELevel(@Param("created_at") LocalDateTime created_at, @Param("environment") Environment environment, @Param("category") Category category, @Param("level") Level level);
 
     @Transactional
     @Query(value = "SELECT e.* FROM centralerros.level l, centralerros.event e " +
@@ -54,8 +56,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByCategory (@Param("name") String name);
 
     @Transactional
-    @Query(value = "SELECT e.* FROM centralerros.enviroment en, centralerros.event e " +
-            "WHERE en.id = e.enviroment_id " +
+    @Query(value = "SELECT e.* FROM centralerros.environment en, centralerros.event e " +
+            "WHERE en.id = e.environment_id " +
             "AND en.name = :name",nativeQuery = true)
     List<Event> findByEnviroment (@Param("name") String name);
 }

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.xml.ws.Response;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     @Autowired
     protected UserService userService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
         User user = convertToUser(userVO);
         return ResponseEntity.ok(
