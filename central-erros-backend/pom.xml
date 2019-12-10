@@ -13,12 +13,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>centralerros</name>
 	<description>Projeto final Codenation Central de Erros</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.liquibase.plugin.version>3.5.1</maven.liquibase.plugin.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -104,10 +102,12 @@
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 			<version>2.0.1.RELEASE</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -128,8 +128,8 @@
 					<url>
 						jdbc:mysql://localhost:3306/centralerros
 					</url>
-					<username>root</username>
-					<password>rOoT@1234</password>
+					<username>gabriel</username>
+					<password>Bj180115</password>
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>

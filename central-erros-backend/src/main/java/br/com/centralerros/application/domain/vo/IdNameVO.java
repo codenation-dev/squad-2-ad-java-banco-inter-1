@@ -1,14 +1,13 @@
 package br.com.centralerros.application.domain.vo;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class RoleVO {
+@NoArgsConstructor
+public class IdNameVO {
+    private int id;
     private String name;
 }

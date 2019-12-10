@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Entity(name = "role")
 public class Role {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
