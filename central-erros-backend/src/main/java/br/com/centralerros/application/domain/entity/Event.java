@@ -1,6 +1,10 @@
 package br.com.centralerros.application.domain.entity;
 
 
+import br.com.centralerros.application.domain.enumerables.CategoryEnum;
+import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
+import br.com.centralerros.application.domain.enumerables.LevelEnum;
+import br.com.centralerros.application.domain.enumerables.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +12,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +19,6 @@ import java.time.LocalDateTime;
 @Builder
 @Entity(name = "event")
 public class Event {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,30 +31,25 @@ public class Event {
     @Column(name = "source", nullable = false, length = 255)
     private String source;
 
-    @Column(name = "created_at")
-    @CreatedDate
-    private LocalDateTime created_at;
-
-    @ManyToOne
-    @JoinColumn(name = "environment_id")
-    private Environment environment_id;
-
-    @OneToOne
-    @JoinColumn(name = "level_id")
-    private Level level_id;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category_id;
-
     @Column(name = "details", nullable = false, length = 255)
     private String details;
 
+    @Column(name = "status")
+    private StatusEnum status;
+
+    @Column(name = "environment")
+    private EnvironmentEnum environment;
+
+    @Column(name = "level")
+    private LevelEnum level;
+
+    @Column(name = "category")
+    private CategoryEnum category;
+
+    @CreatedDate
+    @Column(name = "create_date")
+
     @OneToOne
-    @JoinColumn(name = "status_id")
-    private Category status_id;
-
-
-
-
+    @JoinColumn(name = "user_id")
+    private User user;
 }

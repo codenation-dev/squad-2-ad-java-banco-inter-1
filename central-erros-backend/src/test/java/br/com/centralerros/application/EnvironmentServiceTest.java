@@ -25,9 +25,8 @@ public class EnvironmentServiceTest {
     @Transactional
     public void whenFindById(){
 
-        Optional<Environment> optResult = environmentService.findById((long) 1);
-
-        assertThat(optResult.isPresent(), equalTo(true));
+        Environment optResult = environmentService.findById(1);
+        assertThat(optResult != null, equalTo(true));
 
     }
 
