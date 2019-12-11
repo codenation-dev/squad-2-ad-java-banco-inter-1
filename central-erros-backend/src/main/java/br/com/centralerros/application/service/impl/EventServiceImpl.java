@@ -50,36 +50,31 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> findAll() {
         return eventRepository.findAll();
-
     }
 
     @Override
     public Optional<Event> findById(Long id) {
         return eventRepository.findById(id);
-
     }
 
     @Override
-    public List<Event> findEventByCreated_at(LocalDateTime created_at) {
-        return eventRepository.findEventByCreated_at(created_at);
+    public List<Event> findEventByCreatedAt(LocalDateTime created_at) {
+        return eventRepository.findEventByCreatedAt(created_at);
     }
 
     @Override
     public List<Event> findByLevel(String name) {
         return eventRepository.findByLevel(name);
-
     }
 
     @Override
     public List<Event> findByCategory(String name) {
         return eventRepository.findByCategory(name);
-
     }
 
     @Override
     public List<Event> findByEnvironment(String name) {
         return eventRepository.findByEnviroment(name);
-
     }
 
     @Override
@@ -96,7 +91,4 @@ public class EventServiceImpl implements EventService {
     public List<Event> findByDataCreatedEEnvironmentECategoryELevel(LocalDateTime created_at, Environment environment, Category category, Level level) {
         return eventRepository.findByDataCreatedEEnvironmentECategoryELevel(created_at, environment, category, level);
     }
-
-
-
 }

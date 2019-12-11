@@ -22,8 +22,4 @@ public class Category {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-
-
-
-
 }

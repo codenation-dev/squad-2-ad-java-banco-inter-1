@@ -12,22 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/application")
 public class ApplicationController {
 
-
     @Autowired
     ApplicationService applicationService;
 
     @GetMapping("/findByID/{id}")
     public ResponseEntity findByID(@PathVariable Long id){
         return ResponseEntity.ok(applicationService.findById(id));
-
     }
 
     @GetMapping("/findByName/{name}")
     public ResponseEntity findByName(@PathVariable String name){
         return ResponseEntity.ok(applicationService.findByName(name));
-
     }
-
-
-
 }

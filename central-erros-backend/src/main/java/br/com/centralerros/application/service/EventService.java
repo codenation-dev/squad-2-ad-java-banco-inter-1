@@ -14,7 +14,7 @@ public interface EventService {
 
     List<Event> findAll();
     Optional<Event> findById(Long id);
-    List<Event> findEventByCreated_at(LocalDateTime created_at);
+    List<Event> findEventByCreatedAt(LocalDateTime created_at);
     List<Event> findByLevel(String name);
     List<Event> findByCategory(String name);
     List<Event> findByEnvironment(String name);
