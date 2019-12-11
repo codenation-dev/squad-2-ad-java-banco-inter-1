@@ -60,6 +60,4 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "WHERE en.id = e.environment_id " +
             "AND en.name = :name",nativeQuery = true)
     List<Event> findByEnviroment (@Param("name") String name);
-
-
 }
