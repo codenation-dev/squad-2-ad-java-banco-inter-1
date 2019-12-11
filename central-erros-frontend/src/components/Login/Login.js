@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+// components
+import SignUpModal from './../SignUpModal'
+
 // assets
 import './login.scss'
 import { MdMailOutline } from 'react-icons/md'
@@ -11,6 +14,7 @@ function Login() {
     password: '',
     checkbox: false
   })
+  const [showModal, setShowModal] = useState(false)
 
   function handleChange (evt) {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value
@@ -22,10 +26,11 @@ function Login() {
 
   function handleSubmit(evt) {
     evt && evt.preventDefault()
+    // dealing with the request here...
   }
 
-  function openModal () {
-    console.log('well, this opens the modal')
+  function toggleModal () {
+    setShowModal(!showModal)
   }
 
   return (
@@ -81,8 +86,9 @@ function Login() {
               <button className='btn btn__filled btn__filled--green' type='submit' form='login-form'>Sign in</button>
             </div>
             <div className='col-12 mt-5'>
-              <p>Not a member? <span className='open-modal' onClick={openModal}>Sign up here</span></p>
+              <p>Not a member? <span className='open-modal' onClick={toggleModal}>Sign up here</span></p>
             </div>
+            <SignUpModal showModal={showModal} />
           </div>
         </form>
       </div>
