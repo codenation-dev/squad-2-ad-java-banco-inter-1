@@ -20,8 +20,12 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font-family: 'Montserrat', sans-serif;
 	vertical-align: baseline;
+}
+
+h1 {
+	font-size: 26px;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -51,4 +55,8 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+input:focus {
+	outline: none;
 }

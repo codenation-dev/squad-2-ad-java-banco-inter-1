@@ -1,0 +1,92 @@
+.btn {
+	border: 1px solid;
+	border-radius: 2px;
+	color: #fff;
+  font-size: 13px;
+  max-width: 220px;
+	text-transform: uppercase;
+	transition: 0.4s;
+  padding: 7px 16px;
+  width: 100%;
+
+	@media screen and (min-width: 768px) {
+		font-size: 15px;
+	}
+	&__outline {
+		background-color: transparent;
+		outline: none;
+
+		&--white {
+			border-color: #fff;
+			color: #fff;
+		}
+		&--white:hover {
+			background-color: #fff;
+		}
+
+		&--black {
+			border-color:#000;
+			color: #000;
+		}
+		&--black:hover {
+			background-color: #000;
+			color: #fff;
+		}
+
+		&--red {
+			border-color:#ff0000;
+			color: #ff0000;
+		}
+		&--red:hover {
+			background-color: #ff0000;
+			color: #fff;
+		}
+	}
+	&__filled {
+		border: none;
+
+		&--white {
+			background-color: #fff;
+			color: #000;
+		}
+		&--white:hover {
+			background-color: #000;
+			color: #fff;
+		}
+
+		&--black {
+			background-color: #000;
+			color: #fff;
+		}
+		&--black:hover {
+			background-color: #fff;
+			color: #000;
+		}
+		&--red {
+			background-color:#ff0000;
+			color: #fff;
+		}
+		&--red:hover {
+			background-color: #fff;
+			color: #ff0000;
+    }
+    
+    &--green {
+			background-color:rgba(60, 196, 124, 0.9);
+			color: #fff;
+		}
+		&--green:hover {
+      color: #fff;
+			background-color: rgba(60, 196, 124, 0.75);
+		}
+	}
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
+.btn:focus {
+	outline: 0 !important;
+	box-shadow: none;
+}
