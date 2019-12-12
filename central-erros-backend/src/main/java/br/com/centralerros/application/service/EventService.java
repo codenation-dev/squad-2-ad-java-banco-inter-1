@@ -4,6 +4,7 @@ import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.entity.Environment;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.Level;
+import br.com.centralerros.application.domain.vo.EventVO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +14,7 @@ public interface EventService {
 
     List<Event> findAll();
     Optional<Event> findById(Long id);
-    List<Event> findEventByCreated_at(LocalDateTime created_at);
+    List<Event> findEventByCreatedAt(LocalDateTime created_at);
     List<Event> findByLevel(String name);
     List<Event> findByCategory(String name);
     List<Event> findByEnvironment(String name);
@@ -22,7 +23,7 @@ public interface EventService {
     List<Event> findByDataCreatedEEnvironmentECategoryELevel(LocalDateTime created_at, Environment environment,Category category, Level level);
 
     Event save(Event event);
-    //Event save(EventVo eventVo);
+    EventVO save(EventVO eventVO);
     Long delete(Long id);
     Event delete(Event event);
 

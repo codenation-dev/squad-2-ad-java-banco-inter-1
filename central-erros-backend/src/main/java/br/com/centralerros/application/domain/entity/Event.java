@@ -53,6 +53,4 @@ public class Event {
     private Category status_id;
 
 
-
-
 }
