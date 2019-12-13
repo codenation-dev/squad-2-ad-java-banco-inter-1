@@ -14,31 +14,11 @@ public class EnvironmentController extends BasicController {
     @Autowired
     EnvironmentService environmentService;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity findAll(){
         return ResponseEntity.ok(
                 utils.listMap(
                         environmentService.findAll(),
-                        IdNameVO.class
-                )
-        );
-    }
-
-    @GetMapping
-    public ResponseEntity findById(int id){
-        return ResponseEntity.ok(
-                utils.map(
-                        environmentService.findById(id),
-                        IdNameVO.class
-                )
-        );
-    }
-
-    @GetMapping
-    public ResponseEntity findByName(String name){
-        return ResponseEntity.ok(
-                utils.map(
-                        environmentService.findByName(name),
                         IdNameVO.class
                 )
         );

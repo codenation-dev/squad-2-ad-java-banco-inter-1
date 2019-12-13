@@ -23,24 +23,4 @@ public class RoleController extends BasicController {
                 )
         );
     }
-
-    @GetMapping
-    public ResponseEntity findById(int id){
-        return ResponseEntity.ok(
-                utils.map(
-                        roleService.findById(id),
-                        IdNameVO.class
-                )
-        );
-    }
-
-    @GetMapping
-    public ResponseEntity findByName(String name){
-        return ResponseEntity.ok(
-                utils.map(
-                        roleService.findByName(name),
-                        IdNameVO.class
-                )
-        );
-    }
 }

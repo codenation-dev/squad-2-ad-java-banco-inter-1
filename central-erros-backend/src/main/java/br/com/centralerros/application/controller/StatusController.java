@@ -23,24 +23,4 @@ public class StatusController extends BasicController{
                 )
         );
     }
-
-    @GetMapping
-    public ResponseEntity findById(int id){
-        return ResponseEntity.ok(
-                utils.map(
-                        statusService.findById(id),
-                        IdNameVO.class
-                )
-        );
-    }
-
-    @GetMapping
-    public ResponseEntity findByName(String name){
-        return ResponseEntity.ok(
-                utils.map(
-                        statusService.findByName(name),
-                        IdNameVO.class
-                )
-        );
-    }
 }

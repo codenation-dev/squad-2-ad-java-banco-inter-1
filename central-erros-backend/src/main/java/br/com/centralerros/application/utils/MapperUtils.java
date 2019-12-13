@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MapperUtils {
-    public static ModelMapper getModelMapper(){
+    public static ModelMapper instance(){
         return new ModelMapper();
     }
 }
