@@ -2,12 +2,11 @@
 	border: 1px solid;
 	border-radius: 2px;
 	color: #fff;
-  font-size: 13px;
-  max-width: 220px;
+	font-size: 13px;
 	text-transform: uppercase;
 	transition: 0.4s;
   padding: 7px 16px;
-  width: 100%;
+	width: 80%;
 
 	@media screen and (min-width: 768px) {
 		font-size: 15px;
@@ -78,6 +77,16 @@
 		&--green:hover {
       color: #fff;
 			background-color: rgba(60, 196, 124, 0.75);
+		}
+
+		&--blue {
+			background-color:#0074D9;
+			color: #fff;
+		}
+		&--blue:hover {
+			background-color: #0074D9;
+			color: #fff;
+			opacity: 0.8;
 		}
 	}
 }

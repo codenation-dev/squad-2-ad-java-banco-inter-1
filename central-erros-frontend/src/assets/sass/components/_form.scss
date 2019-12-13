@@ -1,0 +1,30 @@
+@import '../abstracts/variables';
+
+.login {
+  background: $white;
+  border-radius: 6px;
+  max-width: 500px;
+  padding: 24px 12px;
+  &--title {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  &--form {
+    &__input {
+      background: #80808029;
+      border: none;
+      height: 40px;
+      padding-left: 15px;
+      padding-right: 4px;
+      width: 80%;
+    }
+  }
+  &--icon {
+    position: absolute;
+    left: 25px;
+    top: 12px;
+    svg {
+      transform: scale(1.4);
+    }
+  }
+}
