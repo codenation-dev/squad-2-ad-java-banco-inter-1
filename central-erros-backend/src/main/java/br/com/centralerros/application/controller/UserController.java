@@ -5,10 +5,9 @@ import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.xml.ws.Response;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -17,8 +16,10 @@ public class UserController {
     @Autowired
     protected UserService userService;
 
+    @CrossOrigin
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
+        System.out.println("chegou aqui: " + userVO.getName() + userVO.getEmail());
         User user = convertToUser(userVO);
         return ResponseEntity.ok(userService.save(user)
         );
