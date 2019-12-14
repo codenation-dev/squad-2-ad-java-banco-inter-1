@@ -30,7 +30,7 @@ public class EventRepositoryImpl implements EventRepository {
         }else{
             if(!filter.getDescription().isEmpty()){
                 query.setParameter("description", filter.getDescription());
-            !}
+            }
             if(!filter.getSource().isEmpty()){
                 query.setParameter("source", filter.getSource());
             }
