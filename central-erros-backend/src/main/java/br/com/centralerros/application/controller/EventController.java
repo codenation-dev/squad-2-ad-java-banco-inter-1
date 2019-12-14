@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("api/v1/event")
+@RequestMapping("/api/v1/event")
 public class EventController {
 
     @Autowired

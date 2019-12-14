@@ -3,6 +3,7 @@ package br.com.centralerros.application.domain.vo;
 import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.entity.Environment;
 import br.com.centralerros.application.domain.entity.Level;
+import br.com.centralerros.application.domain.entity.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,6 @@ public class EventVO {
     private Level level;
     private Category category;
     private String details;
-    private Category status;
+    private Status status;
 
 }
