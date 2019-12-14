@@ -1,4 +1,4 @@
-package br.com.centralerros.application.domain.vo;
+package br.com.centralerros.application.domain.dto;
 
 import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
@@ -9,19 +9,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class EventVO {
-    private String name;
+@NoArgsConstructor
+public class EventFilterDto extends BasicFilterDto {
+    private Long id;
     private String description;
     private String source;
-
     private String details;
-    private LevelEnum level;
-    private EnvironmentEnum environment;
-    private CategoryEnum category;
     private StatusEnum status;
+    private EnvironmentEnum environment;
+    private LevelEnum level;
+    private CategoryEnum category;
+    private Timestamp createDateStart;
+    private Timestamp createDateEnd;
+    private int userId;
 }

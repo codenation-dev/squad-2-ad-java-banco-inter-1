@@ -13,7 +13,6 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 public class UserVO {
     private String name;
-
     private String password;
 
     @Email

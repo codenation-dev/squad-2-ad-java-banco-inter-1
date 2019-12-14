@@ -1,49 +1,46 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Environment;
-import br.com.centralerros.application.domain.repository.EnvironmentRepository;
+import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.service.EnvironmentService;
-import liquibase.util.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EnvironmentServiceImpl implements EnvironmentService {
 
-    @Autowired
-    EnvironmentRepository environmentRepository;
 
     @Override
-    public Optional<Environment> findById(Long id){
-        return environmentRepository.findById(id);
+    public List<Environment> findAll() {
+        return Arrays.asList(EnvironmentEnum.values())
+                .stream()
+                .map(e -> new Environment(e.getValue(), e.toString()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Environment> findAll(){
-        return environmentRepository.findAll();
+    public Environment findById(int id) {
 
+        return Arrays.asList(
+                EnvironmentEnum.values())
+                .stream()
+                .filter( e -> e.getValue() == id)
+                .map(e -> new Environment(id, e.toString()))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public Environment findByName(String name){
-
-        return environmentRepository.findEnviromentByName(name);
+    public Environment findByName(String name) {
+        return Arrays.asList(
+                EnvironmentEnum.values())
+                .stream()
+                .filter( e -> e.toString() == name)
+                .map(e -> new Environment(e.getValue(), name))
+                .findFirst()
+                .orElse(null);
     }
-
-    @Override
-    public Environment save(Environment environment){
-        return environmentRepository.save(environment);
-
-    }
-
-    @Override
-    public Environment delete(Environment environment){
-        environmentRepository.delete(environment);
-        return environment;
-
-    }
-
 }

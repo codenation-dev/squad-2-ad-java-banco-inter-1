@@ -1,46 +1,44 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Level;
-import br.com.centralerros.application.domain.repository.LevelRepository;
+import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.service.LevelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LevelServiceImpl implements LevelService {
 
-    @Autowired
-    LevelRepository levelRepository;
-
     @Override
     public List<Level> findAll() {
-        return levelRepository.findAll();
+        return Arrays.asList(LevelEnum.values())
+                .stream()
+                .map(l -> new Level(l.getValue(), l.toString()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Level> findById(Long id) {
-        return levelRepository.findById(id);
+    public Level findById(int id) {
+
+        return Arrays.asList(
+                LevelEnum.values())
+                .stream()
+                .filter( l -> l.getValue() == id)
+                .map(l -> new Level(id, l.toString()))
+                .findFirst().orElse(null);
     }
 
     @Override
     public Level findByName(String name) {
-        return levelRepository.findLevelByName(name);
+
+        return Arrays.asList(
+                LevelEnum.values())
+                .stream()
+                .filter( l -> l.toString() == name)
+                .map(l -> new Level(l.getValue(), name))
+                .findFirst().orElse(null);
     }
-
-    @Override
-    public Level save(Level level) {
-        return levelRepository.save(level);
-    }
-
-    @Override
-    public Level delete(Level level) {
-
-        levelRepository.delete(level);
-        return level;
-    }
-
-
 }

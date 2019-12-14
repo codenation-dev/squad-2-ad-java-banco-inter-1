@@ -1,5 +1,7 @@
 package br.com.centralerros.application.domain.entity;
 
+import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
+import br.com.centralerros.application.domain.enumerables.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,13 +44,13 @@ public class User {
     @Column(name = "profile")
     private int profile;
 
-    @ManyToOne
-    @JoinColumn(name = "environment_id")
-    private Environment environment_id;
+    @Enumerated
+    @Column(name = "environment")
+    private EnvironmentEnum environment;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role_id;
+    @Enumerated
+    @Column(name = "role")
+    private RoleEnum role;
 
     public User(User user) {
         super();
