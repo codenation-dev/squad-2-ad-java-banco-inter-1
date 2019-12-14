@@ -33,16 +33,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers( "/common/**","/configuration/ui/",
-                "/swagger-ui.html","/swagger-resources/**","/webjars/**","/configuration/security"
-                ,"/v2/api-docs","/api/v1/user/save/**", "/api/v1/event/save/**");
-        }
+        web.ignoring().antMatchers("/common/**", "/configuration/ui/",
+                "/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/configuration/security",
+                "/v2/api-docs", "/api/v1/user/save/**");
+
+    }
 
 
 }
