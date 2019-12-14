@@ -14,25 +14,15 @@ import javax.xml.ws.Response;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UserController {
+public class UserController extends BasicController{
 
     @Autowired
     protected UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
-        User user = convertToUser(userVO);
         return ResponseEntity.ok(
-                userService.save(user)
+                userService.save(utils.map(userVO, User.class))
         );
     }
-
-    private User convertToUser(UserVO userVO){
-        return User.builder()
-                .email(userVO.getEmail())
-                .name(userVO.getName())
-                .password(userVO.getPassword())
-                .build();
-    }
-
 }

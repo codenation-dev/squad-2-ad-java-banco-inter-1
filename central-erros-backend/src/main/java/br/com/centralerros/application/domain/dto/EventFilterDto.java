@@ -27,6 +27,7 @@ public class EventFilterDto extends BasicFilterDto {
     private EnvironmentEnum environment;
     private LevelEnum level;
     private CategoryEnum category;
-    private Timestamp createDate;
+    private Timestamp createDateStart;
+    private Timestamp createDateEnd;
     private int userId;
 }

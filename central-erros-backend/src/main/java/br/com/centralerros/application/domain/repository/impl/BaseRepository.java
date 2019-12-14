@@ -4,5 +4,4 @@ public class BaseRepository {
     public BaseRepository instance(){
         return new BaseRepository();
     }
-
 }

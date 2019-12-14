@@ -5,8 +5,10 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`user` (
                                                      `name` VARCHAR(255) NOT NULL,
                                                      `password` VARCHAR(255) NOT NULL,
                                                      `email` VARCHAR(255) NOT NULL,
+                                                     `last_login` DATETIME NULL,
                                                      `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                      `environment` INT NULL,
+                                                     `profile` INT NULL,
                                                      `role` INT NULL,
                                                      PRIMARY KEY (`id`),
                                                      UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
@@ -32,3 +34,4 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`event` (
                                                               ON DELETE NO ACTION
                                                               ON UPDATE NO ACTION)
     ENGINE = InnoDB;
+-- changeset squad.2:1.2 dbms:mysql
