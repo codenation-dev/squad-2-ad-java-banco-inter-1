@@ -1,7 +1,7 @@
 package br.com.centralerros.application.service.impl;
 
-import br.com.centralerros.application.domain.repository.UserRepository;
 import br.com.centralerros.application.domain.entity.User;
+import br.com.centralerros.application.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

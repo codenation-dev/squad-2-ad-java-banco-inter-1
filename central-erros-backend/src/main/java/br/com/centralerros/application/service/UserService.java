@@ -11,8 +11,8 @@ public interface UserService {
     Optional<User> findById(Long id);
     User findByEmailEPassword(String email, String password);
     User findByApplication(String name);
-    User findByProfile (String profile);
-    User findByName (String name);
+    User findByProfile(String profile);
+    User findByName(String name);
     List<User> findAll();
     User delete(User user);
     Long delete(Long id);

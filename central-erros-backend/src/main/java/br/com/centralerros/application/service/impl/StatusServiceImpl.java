@@ -1,44 +1,45 @@
 package br.com.centralerros.application.service.impl;
 
-import br.com.centralerros.application.domain.entity.Role;
 import br.com.centralerros.application.domain.entity.Status;
-import br.com.centralerros.application.domain.repository.RoleRepository;
-import br.com.centralerros.application.domain.repository.StatusRepository;
+import br.com.centralerros.application.domain.enumerables.StatusEnum;
 import br.com.centralerros.application.service.StatusService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StatusServiceImpl implements StatusService {
-    @Autowired
-    StatusRepository statusRepository;
 
     @Override
     public List<Status> findAll() {
-        return statusRepository.findAll();
+        return Arrays.asList(StatusEnum.values())
+                .stream()
+                .map(s -> new Status(s.getValue(), s.toString()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Status> findById(Long id) {
-        return statusRepository.findById(id);
+    public Status findById(int id) {
+
+        return Arrays.asList(
+                StatusEnum.values())
+                .stream()
+                .filter( s -> s.getValue() == id)
+                .map(s -> new Status(id, s.toString()))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public Status findByName(String name) {
-        return statusRepository.findStatusByName(name);
-    }
-
-    @Override
-    public Status save(Status status) {
-        return statusRepository.save(status);
-    }
-
-    @Override
-    public Status delete(Status status) {
-        statusRepository.delete(status);
-        return status;
+        return Arrays.asList(
+                StatusEnum.values())
+                .stream()
+                .filter( s -> s.toString() == name)
+                .map(s -> new Status(s.getValue(), name))
+                .findFirst()
+                .orElse(null);
     }
 }

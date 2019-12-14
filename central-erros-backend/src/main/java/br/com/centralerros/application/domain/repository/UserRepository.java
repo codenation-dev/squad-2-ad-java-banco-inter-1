@@ -15,20 +15,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(@Param("email") String email);
 
     @Transactional
-    User findUserByEmailAndPassword (@Param("email") String email,
-                                     @Param("password") String password);
+    User findUserByEmailAndPassword(@Param("email") String email,
+                                    @Param("password") String password);
 
     @Transactional
     @Query(value = "SELECT u.* FROM centralerros.user u, centralerros.user_application ua, centralerros.application a\n" +
             "WHERE u.id = ua.user_id\n" +
             "AND a.id = ua.application_id\n" +
             "AND a.name = :name",nativeQuery = true)
-    User findByApplication (@Param("name") String name);
+    User findByApplication(@Param("name") String name);
 
     @Transactional
-    User findUserByProfile (@Param("profile") String profile);
+    User findUserByProfile(@Param("profile") String profile);
 
     @Transactional
-    User findUserByName (@Param("name") String name);
+    User findUserByName(@Param("name") String name);
 
 }

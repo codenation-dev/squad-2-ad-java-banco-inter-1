@@ -1,42 +1,45 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Role;
-import br.com.centralerros.application.domain.repository.RoleRepository;
+import br.com.centralerros.application.domain.enumerables.RoleEnum;
 import br.com.centralerros.application.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    @Autowired
-    RoleRepository roleRepository;
 
     @Override
     public List<Role> findAll() {
-        return roleRepository.findAll();
+        return Arrays.asList(RoleEnum.values())
+                .stream()
+                .map(e -> new Role(e.getValue(), e.toString()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Role> findById(Long id) {
-        return roleRepository.findById(id);
+    public Role findById(int id) {
+
+        return Arrays.asList(
+                RoleEnum.values())
+                .stream()
+                .filter( r -> r.getValue() == id)
+                .map(r -> new Role(id, r.toString()))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public Role findByName(String name) {
-        return roleRepository.findRoleByName(name);
-    }
-
-    @Override
-    public Role save(Role role) {
-        return roleRepository.save(role);
-    }
-
-    @Override
-    public Role delete(Role role) {
-        roleRepository.delete(role);
-        return role;
+        return Arrays.asList(
+                RoleEnum.values())
+                .stream()
+                .filter( r -> r.toString() == name)
+                .map(r -> new Role(r.getValue(), name))
+                .findFirst()
+                .orElse(null);
     }
 }
