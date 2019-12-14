@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.Response;
-
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -33,6 +31,13 @@ public class UserController {
                 .name(userVO.getName())
                 .password(userVO.getPassword())
                 .build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody User user){
+           return ResponseEntity.ok(
+                userService.save(user)
+        );
     }
 
 }
