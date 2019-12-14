@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.16</version>
+			<version>1.18.10</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -134,7 +134,7 @@
 						jdbc:mysql://localhost:3306/centralerros
 					</url>
 					<username>root</username>
-					<password>rOoT@1234</password>
+					<password>root</password>
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>
