@@ -2,13 +2,12 @@ package br.com.centralerros.application;
 
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 
-public class EventTest {
+public class EventServiceTest {
 
     @Autowired
     EventServiceImpl eventService;
