@@ -7,16 +7,18 @@ import Popup from 'reactjs-popup'
 import './signUpModal.scss'
 import { MdMailOutline } from 'react-icons/md'
 import { MdLockOutline } from 'react-icons/md'
+import { MdPersonOutline } from 'react-icons/md'
 
 function SignUpModal () {
   const [inputValue, setInputValue] = useState({
+    name: '',
     email: '',
     password: '',
-    checkbox: false
+    checkPassword: ''
   })
 
   function handleChange (evt) {
-    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value
+    const value = evt.target.value
     setInputValue({
       ...inputValue,
       [evt.target.name]: value
@@ -25,6 +27,10 @@ function SignUpModal () {
 
   function handleSubmit(evt) {
     evt && evt.preventDefault()
+    const { name, email, password } = inputValue
+    console.log(name)
+    console.log(email)
+    console.log(password)
     // dealing with the request here...
   }
 
@@ -37,8 +43,22 @@ function SignUpModal () {
       <div className='container d-flex justify-content-center'>
         <div className='login text-center'>
           <h1 className='login--title mb-4'>Create your account</h1>
-          <form id='login-form' className='login--form' onSubmit={handleSubmit}>
+          <form id='signup-form' name='signup-form' className='login--form' onSubmit={handleSubmit}>
             <div className='row justify-content-center'>
+              <div className='col-12 d-flex justify-content-center text-center mb-4'>
+                <input
+                  type='text'
+                  className='login--form__input'
+                  name='name'
+                  id='name'
+                  placeholder='Name'
+                  value={inputValue.name}
+                  onChange={handleChange}
+                />
+                <div className='login--icon'>
+                  <MdPersonOutline />
+                </div>
+              </div>
               <div className='col-12 d-flex justify-content-center text-center mb-4'>
                 <input
                   type='text'
@@ -53,7 +73,7 @@ function SignUpModal () {
                   <MdMailOutline />
                 </div>
               </div>
-              <div className='col-12 d-flex justify-content-center text-center'>
+              <div className='col-12 d-flex justify-content-center text-center mb-4'>
                 <input
                   type='password'
                   className='login--form__input'
@@ -66,6 +86,23 @@ function SignUpModal () {
                 <div className='login--icon'>
                   <MdLockOutline />
                 </div>
+              </div>
+              <div className='col-12 d-flex justify-content-center text-center'>
+                <input
+                  type='password'
+                  className='login--form__input'
+                  name='passwordCheck'
+                  placeholder='Type your password again'
+                  id='passwordCheck'
+                  value={inputValue.passwordCheck}
+                  onChange={handleChange}
+                />   
+                <div className='login--icon'>
+                  <MdLockOutline />
+                </div>
+              </div>
+              <div className='col-12 mt-3'>
+                <button className='btn btn__filled btn__filled--green mb-4' type='submit' value='Submit' form='signup-form'>Create account</button>
               </div>
             </div>
           </form>
