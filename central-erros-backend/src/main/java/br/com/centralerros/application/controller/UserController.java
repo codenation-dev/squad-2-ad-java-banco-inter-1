@@ -20,8 +20,7 @@ public class UserController {
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
         User user = convertToUser(userVO);
-        return ResponseEntity.ok(
-                userService.save(user)
+        return ResponseEntity.ok(userService.save(user)
         );
     }
 
@@ -35,8 +34,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody User user){
-           return ResponseEntity.ok(
-                userService.save(user)
+           return ResponseEntity.ok(userService.save(user)
         );
     }
 
