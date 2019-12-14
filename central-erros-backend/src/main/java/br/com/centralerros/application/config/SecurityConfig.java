@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -42,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers( "/common/**","/configuration/ui/",
                 "/swagger-ui.html","/swagger-resources/**","/webjars/**","/configuration/security",
-                "/oauth/authorize","/oauth/token","/oauth/confirm_access","/v2/api-docs","/api/v1/user/save");
+                "/oauth/authorize","/oauth/token","/oauth/confirm_access","/v2/api-docs","/api/v1/user/save/**");
         }
 
 
