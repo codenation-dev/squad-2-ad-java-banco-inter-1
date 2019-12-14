@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
 // components
 import Popup from 'reactjs-popup'
@@ -29,20 +28,9 @@ function SignUpModal () {
   function handleSubmit(evt) {
     evt && evt.preventDefault()
     const { name, email, password } = inputValue
-    const body = {
-      name,
-      email,
-      password
-    }
-
-    axios.post('http://localhost:8080/api/v1/user/save', { body })
-      .then(res => {
-        console.log('response: ', res)
-      })
-      .catch(err => {
-        console.log('error: ', err)
-      })
-
+    console.log(name)
+    console.log(email)
+    console.log(password)
     // dealing with the request here...
   }
 
