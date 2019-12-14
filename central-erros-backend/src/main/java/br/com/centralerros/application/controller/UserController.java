@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.Response;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -17,6 +16,7 @@ public class UserController {
     @Autowired
     protected UserService userService;
 
+    @CrossOrigin
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
         System.out.println("chegou aqui: " + userVO.getName() + userVO.getEmail());
