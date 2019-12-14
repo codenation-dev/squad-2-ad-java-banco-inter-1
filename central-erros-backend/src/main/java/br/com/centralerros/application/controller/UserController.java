@@ -12,32 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UserController {
+public class UserController extends BasicController{
 
     @Autowired
     protected UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
-        User user = convertToUser(userVO);
         return ResponseEntity.ok(
-                userService.save(user)
+                utils.map(userService.save(utils.map(userVO, User.class)), UserVO.class)
         );
     }
-
-    private User convertToUser(UserVO userVO){
-        return User.builder()
-                .email(userVO.getEmail())
-                .name(userVO.getName())
-                .password(userVO.getPassword())
-                .build();
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody User user){
-           return ResponseEntity.ok(
-                userService.save(user)
-        );
-    }
-
 }
