@@ -75,11 +75,13 @@ function Login() {
             <div className='col-12 mt-3'>
               <button className='btn btn__filled btn__filled--green mb-4' type='submit' form='login-form'>Sign in</button>
             </div>
-            <div className='col-12'>
-              <SignUpModal />
-            </div>
           </div>
         </form>
+        <div className='row'>
+          <div className='col-12'>
+            <SignUpModal />
+          </div>
+        </div>
       </div>
     </div>
   )
