@@ -1,5 +1,6 @@
 package br.com.centralerros.application.domain.entity;
 
+import liquibase.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity(name = "environment")
 public class Environment {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
