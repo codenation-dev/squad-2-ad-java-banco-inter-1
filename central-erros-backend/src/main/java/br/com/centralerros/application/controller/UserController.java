@@ -33,4 +33,11 @@ public class UserController {
                 .build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody User user){
+           return ResponseEntity.ok(
+                userService.save(user)
+        );
+    }
+
 }
