@@ -16,10 +16,10 @@ public class EventVO {
     private String name;
     private String description;
     private String source;
-    private Environment environment_id;
-    private Level level_id;
-    private Category category_id;
+    private Environment environment;
+    private Level level;
+    private Category category;
     private String details;
-    private Category status_id;
+    private Category status;
 
 }
