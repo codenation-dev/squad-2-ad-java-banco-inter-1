@@ -28,13 +28,13 @@ public class EventRepositoryImpl implements EventRepository {
         if(filter.getId() > 0){
             query.setParameter("id", filter.getId());
         }else{
-            if(filter.getDescription().isEmpty()){
+            if(!filter.getDescription().isEmpty()){
                 query.setParameter("description", filter.getDescription());
-            }
-            if(filter.getSource().isEmpty()){
+            !}
+            if(!filter.getSource().isEmpty()){
                 query.setParameter("source", filter.getSource());
             }
-            if(filter.getDetails().isEmpty()){
+            if(!filter.getDetails().isEmpty()){
                 query.setParameter("details", filter.getDetails());
             }
             if(filter.getStatus().getValue() > 0){
@@ -72,13 +72,13 @@ public class EventRepositoryImpl implements EventRepository {
         if(filter.getId() > 0){
             sql += " AND id = :id";
         }else{
-            if(filter.getDescription().isEmpty()){
+            if(!filter.getDescription().isEmpty()){
                 sql += " AND e.description = :description";
             }
-            if(filter.getSource().isEmpty()){
+            if(!filter.getSource().isEmpty()){
                 sql += " AND e.source = :source";
             }
-            if(filter.getDetails().isEmpty()){
+            if(!filter.getDetails().isEmpty()){
                 sql += " AND e.details = :details";
             }
             if(filter.getStatus().getValue() > 0){

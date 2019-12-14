@@ -18,7 +18,7 @@ public class LevelController extends BasicController {
     @GetMapping
     public ResponseEntity findAll() {
         return ResponseEntity.ok(
-                utils.map(
+                utils.listMap(
                         levelService.findAll(),
                         IdNameVO.class
                 )
