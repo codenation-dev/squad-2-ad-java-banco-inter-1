@@ -3,6 +3,7 @@ package br.com.centralerros.application.domain.repository.impl;
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.repository.EventRepository;
+import br.com.centralerros.application.domain.vo.EventVO;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -23,6 +24,8 @@ public class EventRepositoryImpl implements EventRepository {
         setParameters(query, filter);
         return query.getResultList();
     }
+
+
 
     private void setParameters(TypedQuery<Event> query, EventFilterDto filter) {
         if(filter.getId() > 0){
