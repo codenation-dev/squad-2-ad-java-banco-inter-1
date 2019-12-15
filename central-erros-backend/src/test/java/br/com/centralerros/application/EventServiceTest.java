@@ -7,7 +7,6 @@ import br.com.centralerros.application.domain.enumerables.StatusEnum;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
 import br.com.centralerros.application.service.impl.RoleServiceImpl;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-public class EventTest {
+public class EventServiceTest {
+
 
     @Autowired
     RoleServiceImpl roleService;
