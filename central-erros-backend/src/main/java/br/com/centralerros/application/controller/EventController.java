@@ -47,7 +47,4 @@ public class EventController extends BasicController {
     public ResponseEntity findEvent(@RequestBody EventFilterDto filter){
         return ResponseEntity.ok(utils.listMap(eventService.findEvents(filter), EventVO.class));
     }
-
-
-
 }
