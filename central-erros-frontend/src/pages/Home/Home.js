@@ -30,21 +30,21 @@ function Home () {
 
   function handleSubmit (evt) {
     evt && evt.preventDefault()
-    const { email, password } = inputValue
-    const body = {
-      email,
-      password
-    }      
+    // const { email, password } = inputValue   
 
-    axios.post('http://localhost:8080/oauth/token', body, {
-      
-    })
-    .then(res => {
-      console.log('response: ', res)
-    })
-    .catch(err => {
-      console.log('error: ', err)
-    })
+    // axios.post('http://localhost:8080/oauth/token',
+    //   {
+    //     grant_type: 'password',
+    //     username: email,
+    //     password: password
+    //   }
+    // )
+    // .then(res => {
+    //   console.log('response: ', res)
+    // })
+    // .catch(err => {
+    //   console.log('error: ', err)
+    // })
   }
 
   return (
