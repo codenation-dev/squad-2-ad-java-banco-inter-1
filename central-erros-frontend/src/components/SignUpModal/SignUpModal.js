@@ -46,8 +46,7 @@ function SignUpModal () {
 
     axios.post('http://localhost:8080/api/v1/user/save', body, {
       headers: headers
-    })
-    .then(res => {
+    }).then(res => {
       console.log('response: ', res)
     })
     .catch(err => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 // components
 import SignUpModal from './../../components/SignUpModal'
@@ -8,12 +9,16 @@ import './home.scss'
 import { MdMailOutline } from 'react-icons/md'
 import { MdLockOutline } from 'react-icons/md'
 
+// context
+import { useAuth } from './../../context/auth'
+
 function Home () {
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
     checkbox: false
   })
+  const { setAuthTokens } = useAuth()
 
   function handleChange (evt) {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value
@@ -23,9 +28,23 @@ function Home () {
     })
   }
 
-  function handleSubmit(evt) {
+  function handleSubmit (evt) {
     evt && evt.preventDefault()
-    // dealing with the request here...
+    const { email, password } = inputValue
+    const body = {
+      email,
+      password
+    }      
+
+    axios.post('http://localhost:8080/oauth/token', body, {
+      
+    })
+    .then(res => {
+      console.log('response: ', res)
+    })
+    .catch(err => {
+      console.log('error: ', err)
+    })
   }
 
   return (
