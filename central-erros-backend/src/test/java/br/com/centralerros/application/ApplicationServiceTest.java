@@ -56,7 +56,6 @@ public class ApplicationServiceTest {
     public void whenFindByName(){
 
         Application result = applicationService.findByName(NAME);
-        System.out.println(result);
         assertEquals(result.getName(),NAME);
 
     }
@@ -66,7 +65,6 @@ public class ApplicationServiceTest {
     public void whenFindAll(){
 
         List<Application> result = applicationService.findAll();
-        System.out.println(result);
         assertThat(result,hasSize(1));
     }
 
@@ -81,11 +79,7 @@ public class ApplicationServiceTest {
         Application application = new Application();
 
         application.setName(NAME);
-        //application.setId(ID);
         return application;
-
-
-
     }
 
 }

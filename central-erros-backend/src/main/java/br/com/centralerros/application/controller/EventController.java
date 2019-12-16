@@ -17,9 +17,9 @@ public class EventController extends BasicController {
     EventServiceImpl eventService;
 
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody EventVO eventVO){
+    public ResponseEntity save(@RequestBody Event event){
         //return ResponseEntity.ok(eventService.save(utils.map(eventVO, Event.class)));
-        return ResponseEntity.ok(eventService.save(eventVO));
+        return ResponseEntity.ok(eventService.save(event));
     }
 
     @GetMapping("/deleteById/{id}")

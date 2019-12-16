@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -51,10 +50,15 @@ public class Event {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate
-    @Column(name = "create_date")
+    @Column(name = "created_date")
     private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "application_id")
+    private Application application;
+
 }
