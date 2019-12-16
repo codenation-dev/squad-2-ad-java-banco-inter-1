@@ -6,17 +6,13 @@ import br.com.centralerros.application.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-    /*findAll
-findById
-findByName
-save
-update
-delete (safe delete)*/
+
 
     @Autowired
     ApplicationRepository applicationRepository;
@@ -27,6 +23,13 @@ delete (safe delete)*/
         return applicationRepository.findById(id);
 
     }
+
+    @Override
+    public List<Application> findAll() {
+        return applicationRepository.findAll();
+
+    }
+
 
     @Override
     public Application findByName(String name){

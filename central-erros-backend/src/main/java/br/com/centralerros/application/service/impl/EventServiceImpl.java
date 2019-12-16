@@ -43,6 +43,7 @@ public class EventServiceImpl implements EventService {
         return MapperUtils.instance().map(eventPersist, EventVO.class);
     }
 
+    /*
     @Override
     public EventVO save(EventVO eventVO) {
         Event event = MapperUtils.instance().map(eventVO, Event.class);
@@ -51,6 +52,8 @@ public class EventServiceImpl implements EventService {
         event.setUser(user);
         return save(event);
     }
+
+     */
 
     @Override
     public Long delete(Long id) {

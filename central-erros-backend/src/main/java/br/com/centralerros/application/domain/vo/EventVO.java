@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
@@ -29,6 +28,7 @@ public class EventVO {
     private CategoryEnum category;
     private StatusEnum status;
     private UserVO userVO;
+    private ApplicationVO applicationVO;
 
     private LocalDateTime createDate;
 }
