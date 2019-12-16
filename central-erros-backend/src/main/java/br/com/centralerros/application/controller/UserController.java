@@ -17,7 +17,7 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
-        System.out.println("chegou aqui: " + userVO.getName() + userVO.getEmail());
+        
         User user = convertToUser(userVO);
         return ResponseEntity.ok(
                 userService.save(user)
@@ -32,11 +32,6 @@ public class UserController {
                 .build();
     }
 
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody User user){
-           return ResponseEntity.ok(
-                userService.save(user)
-        );
-    }
+
 
 }
