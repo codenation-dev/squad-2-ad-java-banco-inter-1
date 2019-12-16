@@ -42,7 +42,6 @@ public class EventController extends BasicController {
         return ResponseEntity.ok(eventService.findAllFromUser(userVO));
     }
 
-
     @PostMapping("/filter")
     public ResponseEntity findEvent(@RequestBody EventFilterDto filter){
         return ResponseEntity.ok(utils.listMap(eventService.findEvents(filter), EventVO.class));
