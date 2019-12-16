@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 public class Utils {
     private static MapperUtils mapperUtils;
 
+
+    public static boolean isNullOrEmpty(String text){
+        return text == null || text.isEmpty();
+    }
+
     public static <U,T> U map(T objeto, Class<U> destino){
         return mapperUtils.instance()
                 .map(objeto, destino);
