@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`user` (
                                                      `password` VARCHAR(255) NOT NULL,
                                                      `email` VARCHAR(255) NOT NULL,
                                                      `last_login` DATETIME NULL,
-                                                     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                                     `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                      `environment` INT NULL,
                                                      `profile` INT NULL,
                                                      `role` INT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`user` (
 CREATE TABLE IF NOT EXISTS `centralerros`.`application` (
                                                             `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
                                                             `name` VARCHAR(255) NOT NULL,
-                                                            `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                                            `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                             PRIMARY KEY (`id`),
                                                             UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
     ENGINE = InnoDB;
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`event` (
                                                       `environment` INT NOT NULL,
                                                       `level` INT NOT NULL,
                                                       `category` INT NOT NULL,
-                                                      `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                                      `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                       `user_id` BIGINT(20) NOT NULL,
                                                       `application_id` BIGINT(20) NOT NULL,
                                                       PRIMARY KEY (`id`),
