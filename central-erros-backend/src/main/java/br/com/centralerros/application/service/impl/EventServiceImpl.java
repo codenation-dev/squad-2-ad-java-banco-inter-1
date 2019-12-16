@@ -43,18 +43,6 @@ public class EventServiceImpl implements EventService {
         return MapperUtils.instance().map(eventPersist, EventVO.class);
     }
 
-    /*
-    @Override
-    public EventVO save(EventVO eventVO) {
-        Event event = MapperUtils.instance().map(eventVO, Event.class);
-        User user = MapperUtils.instance().map(eventVO.getUserVO(), User.class);
-
-        event.setUser(user);
-        return save(event);
-    }
-
-     */
-
     @Override
     public Long delete(Long id) {
         eventRepository.deleteById(id);

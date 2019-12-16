@@ -19,9 +19,9 @@
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/centralerros" />
             <property name="javax.persistence.jdbc.user"
-                      value="root" />
+                      value="gabriel" />
             <property name="javax.persistence.jdbc.password"
-                      value="MinhaSenha#3541" />
+                      value="Bj180115" />
             <!--  propriedades do hibernate -->
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQL5Dialect" />
