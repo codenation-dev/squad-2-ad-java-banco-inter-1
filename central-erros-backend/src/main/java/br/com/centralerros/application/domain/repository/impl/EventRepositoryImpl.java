@@ -3,6 +3,7 @@ package br.com.centralerros.application.domain.repository.impl;
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.repository.EventRepository;
+import br.com.centralerros.application.utils.Utils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ public class EventRepositoryImpl implements EventRepository {
     @PersistenceContext
     private EntityManager em;
 
+
     @Override
     public List<Event> findEvents(EventFilterDto filter) {
         String sql = getSqlForQuery(filter);
@@ -24,29 +26,30 @@ public class EventRepositoryImpl implements EventRepository {
         return query.getResultList();
     }
 
+
     private void setParameters(TypedQuery<Event> query, EventFilterDto filter) {
-        if(filter.getId() > 0){
+        if(filter.getId() != null && filter.getId() > 0){
             query.setParameter("id", filter.getId());
         }else{
             if(!filter.getDescription().isEmpty()){
                 query.setParameter("description", filter.getDescription());
             }
-            if(!filter.getSource().isEmpty()){
+            if(!Utils.isNullOrEmpty(filter.getSource())){
                 query.setParameter("source", filter.getSource());
             }
-            if(!filter.getDetails().isEmpty()){
+            if(!Utils.isNullOrEmpty(filter.getDetails())){
                 query.setParameter("details", filter.getDetails());
             }
-            if(filter.getStatus().getValue() > 0){
+            if(filter.getStatus() != null && filter.getStatus().getValue() > 0){
                 query.setParameter("status", filter.getStatus().getValue());
             }
-            if(filter.getEnvironment().getValue() > 0){
+            if(filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0){
                 query.setParameter("environment", filter.getEnvironment().getValue());
             }
-            if(filter.getLevel().getValue() > 0){
+            if(filter.getLevel() != null && filter.getLevel().getValue() > 0){
                 query.setParameter("level", filter.getLevel().getValue());
             }
-            if(filter.getCategory().getValue() > 0){
+            if(filter.getCategory() != null && filter.getCategory().getValue() > 0){
                 query.setParameter("category", filter.getCategory().getValue());
             }
             if(filter.getCreateDateStart() != null){
@@ -69,28 +72,28 @@ public class EventRepositoryImpl implements EventRepository {
     private String getSqlForQuery(EventFilterDto filter){
         String sql = "SELECT e.* FROM event e WHERE 1 ";
 
-        if(filter.getId() > 0){
+        if(filter.getId() != null && filter.getId() > 0){
             sql += " AND id = :id";
         }else{
-            if(!filter.getDescription().isEmpty()){
+            if(!Utils.isNullOrEmpty(filter.getDescription())){
                 sql += " AND e.description = :description";
             }
-            if(!filter.getSource().isEmpty()){
+            if(!Utils.isNullOrEmpty(filter.getSource())){
                 sql += " AND e.source = :source";
             }
-            if(!filter.getDetails().isEmpty()){
+            if(!Utils.isNullOrEmpty(filter.getDetails())){
                 sql += " AND e.details = :details";
             }
-            if(filter.getStatus().getValue() > 0){
+            if(filter.getStatus() != null && filter.getStatus().getValue() > 0){
                 sql += " AND e.status = :status";
             }
-            if(filter.getEnvironment().getValue() > 0){
+            if(filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0){
                 sql += " AND e.environment = :environment";
             }
-            if(filter.getLevel().getValue() > 0){
+            if(filter.getLevel() != null && filter.getLevel().getValue() > 0){
                 sql += " AND e.level = :level";
             }
-            if(filter.getCategory().getValue() > 0){
+            if(filter.getCategory() != null && filter.getCategory().getValue() > 0){
                 sql += " AND e.category = :category";
             }
             if(filter.getCreateDateStart() != null){

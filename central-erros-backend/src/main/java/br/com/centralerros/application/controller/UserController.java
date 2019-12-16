@@ -19,8 +19,7 @@ public class UserController {
     public ResponseEntity save(@RequestBody UserVO userVO){
         
         User user = convertToUser(userVO);
-        return ResponseEntity.ok(
-                userService.save(user)
+        return ResponseEntity.ok(userService.save(user)
         );
     }
 
