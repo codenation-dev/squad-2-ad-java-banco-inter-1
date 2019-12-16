@@ -12,12 +12,7 @@ import java.util.Optional;
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-    /*findAll
-findById
-findByName
-save
-update
-delete (safe delete)*/
+
 
     @Autowired
     ApplicationRepository applicationRepository;
