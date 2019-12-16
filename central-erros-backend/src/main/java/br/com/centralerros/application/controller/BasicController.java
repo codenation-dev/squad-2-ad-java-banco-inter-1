@@ -12,8 +12,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BasicController {
     public Utils utils;
-    public Long userId;
-
-    Authentication authentication = SecurityContextHolder.getContext()
-            .getAuthentication();
+    public User user = utils.getLoggedUser();
 }

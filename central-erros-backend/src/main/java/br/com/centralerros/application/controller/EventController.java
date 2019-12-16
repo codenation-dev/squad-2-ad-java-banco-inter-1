@@ -19,7 +19,6 @@ public class EventController extends BasicController {
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody Event event){
-        User user = utils.getLoggedUser();
         event.setUser(user);
         return ResponseEntity.ok(eventService.save(event));
     }
