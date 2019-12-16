@@ -31,6 +31,9 @@ public class EnvironmentServiceImpl implements EnvironmentService {
                 .map(e -> new Environment(id, e.toString()))
                 .findFirst()
                 .orElse(null);
+
+
+
     }
 
     @Override
@@ -38,7 +41,7 @@ public class EnvironmentServiceImpl implements EnvironmentService {
         return Arrays.asList(
                 EnvironmentEnum.values())
                 .stream()
-                .filter( e -> e.toString() == name)
+                .filter( e -> e.toString().equals(name))
                 .map(e -> new Environment(e.getValue(), name))
                 .findFirst()
                 .orElse(null);

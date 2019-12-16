@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -24,7 +25,7 @@ public class EventFilterDto extends BasicFilterDto {
     private EnvironmentEnum environment;
     private LevelEnum level;
     private CategoryEnum category;
-    private Timestamp createDateStart;
-    private Timestamp createDateEnd;
+    private LocalDateTime createDateStart;
+    private LocalDateTime createDateEnd;
     private int userId;
 }

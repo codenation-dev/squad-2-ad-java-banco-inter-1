@@ -2,6 +2,7 @@ package br.com.centralerros.application.domain.entity;
 
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.RoleEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;

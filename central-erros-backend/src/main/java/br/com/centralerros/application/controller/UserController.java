@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
-
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -21,8 +19,7 @@ public class UserController {
     public ResponseEntity save(@RequestBody UserVO userVO){
         System.out.println("chegou aqui: " + userVO.getName() + userVO.getEmail());
         User user = convertToUser(userVO);
-        return ResponseEntity.ok(
-                userService.save(user)
+        return ResponseEntity.ok(userService.save(user)
         );
     }
 
@@ -36,8 +33,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody User user){
-           return ResponseEntity.ok(
-                userService.save(user)
+           return ResponseEntity.ok(userService.save(user)
         );
     }
 

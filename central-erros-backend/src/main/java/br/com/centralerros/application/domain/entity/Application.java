@@ -26,9 +26,9 @@ public class Application {
 
     @Column(name = "created_at")
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "business_unit")
-    private int business_unit;
+    private int businessUnit;
 
 }

@@ -9,12 +9,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventVO {
+    private Long id;
     private String name;
     private String description;
     private String source;
@@ -24,4 +28,7 @@ public class EventVO {
     private EnvironmentEnum environment;
     private CategoryEnum category;
     private StatusEnum status;
+    private UserVO userVO;
+
+    private LocalDateTime createDate;
 }

@@ -21,11 +21,11 @@ public class UserApplication {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "application_id")
-    private Application application_id;
+    private Application application;
 
 
 }
