@@ -24,11 +24,9 @@ public class Application {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "created_at")
     @CreatedDate
-    private LocalDateTime created_at;
+    @Column(name = "created_date")
+    private LocalDateTime created_date;
 
-    @Column(name = "business_unit")
-    private int business_unit;
 
 }

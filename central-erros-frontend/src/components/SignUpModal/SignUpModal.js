@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
 // components
 import Popup from 'reactjs-popup'
 
@@ -35,15 +34,18 @@ function SignUpModal () {
       password
     }
 
-    axios.post('http://localhost:8080/api/v1/user/save', { body })
-      .then(res => {
-        console.log('response: ', res)
-      })
-      .catch(err => {
-        console.log('error: ', err)
-      })
+    const headers = {
+      'Content-type': 'application/json'
+    }
 
-    // dealing with the request here...
+    axios.post('http://localhost:8080/api/v1/user/save', body, {
+      headers: headers
+    }).then(res => {
+      console.log('response: ', res)
+    })
+    .catch(err => {
+      console.log('error: ', err)
+    })
   }
 
   return (

@@ -1,7 +1,6 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.User;
-import br.com.centralerros.application.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +17,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userService.findByEmail(email);
+
+        User user = userService.findByEmailLoginSecurity(email);
 
         if(user == null){
             throw new UsernameNotFoundException("Usuário não encontrado com nome de usuario "+ email);
