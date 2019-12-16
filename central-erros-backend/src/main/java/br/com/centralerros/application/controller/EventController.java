@@ -2,6 +2,7 @@ package br.com.centralerros.application.controller;
 
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
+import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
@@ -18,7 +19,8 @@ public class EventController extends BasicController {
 
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody Event event){
-        //return ResponseEntity.ok(eventService.save(utils.map(eventVO, Event.class)));
+        User user = utils.getLoggedUser();
+        event.setUser(user);
         return ResponseEntity.ok(eventService.save(event));
     }
 

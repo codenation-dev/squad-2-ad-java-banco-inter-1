@@ -11,7 +11,6 @@ public interface EventService {
     List<Event> findEvents(EventFilterDto filter);
     EventVO findById(Long id);
     EventVO save(Event event);
-    //EventVO save(EventVO event);
     Long delete(Long id);
     EventVO delete(Event event);
     EventVO delete(EventVO eventVo);

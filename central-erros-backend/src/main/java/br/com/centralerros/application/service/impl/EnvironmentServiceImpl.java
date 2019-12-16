@@ -31,9 +31,6 @@ public class EnvironmentServiceImpl implements EnvironmentService {
                 .map(e -> new Environment(id, e.toString()))
                 .findFirst()
                 .orElse(null);
-
-
-
     }
 
     @Override
