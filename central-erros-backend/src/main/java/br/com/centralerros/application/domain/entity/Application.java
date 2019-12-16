@@ -28,7 +28,5 @@ public class Application {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(name = "business_unit")
-    private int businessUnit;
 
 }
