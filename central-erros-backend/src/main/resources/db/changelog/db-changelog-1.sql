@@ -14,6 +14,16 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`user` (
                                                      UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
     ENGINE = InnoDB;
 -- changeset squad.2:1.1 dbms:mysql
+CREATE TABLE IF NOT EXISTS `centralerros`.`application` (
+                                                            `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+                                                            `name` VARCHAR(255) NOT NULL,
+                                                            `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                                            PRIMARY KEY (`id`),
+                                                            UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
+    ENGINE = InnoDB;
+
+-- changeset squad.2:1.2 dbms:mysql
+
 CREATE TABLE IF NOT EXISTS `centralerros`.`event` (
                                                       `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
                                                       `description` VARCHAR(255) NOT NULL,
@@ -25,12 +35,19 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`event` (
                                                       `category` INT NOT NULL,
                                                       `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                       `user_id` BIGINT(20) NOT NULL,
+                                                      `application_id` BIGINT(20) NOT NULL,
                                                       PRIMARY KEY (`id`),
                                                       UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
                                                       INDEX `fk_event_user_idx` (`user_id` ASC) ,
                                                       CONSTRAINT `fk_event_user`
                                                           FOREIGN KEY (`user_id`)
                                                               REFERENCES `centralerros`.`user` (`id`)
+                                                              ON DELETE NO ACTION
+                                                              ON UPDATE NO ACTION,
+                                                      INDEX `fk_event_application_idx` (`application_id` ASC) ,
+                                                      CONSTRAINT `fk_event_application`
+                                                          FOREIGN KEY (`application_id`)
+                                                              REFERENCES `centralerros`.`application` (`id`)
                                                               ON DELETE NO ACTION
                                                               ON UPDATE NO ACTION)
     ENGINE = InnoDB;
