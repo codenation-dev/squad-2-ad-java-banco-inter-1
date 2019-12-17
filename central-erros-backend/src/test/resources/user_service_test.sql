@@ -14,11 +14,11 @@ insert into user (id,
                    password,
                    email,
                   created_date
-)
+                  )
 values (1,
         'Guilherme',
         'senha',
-        'email',
+        'email@email.com',
         now());
 
 

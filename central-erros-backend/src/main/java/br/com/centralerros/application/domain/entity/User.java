@@ -2,7 +2,6 @@ package br.com.centralerros.application.domain.entity;
 
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.RoleEnum;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,9 +34,9 @@ public class User {
     @Column(name = "email", nullable = false, length = 255)
     private String email;
 
-    @Column(name = "created_at")
+    @Column(name = "created_date")
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime created_date;
 
     @Column(name = "last_login")
     private LocalDateTime last_login;
