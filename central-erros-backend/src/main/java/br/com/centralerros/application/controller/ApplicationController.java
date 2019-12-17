@@ -1,27 +1,49 @@
 package br.com.centralerros.application.controller;
 
-import br.com.centralerros.application.service.ApplicationService;
+import br.com.centralerros.application.domain.entity.Application;
+import br.com.centralerros.application.service.impl.ApplicationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/application")
 public class ApplicationController {
 
     @Autowired
-    ApplicationService applicationService;
+    ApplicationServiceImpl applicationService;
 
-    @GetMapping("/findByID/{id}")
-    public ResponseEntity findByID(@PathVariable Long id){
+
+    @PostMapping("")
+    public ResponseEntity save(@RequestBody Application application){
+        return ResponseEntity.ok(applicationService.save(application));
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(applicationService.deleteById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Application application){
+        return ResponseEntity.ok(applicationService.delete(application));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable("id") Long id){
         return ResponseEntity.ok(applicationService.findById(id));
     }
 
-    @GetMapping("/findByName/{name}")
+    @GetMapping("")
+    public ResponseEntity findByAll(){
+        return ResponseEntity.ok(applicationService.findAll());
+    }
+
+    @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){
         return ResponseEntity.ok(applicationService.findByName(name));
     }
+
+
 }
