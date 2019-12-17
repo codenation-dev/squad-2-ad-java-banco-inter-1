@@ -1,0 +1,69 @@
+@import "../../assets/sass/abstracts/variables";
+@import "../../assets/sass/abstracts/mixins/font";
+@import "../../assets/sass/abstracts/mixins/button";
+@import "../../assets/sass/abstracts/mixins/input";
+@import "../../assets/sass/abstracts/mixins/message";
+
+.signup{
+  margin: 0 20px;
+  width: 350px;
+  position: relative;
+
+  @media (max-width: 767px){
+    width: 300px;
+  }
+
+  header{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3{
+      @include font-source("Roboto", 20px ,$blue-4b, normal, normal);
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}
+
+.form-signup{
+  background-color: $white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px $gray-c4;
+
+  &__item{
+
+    label{
+      @include font-source('Inter', 14px, $blue-8c, 600, 18px);
+    }
+
+    input{
+      @include input();
+      margin-bottom: 10px;
+    }
+  }
+
+  &__submit{
+    @include button();
+    font-size: 16px;
+    color: $white;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  &__message{
+    @include message();
+    bottom: -100px;
+
+    &.active{
+      bottom: -25px;
+    }
+  }
+}
