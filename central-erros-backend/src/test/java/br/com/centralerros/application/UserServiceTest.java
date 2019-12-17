@@ -1,6 +1,7 @@
 package br.com.centralerros.application;
 
 import br.com.centralerros.application.domain.entity.User;
+import br.com.centralerros.application.domain.enumerables.ProfileEnum;
 import br.com.centralerros.application.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserServiceTest {
     private static final String name_user = "Guilherme";
     private static final String password = "senha";
     private static final String email = "email@email.com";
-
+    private static final ProfileEnum profile = ProfileEnum.ADMINISTRATOR;
 
     @Autowired
     UserServiceImpl userService;
@@ -36,7 +37,7 @@ public class UserServiceTest {
         User user = getUser();
 
         User result =userService.save(user);
-
+        System.out.println(result);
         assertUser(result);
 
     }
@@ -72,7 +73,7 @@ public class UserServiceTest {
         assertThat(result.getName(),equalTo(name_user));
         assertThat(result.getPassword(),equalTo(password));
         assertThat(result.getEmail(),equalTo(email));
-
+        assertThat(result.getProfile(),equalTo(1));
 
     }
 
@@ -83,9 +84,10 @@ public class UserServiceTest {
         user.setName(name_user);
         user.setEmail(email);
         user.setPassword(password);
+        user.setProfile(1);
 
         return user;
     }
 
 
-}
+ }

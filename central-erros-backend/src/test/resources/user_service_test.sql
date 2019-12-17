@@ -13,12 +13,14 @@ insert into user (id,
                    name,
                    password,
                    email,
+                  profile,
                   created_date
                   )
 values (1,
         'Guilherme',
         'senha',
         'email@email.com',
+        1,
         now());
 
 
