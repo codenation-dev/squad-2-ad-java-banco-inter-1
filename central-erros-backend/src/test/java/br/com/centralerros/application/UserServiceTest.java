@@ -73,7 +73,7 @@ public class UserServiceTest {
         assertThat(result.getName(),equalTo(name_user));
         assertThat(result.getPassword(),equalTo(password));
         assertThat(result.getEmail(),equalTo(email));
-        assertThat(result.getProfile(),equalTo(1));
+        assertThat(result.getProfile(),equalTo(profile));
 
     }
 
@@ -84,10 +84,11 @@ public class UserServiceTest {
         user.setName(name_user);
         user.setEmail(email);
         user.setPassword(password);
-        user.setProfile(1);
+        user.setProfile(profile);
 
         return user;
     }
+
 
 
  }

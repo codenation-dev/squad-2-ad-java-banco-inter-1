@@ -15,6 +15,7 @@ insert into user (id,
                    email,
                   profile,
                   created_date
+
                   )
 values (1,
         'Guilherme',
