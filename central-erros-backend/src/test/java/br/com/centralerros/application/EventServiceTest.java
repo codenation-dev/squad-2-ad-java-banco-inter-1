@@ -49,7 +49,6 @@ public class EventServiceTest {
     public void whenSave() {
 
         Event event = getEvent();
-        System.out.println("DETALHESSS"+event.getId());
         EventVO result =eventService.save(event);
 
         assertEvent(result);
@@ -60,9 +59,7 @@ public class EventServiceTest {
     @Transactional
     public void whenFindById() {
 
-        //Event optResult = MapperUtils.instance().map(eventService.findById(getEvent().getId()), Event.class);
         Optional<Event> optResult = eventService.findById(Long.valueOf(1));
-        System.out.println("DETALHESSS"+optResult);
         assertThat(optResult.isPresent(),equalTo(true));
 
     }
