@@ -1,11 +1,63 @@
-.main {
+@import '../../assets/sass/abstracts/variables';
+@import '../../assets/sass/abstracts/mixins/font';
+
+.home {
+  background-image: url("../../assets/images/home.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    to right,
-    rgba(60, 196, 124, 0.6) 40%,
-    rgba(60, 196, 124, 0.20)
-  );
+  z-index: 1;
+  
+  &::after {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: linear-gradient(
+      to right,
+      rgba(60, 196, 124, 0.6) 20%,
+      rgba(60, 196, 124, 0.20)
+    );
+    opacity: 0.6;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: $gray-f5;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 440px;
+
+    &-image {
+      background-image: url("../../assets/images/home-card.svg");
+      background-size: cover;
+      width: 500px;
+
+      h2 {
+        @include font-source('Inter', 25px, $white, 300, normal);
+        margin: 20px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 991px) {
+  .home{
+    &__card {
+
+      &-image {
+        display: none;
+      }
+    }
+  }
 }

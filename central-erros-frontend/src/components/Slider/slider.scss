@@ -1,0 +1,23 @@
+.slider {
+  padding: 20px;
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+
+  &__list {
+    display: flex;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+
+    &-item {
+
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .slider{
+    width: 350px;
+  }
+}
