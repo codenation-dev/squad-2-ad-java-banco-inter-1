@@ -35,9 +35,6 @@ public class ApplicationServiceTest {
         Application application = getApplication();
 
         Application result =applicationService.save(application);
-        System.out.println(result);
-
-
         assertApplication(result);
 
     }

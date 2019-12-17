@@ -30,7 +30,7 @@ public class EventServiceTest {
 
     private static final String name_user = "Guilherme";
     private static final String password = "senha";
-    private static final String email = "email";
+    private static final String email = "email@email.com";
 
 
 
