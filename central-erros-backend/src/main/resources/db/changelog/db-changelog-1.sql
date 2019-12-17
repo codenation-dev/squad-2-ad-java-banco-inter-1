@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`user` (
                                                      `last_login` DATETIME NULL,
                                                      `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                                      `environment` INT NULL,
-                                                     `profile` INT NULL,
+                                                     `profile` INT NOT NULL,
                                                      `role` INT NULL,
                                                      PRIMARY KEY (`id`),
                                                      UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
