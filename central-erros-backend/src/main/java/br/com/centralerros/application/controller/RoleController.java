@@ -5,6 +5,7 @@ import br.com.centralerros.application.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,4 +24,22 @@ public class RoleController extends BasicController {
                 )
         );
     }
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable("id") int id){
+        return ResponseEntity.ok(roleService.findById(id));
+    }
+
+    @GetMapping("")
+    public ResponseEntity findByAll(){
+        return ResponseEntity.ok(roleService.findAll());
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity findByName(@PathVariable String name){
+        return ResponseEntity.ok(roleService.findByName(name));
+    }
+
 }
