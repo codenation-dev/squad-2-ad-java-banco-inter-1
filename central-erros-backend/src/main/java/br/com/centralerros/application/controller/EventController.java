@@ -2,7 +2,6 @@ package br.com.centralerros.application.controller;
 
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
-import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
@@ -17,29 +16,29 @@ public class EventController extends BasicController {
     @Autowired
     EventServiceImpl eventService;
 
-    @PostMapping("/save")
+    @PostMapping("")
     public ResponseEntity save(@RequestBody Event event){
         event.setUser(user);
         return ResponseEntity.ok(eventService.save(event));
     }
 
-    @GetMapping("/deleteById/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id){
         return ResponseEntity.ok(eventService.delete(id));
     }
 
-    @PostMapping("/deleteEvent")
+    @DeleteMapping("")
     public ResponseEntity deleteEvent(@RequestBody EventVO eventVO){
         return ResponseEntity.ok(eventService.delete(eventVO));
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("")
     public ResponseEntity findAll(){
         return ResponseEntity.ok(eventService.findAll());
     }
 
-    @PostMapping("/findAllFromUser")
-    public ResponseEntity findAllFromUser(UserVO userVO){
+    @GetMapping("/{user}")
+    public ResponseEntity findAllFromUser(@PathVariable("user") UserVO userVO){
         return ResponseEntity.ok(eventService.findAllFromUser(userVO));
     }
 
