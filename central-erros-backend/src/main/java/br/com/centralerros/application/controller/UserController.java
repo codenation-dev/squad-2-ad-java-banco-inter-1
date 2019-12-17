@@ -16,10 +16,28 @@ public class UserController extends BasicController{
     protected UserService userService;
 
     @CrossOrigin
-    @PostMapping("/save")
+    @PostMapping("")
     public ResponseEntity save(@RequestBody UserVO userVO){
         return ResponseEntity.ok(
                 utils.map(userService.save(utils.map(userVO, User.class)), UserVO.class)
         );
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(userService.delete(id));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(userService.findById(id));
+    }
+
+    @GetMapping("")
+    public ResponseEntity findByAll(){
+        return ResponseEntity.ok(userService.findAll());
+    }
+
+
 }
