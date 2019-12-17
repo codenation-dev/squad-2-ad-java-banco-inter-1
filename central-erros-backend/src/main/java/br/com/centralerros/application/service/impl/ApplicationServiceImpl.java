@@ -43,6 +43,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     }
 
+
+
+    @Override
+    public Long deleteById(Long id){
+        applicationRepository.deleteById(id);
+        return id;
+    }
+
     @Override
     public Application delete(Application application){
         applicationRepository.delete(application);

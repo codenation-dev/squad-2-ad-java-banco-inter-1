@@ -11,6 +11,7 @@ public interface ApplicationService {
     Application findByName(String name);
     Application save(Application application);
     Application delete(Application application);
+    Long deleteById(Long id);
     List<Application> findAll();
 
 

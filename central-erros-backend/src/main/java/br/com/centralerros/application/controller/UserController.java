@@ -2,7 +2,7 @@ package br.com.centralerros.application.controller;
 
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.UserVO;
-import br.com.centralerros.application.service.UserService;
+import br.com.centralerros.application.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController extends BasicController{
 
     @Autowired
-    protected UserService userService;
+    protected UserServiceImpl userService;
 
     @CrossOrigin
     @PostMapping("")
