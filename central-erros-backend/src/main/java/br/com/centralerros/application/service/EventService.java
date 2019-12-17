@@ -6,10 +6,12 @@ import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EventService {
     List<Event> findEvents(EventFilterDto filter);
-    EventVO findById(Long id);
+    Optional<Event> findById(Long id);
+    EventVO findByIdVO(Long id);
     EventVO save(Event event);
     Long delete(Long id);
     EventVO delete(Event event);
