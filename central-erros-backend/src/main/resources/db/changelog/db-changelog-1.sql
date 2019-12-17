@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `centralerros`.`event` (
                                                       `level` INT NOT NULL,
                                                       `category` INT NOT NULL,
                                                       `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                                      `user_id` BIGINT(20) NOT NULL,
+                                                      `user_id` BIGINT(20),
                                                       `application_id` BIGINT(20) NOT NULL,
                                                       PRIMARY KEY (`id`),
                                                       UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,

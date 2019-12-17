@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -26,15 +27,26 @@ public class EventServiceImpl implements EventService {
     EventRepositoryJpa eventRepository;
 
 
+
     @Override
     public List<Event> findEvents(EventFilterDto filter) {
         return eventRepositoryHibernate.findEvents(filter);
     }
 
+
     @Override
-    public EventVO findById(Long id) {
-        return MapperUtils.instance().map(eventRepository.findById(id), EventVO.class);
+    public EventVO findByIdVO(Long id) {
+        Optional<Event> event = eventRepository.findById(id);
+        return MapperUtils.instance().map(event, EventVO.class);
     }
+
+
+
+    @Override
+    public Optional<Event> findById(Long id) {
+        return eventRepository.findById(id);
+    }
+
 
 
     @Override
