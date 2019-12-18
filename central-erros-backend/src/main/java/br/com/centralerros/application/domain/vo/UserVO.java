@@ -1,6 +1,5 @@
 package br.com.centralerros.application.domain.vo;
 
-import br.com.centralerros.application.domain.enumerables.ProfileEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
