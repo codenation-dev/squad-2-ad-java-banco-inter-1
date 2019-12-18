@@ -31,7 +31,7 @@ public class EventServiceTest {
     private static final EnvironmentEnum environment = EnvironmentEnum.DEVELOPMENT;
     private static final LevelEnum level = LevelEnum.DEBUG;
     private static final CategoryEnum category = CategoryEnum.APPLICATION;
-    private static final ProfileEnum profile = ProfileEnum.ADMINISTRATOR;
+
 
 
     private static final String name_app = "Unix";
@@ -110,7 +110,7 @@ public class EventServiceTest {
         user.setName(name_user);
         user.setEmail(email);
         user.setPassword(password);
-        user.setProfile(profile);
+
 
         return user;
     }
