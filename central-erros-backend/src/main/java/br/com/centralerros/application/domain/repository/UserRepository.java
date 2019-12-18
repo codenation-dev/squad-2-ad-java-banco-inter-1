@@ -27,9 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByApplication(@Param("name") String name);
 
     @Transactional
-    User findUserByProfile(@Param("profile") String profile);
-
-    @Transactional
     User findUserByName(@Param("name") String name);
 
 }
