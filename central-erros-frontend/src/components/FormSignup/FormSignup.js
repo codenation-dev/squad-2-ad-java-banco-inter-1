@@ -33,7 +33,7 @@ function FormSignup ({ onClick }) {
 
     if(inputValue.formMessage === '') {
       // salvando o usuario
-      axios.post('http://localhost:8080/api/v1/user/save', body, {
+      axios.post('http://localhost:8080/api/v1/user/save', {body}, {
         headers: headers
       }).then(res => {
         buttonLogin.current.click()
