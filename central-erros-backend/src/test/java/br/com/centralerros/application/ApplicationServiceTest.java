@@ -27,7 +27,6 @@ public class ApplicationServiceTest {
     @Autowired
     private ApplicationServiceImpl applicationService;
 
-/*
     @Test
     @Transactional
     public void whenSave() {
@@ -78,5 +77,4 @@ public class ApplicationServiceTest {
         application.setName(NAME);
         return application;
     }
-*/
 }
