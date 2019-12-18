@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import axios from 'axios'
+import base64 from 'base-64'
 
 // assets
 import './style.scss';
@@ -29,29 +29,28 @@ function FormSignin ({ onClick }) {
 
   function signinUser () {
     const { email, password } = inputValue
+    const centralUser = 'centralerros'
+    const centralPass = 'centralerros'
+    let form = new FormData()
+    let headers = new Headers()
 
-    const form = new FormData();
     form.append("grant_type", "password")
     form.append("username", email)
     form.append("password", password)
-    console.log(email)
-    console.log(password)
-    const session_url = 'http://localhost:8080/oauth/token'
-    const basicAuth = 'Basic ' + btoa('centralerros' + ':' + 'centralerros')
-    if (formMessage === '') {
-      axios.post(session_url, form, {
-        headers: {
-          'Authorization': + basicAuth
-        }
-      }).then(res => {
-        console.log('redirecting to the dashboard route: ', res)
-      })
-      .catch(err => {
-        setFormMessage('Something went wrong.')
-      })
-    } else {
-      showMessage()
-    }
+    
+    headers.append('Authorization', 'Basic ' + base64.encode(centralUser + ":" + centralPass))
+
+    fetch('http://localhost:8100/oauth/token', {
+      method: 'POST',
+      headers: headers,
+      body: form
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch((err) => {
+      console.log('error: ', err)
+    })
+
   }
 
   function showMessage (callbackSuccess) {
