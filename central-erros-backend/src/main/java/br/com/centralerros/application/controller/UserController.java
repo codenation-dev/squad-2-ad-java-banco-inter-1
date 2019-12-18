@@ -16,7 +16,7 @@ public class UserController extends BasicController{
     protected UserServiceImpl userService;
 
     @CrossOrigin
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody UserVO userVO){
         return ResponseEntity.ok(
                 utils.map(userService.save(utils.map(userVO, User.class)), UserVO.class)
