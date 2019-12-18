@@ -142,7 +142,6 @@
 					</url>
 					<username>root</username>
 					<password>root</password>
-
 					<rollbackCount>1</rollbackCount>
 				</configuration>
 			</plugin>
