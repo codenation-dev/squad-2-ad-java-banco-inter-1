@@ -32,10 +32,10 @@ public class RoleController extends BasicController {
         return ResponseEntity.ok(roleService.findById(id));
     }
 
-    @GetMapping("")
+    /*@GetMapping("")
     public ResponseEntity findByAll(){
         return ResponseEntity.ok(roleService.findAll());
-    }
+    }*/
 
     @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){

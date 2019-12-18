@@ -17,7 +17,7 @@ public class EnvironmentController extends BasicController {
     @Autowired
     private EnvironmentServiceImpl environmentService;
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity findAll(){
         return ResponseEntity.ok(
                 utils.listMap(
@@ -33,10 +33,10 @@ public class EnvironmentController extends BasicController {
         return ResponseEntity.ok(environmentService.findById(id));
     }
 
-    @GetMapping("")
-    public ResponseEntity findByAll(){
-        return ResponseEntity.ok(environmentService.findAll());
-    }
+    //@GetMapping("")
+    //public ResponseEntity findByAll(){
+//        return ResponseEntity.ok(environmentService.findAll());
+  //  }
 
     @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){

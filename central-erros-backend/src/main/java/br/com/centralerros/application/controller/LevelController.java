@@ -32,10 +32,10 @@ public class LevelController extends BasicController {
         return ResponseEntity.ok(levelService.findById(id));
     }
 
-    @GetMapping("")
+    /*@GetMapping("")
     public ResponseEntity findByAll(){
         return ResponseEntity.ok(levelService.findAll());
-    }
+    }*/
 
     @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){
