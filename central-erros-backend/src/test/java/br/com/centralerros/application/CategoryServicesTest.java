@@ -18,7 +18,7 @@ public class CategoryServicesTest {
 
     @Autowired
     CategoryServiceImpl categoryService;
-/*
+
     @Test
     @Transactional
     public void whenFindById(){
@@ -61,5 +61,5 @@ public class CategoryServicesTest {
 
         assertThat(result,hasSize(2));
     }
-*/
+
 }

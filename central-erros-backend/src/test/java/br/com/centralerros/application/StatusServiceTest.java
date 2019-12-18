@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 @SpringBootTest
 public class StatusServiceTest {
-/*
+
     @Autowired
     StatusServiceImpl statusService;
 
@@ -72,8 +72,5 @@ public class StatusServiceTest {
         assertEquals(result.getName(),name);
 
     }
-*/
-
-
 
 }
