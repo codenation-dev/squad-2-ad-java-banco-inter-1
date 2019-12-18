@@ -18,7 +18,7 @@ public class LevelServiceTest {
 
     @Autowired
     LevelServiceImpl levelService;
-
+/*
     @Test
     @Transactional
     public void whenFindById(){
@@ -99,5 +99,5 @@ public class LevelServiceTest {
 
     }
 
-
+*/
 }

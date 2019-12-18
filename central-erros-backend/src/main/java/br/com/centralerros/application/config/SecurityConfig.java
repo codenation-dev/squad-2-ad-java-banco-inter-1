@@ -39,11 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll();
-    }
+    }*/
 
     @Override
     public void configure(WebSecurity web) throws Exception {

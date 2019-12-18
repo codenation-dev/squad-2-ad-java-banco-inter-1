@@ -1,7 +1,6 @@
 package br.com.centralerros.application.domain.entity;
 
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
-import br.com.centralerros.application.domain.enumerables.ProfileEnum;
 import br.com.centralerros.application.domain.enumerables.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,10 +40,6 @@ public class User {
 
     @Column(name = "last_login")
     private LocalDateTime last_login;
-
-    @Enumerated
-    @Column(name = "profile")
-    private ProfileEnum profile;
 
     @Enumerated
     @Column(name = "environment")

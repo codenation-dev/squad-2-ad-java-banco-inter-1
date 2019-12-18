@@ -31,14 +31,13 @@ public class EventServiceTest {
     private static final EnvironmentEnum environment = EnvironmentEnum.DEVELOPMENT;
     private static final LevelEnum level = LevelEnum.DEBUG;
     private static final CategoryEnum category = CategoryEnum.APPLICATION;
-    private static final ProfileEnum profile = ProfileEnum.ADMINISTRATOR;
+
 
 
     private static final String name_app = "Unix";
     private static final String name_user = "Guilherme";
     private static final String password = "senha";
     private static final String email = "email@email.com";
-
 
 
     @Autowired
@@ -73,7 +72,6 @@ public class EventServiceTest {
     }
 
 
-
     private void assertEvent(EventVO result){
         assertThat(result.getId(),notNullValue());
         assertThat(result.getDescription(),equalTo(description));
@@ -101,7 +99,7 @@ public class EventServiceTest {
         event.setLevel(level);
         event.setCategory(category);
         event.setUser(getUser());
-        event.setApplication(getApplication());
+        event.setApplication(getApplication ());
         return event;
     }
 
@@ -112,7 +110,7 @@ public class EventServiceTest {
         user.setName(name_user);
         user.setEmail(email);
         user.setPassword(password);
-        user.setProfile(profile);
+
 
         return user;
     }
