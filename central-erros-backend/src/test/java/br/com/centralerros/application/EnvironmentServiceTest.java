@@ -19,7 +19,7 @@ public class EnvironmentServiceTest {
 
     @Autowired
     EnvironmentServiceImpl environmentService;
-
+/*
     @Test
     @Transactional
     public void whenFindById(){
@@ -85,7 +85,7 @@ public class EnvironmentServiceTest {
 
     }
 
-
+*/
 
 
 }

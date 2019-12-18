@@ -2,6 +2,7 @@ package br.com.centralerros.application.service;
 
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
+import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 
@@ -18,4 +19,5 @@ public interface EventService {
     EventVO delete(EventVO eventVo);
     List<EventVO> findAll();
     List<EventVO> findAllFromUser(UserVO userVO);
+    List<EventVO> findAllFromUser(User user);
 }

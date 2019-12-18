@@ -40,7 +40,6 @@ public class EventServiceTest {
     private static final String email = "email@email.com";
 
 
-
     @Autowired
     EventServiceImpl eventService;
 
@@ -73,7 +72,6 @@ public class EventServiceTest {
     }
 
 
-
     private void assertEvent(EventVO result){
         assertThat(result.getId(),notNullValue());
         assertThat(result.getDescription(),equalTo(description));
@@ -101,7 +99,7 @@ public class EventServiceTest {
         event.setLevel(level);
         event.setCategory(category);
         event.setUser(getUser());
-        event.setApplication(getApplication());
+        event.setApplication(getApplication ());
         return event;
     }
 

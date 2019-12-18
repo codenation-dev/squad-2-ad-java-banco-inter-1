@@ -2,6 +2,7 @@ package br.com.centralerros.application.controller;
 
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
+import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
@@ -28,8 +29,8 @@ public class EventController extends BasicController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity deleteEvent(@RequestBody EventVO eventVO){
-        return ResponseEntity.ok(eventService.delete(eventVO));
+    public ResponseEntity deleteEvent(@RequestBody Event event){
+        return ResponseEntity.ok(eventService.delete(event));
     }
 
     @GetMapping("")
@@ -38,8 +39,8 @@ public class EventController extends BasicController {
     }
 
     @GetMapping("/{user}")
-    public ResponseEntity findAllFromUser(@PathVariable("user") UserVO userVO){
-        return ResponseEntity.ok(eventService.findAllFromUser(userVO));
+    public ResponseEntity findAllFromUser(@PathVariable("user") User user){
+        return ResponseEntity.ok(eventService.findAllFromUser(user));
     }
 
     @PostMapping("/filter")

@@ -20,7 +20,7 @@ public class RoleServiceTest {
     RoleService roleService;
 
 
-
+/*
     @Test
     @Transactional
     public void whenFindByName(){
@@ -76,5 +76,5 @@ public class RoleServiceTest {
 
         assertThat(result,hasSize(3));
     }
-
+*/
 }

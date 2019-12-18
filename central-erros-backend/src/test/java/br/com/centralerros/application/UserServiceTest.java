@@ -26,7 +26,7 @@ public class UserServiceTest {
     private static final String password = "senha";
     private static final String email = "email@email.com";
     private static final ProfileEnum profile = ProfileEnum.ADMINISTRATOR;
-
+/*
     @Autowired
     UserServiceImpl userService;
 
@@ -90,5 +90,5 @@ public class UserServiceTest {
     }
 
 
-
+*/
  }
