@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios'
 
 // assets
@@ -12,10 +12,6 @@ function FormSignin ({ onClick }) {
     password: ''
   })
 
-  useEffect(() => {
-    signinUser()
-  }, [formMessage])
-
   function handleChange (evt) {
     const name = evt.target.name
     const value = evt.target.value
@@ -26,26 +22,9 @@ function FormSignin ({ onClick }) {
     })
   }
 
-  function validateField () {
-    const { email, password } = inputValue
-    let formMsg = formMessage
-    let emailValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(email)
-    let passwordValid = password.length >= 4
-
-    if (!emailValid) {
-      formMsg = 'Invalid e-mail field.'
-    } else if (!passwordValid) {
-      formMsg = 'The password is too short'
-    } else {
-      formMsg = '';
-    }
-
-    setFormMessage(formMsg)
-  }
-
   function handleSubmit (evt) {
     evt && evt.preventDefault()
-    validateField()
+    signinUser()
   }
 
   function signinUser () {
@@ -53,18 +32,16 @@ function FormSignin ({ onClick }) {
 
     const form = new FormData();
     form.append("grant_type", "password")
-    form.append("username", "hyalen.neves@gmail.com")
-    form.append("password", "hyalen")
+    form.append("username", email)
+    form.append("password", password)
 
     const session_url = 'http://localhost:8080/oauth/token'
     const basicAuth = 'Basic ' + btoa('centralerros' + ':' + 'centralerros')
 
-    if(formMessage === '') {
+    if (formMessage === '') {
       axios.post(session_url, form, {
         headers: {
-          'Authorization': + basicAuth,
-          'cache-control': 'no-cache',
-          'postman-token': 'c698c8ae-204e-6966-7ee5-fdfd9117e97d'
+          'Authorization': + basicAuth
         }
       }).then(res => {
         console.log('redirecting to the dashboard route: ', res)

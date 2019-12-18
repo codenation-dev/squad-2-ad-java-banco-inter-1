@@ -15,10 +15,6 @@ function FormSignup ({ onClick }) {
     formMessage: ''
   })
 
-  useEffect(() => {
-    registerUser()
-  }, [inputValue.formMessage])
-
   function registerUser () {
     const { name, email, password } = inputValue
     const body = {
@@ -33,7 +29,7 @@ function FormSignup ({ onClick }) {
 
     if(inputValue.formMessage === '') {
       // salvando o usuario
-      axios.post('http://localhost:8080/api/v1/user/save', {body}, {
+      axios.post('http://localhost:8080/api/v1/user/save', body, {
         headers: headers
       }).then(res => {
         buttonLogin.current.click()
@@ -61,7 +57,7 @@ function FormSignup ({ onClick }) {
 
   function handleSubmit (evt) {
     evt && evt.preventDefault()
-    validateField()
+    registerUser()
   }
 
   function validateField () {
