@@ -42,10 +42,6 @@ public class User {
     private LocalDateTime last_login;
 
     @Enumerated
-    @Column(name = "profile")
-    private ProfileEnum profile;
-
-    @Enumerated
     @Column(name = "environment")
     private EnvironmentEnum environment;
 

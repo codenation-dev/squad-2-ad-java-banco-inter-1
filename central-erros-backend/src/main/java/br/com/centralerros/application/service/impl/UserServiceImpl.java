@@ -70,10 +70,6 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public User findByProfile(String profile) {
-        return userRepository.findUserByProfile(profile);
-    }
 
     @Override
     public User findByName(String name) {
