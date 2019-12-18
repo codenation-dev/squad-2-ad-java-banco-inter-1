@@ -50,19 +50,21 @@ function FormSignin ({ onClick }) {
 
   function signinUser () {
     const { email, password } = inputValue
-    const body = {
-      email,
-      password
-    }
+
+    const form = new FormData();
+    form.append("grant_type", "password")
+    form.append("username", "hyalen.neves@gmail.com")
+    form.append("password", "hyalen")
+
     const session_url = 'http://localhost:8080/oauth/token'
-    const user = 'centralerros'
-    const pass = 'centralerros'
+    const basicAuth = 'Basic ' + btoa('centralerros' + ':' + 'centralerros')
 
     if(formMessage === '') {
-      axios.post(session_url, { body }, {
-        auth: {
-          username: user,
-          password: pass
+      axios.post(session_url, form, {
+        headers: {
+          'Authorization': + basicAuth,
+          'cache-control': 'no-cache',
+          'postman-token': 'c698c8ae-204e-6966-7ee5-fdfd9117e97d'
         }
       }).then(res => {
         console.log('redirecting to the dashboard route: ', res)
