@@ -1,11 +1,11 @@
 -- liquibase formatted sql
 -- changeset squad.2:2.0 dbms:mysql
-INSERT INTO `centralerros`.`user` VALUE (1,'user','123456','user@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,1);
-INSERT INTO `centralerros`.`user` VALUE (2,'user2','123456','user2@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,2);
-INSERT INTO `centralerros`.`user` VALUE (3,'user3','123456','user3@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,3);
-INSERT INTO `centralerros`.`user` VALUE (4,'user4','123456','user4@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,1);
-INSERT INTO `centralerros`.`user` VALUE (5,'user5','123456','user5@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,2);
-INSERT INTO `centralerros`.`user` VALUE (6,'user6','123456','user6@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,3);
+INSERT INTO `centralerros`.`user` VALUE (1,'user','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,1);
+INSERT INTO `centralerros`.`user` VALUE (2,'user2','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user2@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,2);
+INSERT INTO `centralerros`.`user` VALUE (3,'user3','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user3@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,3);
+INSERT INTO `centralerros`.`user` VALUE (4,'user4','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user4@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,1);
+INSERT INTO `centralerros`.`user` VALUE (5,'user5','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user5@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,2);
+INSERT INTO `centralerros`.`user` VALUE (6,'user6','$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6','user6@email.com.br','2019-12-19 01:43:41','2019-12-19 01:31:50',NULL,3);
 INSERT INTO `centralerros`.`application` VALUE (1,'CodenationApplication','2019-12-19 02:11:29');
 INSERT INTO `centralerros`.`application` VALUE (2,'BancoInterApplication','2019-12-19 02:11:29');
 INSERT INTO `centralerros`.`application` VALUE (3,'Squad2JavaApplication','2019-12-19 02:11:29');
