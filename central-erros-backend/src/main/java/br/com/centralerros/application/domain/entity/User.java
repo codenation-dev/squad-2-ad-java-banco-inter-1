@@ -43,11 +43,11 @@ public class User {
 
     @Enumerated
     @Column(name = "environment")
-    private EnvironmentEnum environment;
+    private EnvironmentEnum environment = EnvironmentEnum.ALL;
 
     @Enumerated
     @Column(name = "role")
-    private RoleEnum role;
+    private RoleEnum role = RoleEnum.ADMINISTRATOR;
 
     public User(User user) {
         super();
