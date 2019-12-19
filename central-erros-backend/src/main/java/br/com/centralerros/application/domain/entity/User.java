@@ -41,11 +41,10 @@ public class User {
     @Column(name = "last_login")
     private LocalDateTime last_login;
 
-    @Enumerated
     @Column(name = "environment")
     private EnvironmentEnum environment = EnvironmentEnum.ALL;
 
-    @Enumerated
+
     @Column(name = "role")
     private RoleEnum role = RoleEnum.ADMINISTRATOR;
 
