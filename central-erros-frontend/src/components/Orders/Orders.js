@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -7,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Title from './../Title/Title'
 
 // data that will be consumed by the API
-import data from './data.json'
+import data from './orders.json'
 
 function createData(id, environment, level, status, description, createdDate) {
   return { id, environment, level, status, description, createdDate }
@@ -25,9 +25,15 @@ const rows = [
 // then map the rows accordingly
 
 export default function Orders() {
+  const [dataTable, setDataTable] = useState([])
 
   useEffect(() => {
-    console.log('data: ', data)
+    const newRow = []
+    data.map((item, index) => {
+      newRow.push(item)
+    })
+
+    setDataTable(newRow)
   }, [])
 
   return (
@@ -44,13 +50,13 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.environment}</TableCell>
-              <TableCell>{row.level}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.description}</TableCell>
-              <TableCell align="right">{row.createdDate}</TableCell>
+          {dataTable && dataTable.map(item => (
+            <TableRow key={item.id}>
+              <TableCell>{item.environment}</TableCell>
+              <TableCell>{item.level}</TableCell>
+              <TableCell>{item.status}</TableCell>
+              <TableCell>{item.description}</TableCell>
+              <TableCell align="right">{item.created_date}</TableCell>
             </TableRow>
           ))}
         </TableBody>

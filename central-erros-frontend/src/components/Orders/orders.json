@@ -2,40 +2,40 @@
   {
     "id": 1,
     "environment": "Test",
-    "Level": "Critical",
-    "Status": "Pending",
+    "level": "Critical",
+    "status": "Pending",
     "description": "This is the first description.",
     "created_date": "19/04/2019"
   },
   {
     "id": 2,
     "environment": "Production",
-    "Level": "Normal",
-    "Status": "Attended",
+    "level": "Normal",
+    "status": "Attended",
     "description": "This is the second description.",
     "created_date": "28/03/2019"
   },
   {
     "id": 3,
     "environment": "Production",
-    "Level": "Critical",
-    "Status": "Pending",
+    "level": "Critical",
+    "status": "Pending",
     "description": "This is the third description.",
     "created_date": "20/01/2019"
   },
   {
     "id": 4,
     "environment": "Dev",
-    "Level": "Critical",
-    "Status": "In development",
+    "level": "Critical",
+    "status": "In development",
     "description": "This is the fourth description.",
     "created_date": "05/09/2018"
   },
   {
     "id": 5,
     "environment": "Test",
-    "Level": "Normal",
-    "Status": "In development",
+    "level": "Normal",
+    "status": "In development",
     "description": "This is the fifth description.",
     "created_date": "04/11/2019"
   }
