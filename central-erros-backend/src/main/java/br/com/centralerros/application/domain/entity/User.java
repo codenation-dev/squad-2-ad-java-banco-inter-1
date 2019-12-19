@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -34,6 +35,7 @@ public class User {
     @Column(name = "email", nullable = false, length = 255)
     private String email;
 
+    @CreationTimestamp
     @Column(name = "created_date")
     @CreatedDate
     private LocalDateTime created_date;
