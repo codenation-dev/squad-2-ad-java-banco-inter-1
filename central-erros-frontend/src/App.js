@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     logout()
   }, [])
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Suspense fallback={<div>Loading...</div>}>
@@ -28,7 +29,7 @@ const HomeRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-          isAuthenticated() ? (
+        isAuthenticated() ? (
           <Redirect to='/dashboard' />
         ) : (
           <Component {...props} />
