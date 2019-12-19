@@ -43,6 +43,7 @@ public class UserController extends BasicController{
     }
 
     @GetMapping("")
+
     public ResponseEntity findByAll(){
         return ResponseEntity.ok(userService.findAll());
     }

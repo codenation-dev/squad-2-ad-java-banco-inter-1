@@ -9,9 +9,9 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value
+  /*  @ExceptionHandler(value
             = {IllegalArgumentException.class, IllegalStateException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
@@ -54,5 +54,5 @@ public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler 
         String bodyOfResponse = "Oops. Ocorreu um problema ao resolver a sua solicitação. Tente mais tarde!";
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
-    }
+    }*/
 }
