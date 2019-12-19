@@ -23,10 +23,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User save(User user) {
+    public UserVO save(User user) {
         //nao pode este validar?, pois o update tambem passa aqui
         validarSalvarUsuario(user);
-        return userRepository.save(user);
+
+        User userSave = userRepository.save(user);
+        UserVO userVO = MapperUtils.instance().map(userSave, UserVO.class);
+        return userVO;
+
     }
 
 

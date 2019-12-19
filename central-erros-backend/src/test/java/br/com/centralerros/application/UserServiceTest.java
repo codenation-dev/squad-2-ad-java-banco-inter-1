@@ -1,6 +1,7 @@
 package br.com.centralerros.application;
 
 import br.com.centralerros.application.domain.entity.User;
+import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,7 @@ public class UserServiceTest {
 
         User user = getUser();
 
-        User result =userService.save(user);
-        System.out.println(result);
+        UserVO result =userService.save(user);
         assertUser(result);
 
     }
@@ -66,10 +66,10 @@ public class UserServiceTest {
         assertThat(result,hasSize(1));
     }
 
-    private void assertUser(User result){
+    private void assertUser(UserVO result){
         assertThat(result.getId(),notNullValue());
         assertThat(result.getName(),equalTo(name_user));
-        assertThat(result.getPassword(),equalTo(password));
+        //assertThat(result.getPassword(),equalTo(password));
         assertThat(result.getEmail(),equalTo(email));
 
 

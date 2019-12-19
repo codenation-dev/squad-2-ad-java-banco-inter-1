@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    User save(User user);
+    UserVO save(User user);
     User findByEmail(String email);
     User findByEmailLoginSecurity(String email);
     Optional<User> findById(Long id);
