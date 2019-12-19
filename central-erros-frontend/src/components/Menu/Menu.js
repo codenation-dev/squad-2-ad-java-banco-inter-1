@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
+import { withRouter } from "react-router-dom"
 
 // components
 import Button from '@material-ui/core/Button'
 import MaterialMenu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Fade from '@material-ui/core/Fade'
+import { logout } from './../../services/auth'
 
 // icons
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-function Menu () {
+function Menu ({ history }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -18,7 +20,8 @@ function Menu () {
   }
 
   function handleClose () {
-    setAnchorEl(null)
+    logout()
+    history.push('/')
   }
 
   return (
@@ -37,8 +40,6 @@ function Menu () {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
           </MaterialMenu>
         </div>
@@ -47,4 +48,4 @@ function Menu () {
   )
 }
 
-export default Menu
+export default withRouter(Menu)
