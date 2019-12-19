@@ -37,7 +37,7 @@ public class Event {
     private String details;
 
     @Column(name = "status")
-    private StatusEnum status;
+    private StatusEnum status = StatusEnum.OPEN;
 
     @Column(name = "environment")
     private EnvironmentEnum environment;

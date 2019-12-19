@@ -14,7 +14,6 @@ public interface EventRepositoryJpa extends JpaRepository<Event, Long> {
     @Override
     <S extends Event> S save(S s);
 
-
     @Override
     List<Event> findAll();
 

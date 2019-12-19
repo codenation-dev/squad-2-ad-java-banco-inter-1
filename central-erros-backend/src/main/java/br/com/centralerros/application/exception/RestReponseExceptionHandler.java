@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value
-            = { IllegalArgumentException.class, IllegalStateException.class })
+            = {IllegalArgumentException.class, IllegalStateException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
         String bodyOfResponse = "Não foi possível resolver a solicitação com os parâmetros informados!";
@@ -30,7 +30,7 @@ public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(value = {NotAuthorizedException.class})
-    protected  ResponseEntity<Object> handleNotAuthorized(
+    protected ResponseEntity<Object> handleNotAuthorized(
             RuntimeException ex,
             WebRequest request) {
         String bodyOfResponse = "Você não está autorizado a executar a operação!";
@@ -41,7 +41,7 @@ public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(value = {HttpServerErrorException.InternalServerError.class})
     protected ResponseEntity<Object> handleInternalServerError(
             RuntimeException ex,
-            WebRequest request){
+            WebRequest request) {
         String bodyOfResponse = "Oops. Ocorreu um problema ao resolver a sua solicitação. Tente mais tarde!";
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
@@ -50,7 +50,7 @@ public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(value = {InternalServerErrorException.class})
     protected ResponseEntity<Object> handleInternalServerErrorException(
             RuntimeException ex,
-            WebRequest request){
+            WebRequest request) {
         String bodyOfResponse = "Oops. Ocorreu um problema ao resolver a sua solicitação. Tente mais tarde!";
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
