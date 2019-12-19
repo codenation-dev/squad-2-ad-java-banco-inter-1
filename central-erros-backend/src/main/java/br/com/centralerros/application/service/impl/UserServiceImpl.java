@@ -1,11 +1,12 @@
 package br.com.centralerros.application.service.impl;
 
-import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.repository.UserRepository;
+import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.exception.IncompleteFieldsException;
 import br.com.centralerros.application.exception.NotFoundObjectException;
 import br.com.centralerros.application.service.UserService;
+import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public UserVO findByEmailVO(String email) {
+        User user = userRepository.findByEmail(email);
+        UserVO uservo = MapperUtils.instance().map(user, UserVO.class);
+        return uservo;
     }
 
     @Override

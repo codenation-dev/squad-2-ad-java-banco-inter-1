@@ -1,6 +1,7 @@
 package br.com.centralerros.application.service;
 
 import br.com.centralerros.application.domain.entity.User;
+import br.com.centralerros.application.domain.vo.UserVO;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,5 +17,6 @@ public interface UserService {
     List<User> findAll();
     User delete(User user);
     Long delete(Long id);
+    UserVO findByEmailVO(String email);
 
 }
