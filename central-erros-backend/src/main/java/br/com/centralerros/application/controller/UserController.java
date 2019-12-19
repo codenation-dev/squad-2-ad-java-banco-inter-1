@@ -29,6 +29,10 @@ public class UserController extends BasicController{
         return ResponseEntity.ok(userService.delete(id));
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity findById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(userService.findById(id));
+    }
 
     @GetMapping("/{email}")
     public ResponseEntity findByEmail(@PathVariable("email") String email){
