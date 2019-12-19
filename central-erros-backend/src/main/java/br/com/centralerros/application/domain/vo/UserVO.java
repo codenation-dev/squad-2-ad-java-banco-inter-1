@@ -14,7 +14,6 @@ import javax.validation.constraints.Email;
 public class UserVO {
     private Long id;
     private String name;
-    private String password;
 
     @Email
     private String email;

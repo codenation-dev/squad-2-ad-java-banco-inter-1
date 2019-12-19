@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EventVO {
     private Long id;
-    private String name;
     private String description;
     private String source;
 
@@ -27,8 +26,8 @@ public class EventVO {
     private EnvironmentEnum environment;
     private CategoryEnum category;
     private StatusEnum status;
-    private UserVO userVO;
-    private ApplicationVO applicationVO;
+    private UserVO user;
+    private ApplicationVO application;
 
     private LocalDateTime createDate;
 }
