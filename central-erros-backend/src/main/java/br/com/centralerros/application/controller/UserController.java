@@ -34,6 +34,11 @@ public class UserController extends BasicController{
         return ResponseEntity.ok(userService.findById(id));
     }
 
+    @GetMapping("/{email}")
+    public ResponseEntity findById(@PathVariable("email") String email){
+        return ResponseEntity.ok(userService.findByEmail(email));
+    }
+
     @GetMapping("")
     public ResponseEntity findByAll(){
         return ResponseEntity.ok(userService.findAll());
