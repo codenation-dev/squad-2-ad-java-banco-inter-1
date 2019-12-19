@@ -27,5 +27,5 @@ public class EventFilterDto extends BasicFilterDto {
     private CategoryEnum category;
     private LocalDateTime createDateStart;
     private LocalDateTime createDateEnd;
-    private int userId;
+    private Long userId;
 }

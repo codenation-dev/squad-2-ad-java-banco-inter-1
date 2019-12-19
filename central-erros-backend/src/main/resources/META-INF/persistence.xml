@@ -10,14 +10,16 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- entidade mapeada -->
+        <class>br.com.centralerros.application.domain.entity.Application</class>
         <class>br.com.centralerros.application.domain.entity.User</class>
+        <class>br.com.centralerros.application.domain.entity.Event</class>
 
         <properties>
             <!-- dados da conexao -->
             <property name="javax.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/centralerros" />
+                      value="jdbc:mysql://localhost:3306/centralerros?useTimezone=true&amp;serverTimezone=UTC " />
             <property name="javax.persistence.jdbc.user"
                       value="root" />
             <property name="javax.persistence.jdbc.password"

@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum EnvironmentEnum {
+    EMPTY(0),
     DEVELOPMENT(1),
     TESTING(2),
     ACCEPTANCE(3),
-    PRODUCTION(4);
+    PRODUCTION(4),
+    ALL(5); //para users
 
     private final int value;
 

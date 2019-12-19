@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum LevelEnum {
+    EMPTY(0),
     DEBUG(1),
     INFO(2),
     WARNING(3),

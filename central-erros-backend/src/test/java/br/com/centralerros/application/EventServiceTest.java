@@ -33,7 +33,6 @@ public class EventServiceTest {
     private static final CategoryEnum category = CategoryEnum.APPLICATION;
 
 
-
     private static final String name_app = "Unix";
     private static final String name_user = "Guilherme";
     private static final String password = "senha";
@@ -48,7 +47,7 @@ public class EventServiceTest {
     public void whenSave() {
 
         Event event = getEvent();
-        EventVO result =eventService.save(event);
+        EventVO result = eventService.save(event);
 
         assertEvent(result);
 
@@ -59,34 +58,34 @@ public class EventServiceTest {
     public void whenFindById() {
 
         Optional<Event> optResult = eventService.findById(Long.valueOf(1));
-        assertThat(optResult.isPresent(),equalTo(true));
+        assertThat(optResult.isPresent(), equalTo(true));
 
     }
 
     @Test
     @Transactional
-    public void whenFindAll(){
+    public void whenFindAll() {
 
         List<EventVO> result = eventService.findAll();
-        assertThat(result,hasSize(1));
+        assertThat(result, hasSize(1));
     }
 
 
-    private void assertEvent(EventVO result){
-        assertThat(result.getId(),notNullValue());
-        assertThat(result.getDescription(),equalTo(description));
-        assertThat(result.getSource(),equalTo(source));
-        assertThat(result.getDetails(),equalTo(details));
-        assertThat(result.getStatus(),equalTo(status));
-        assertThat(result.getEnvironment(),equalTo(environment));
-        assertThat(result.getLevel(),equalTo(level));
-        assertThat(result.getCategory(),equalTo(category));
+    private void assertEvent(EventVO result) {
+        assertThat(result.getId(), notNullValue());
+        assertThat(result.getDescription(), equalTo(description));
+        assertThat(result.getSource(), equalTo(source));
+        assertThat(result.getDetails(), equalTo(details));
+        assertThat(result.getStatus(), equalTo(status));
+        assertThat(result.getEnvironment(), equalTo(environment));
+        assertThat(result.getLevel(), equalTo(level));
+        assertThat(result.getCategory(), equalTo(category));
 
 
     }
 
 
-    private Event getEvent (){
+    private Event getEvent() {
 
         Event event = new Event();
 
@@ -99,11 +98,11 @@ public class EventServiceTest {
         event.setLevel(level);
         event.setCategory(category);
         event.setUser(getUser());
-        event.setApplication(getApplication ());
+        event.setApplication(getApplication());
         return event;
     }
 
-    private User getUser (){
+    private User getUser() {
         User user = new User();
 
         user.setId(Long.valueOf(1));
@@ -115,7 +114,7 @@ public class EventServiceTest {
         return user;
     }
 
-    private Application getApplication (){
+    private Application getApplication() {
 
         Application application = new Application();
 
