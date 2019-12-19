@@ -1,8 +1,12 @@
 package br.com.centralerros.application.service.impl;
 
+import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.repository.UserRepository;
+import br.com.centralerros.application.exception.IncompleteFieldsException;
+import br.com.centralerros.application.exception.NotFoundObjectException;
 import br.com.centralerros.application.service.UserService;
+import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +20,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+
     @Override
     public User save(User user) {
+        //nao pode este validar?, pois o update tambem passa aqui
+        validarSalvarUsuario(user);
         return userRepository.save(user);
     }
 
 
     @Override
     public Long delete(Long id) {
+        validarDadosDeletarUsuario(id);
         userRepository.deleteById(id);
         return id;
     }
 
     @Override
     public User delete(User user) {
+        validarUsuario(user);
+
         userRepository.delete(user);
         return user;
     }
@@ -54,12 +64,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findById(Long id) {
+        validarUsuario(id);
         return userRepository.findById(id);
-
     }
 
     @Override
     public User findByEmailEPassword(String email, String password) {
+        validarUsuario(email, password);
         return userRepository.findUserByEmailAndPassword(email, password);
     }
 
@@ -79,6 +90,58 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
 
+    }
+
+
+    /*VALIDACOES*/
+    private void validarApplicationName(String name) {
+        if (Utils.isNullOrWhiteSpace(name)) {
+            throw new IncompleteFieldsException("Field NAME not defined or null in Application");
+        }
+    }
+    private void validarSalvarUsuario(User user) {
+
+        if (Utils.isNullOrWhiteSpace(user.getName())) {
+            throw new IncompleteFieldsException("Field NAME not defined or null in User");
+        } else if (Utils.isNullOrWhiteSpace(user.getPassword())) {
+            throw new IncompleteFieldsException("Field PASSWORD not defined or null in User");
+        } else if (Utils.isNullOrWhiteSpace(user.getEmail())) {
+            throw new IncompleteFieldsException("Field EMAIL not defined or null in User");
+        }
+
+
+    }
+
+    private void validarDadosDeletarUsuario(Long id) {
+        if (id == null) {
+            throw new NullPointerException("User id was null");
+        }
+        Optional<User> user = findById(id);
+        if (!user.isPresent()) {
+            throw new NotFoundObjectException(String.format("User with id: %s was not found", id));
+        }
+    }
+
+    private void validarUsuario(User user) {
+        if (user == null) {
+            throw new NullPointerException("User object cannot be null");
+        } else if (user.getId() == null) {
+            throw new IncompleteFieldsException("Field id not defined or null in User");
+        }
+    }
+
+    private void validarUsuario(Long id) {
+        if (id == null) {
+            throw new IncompleteFieldsException("Field ID not defined or null in User");
+        }
+    }
+
+    private void validarUsuario(String email, String password) {
+        if (Utils.isNullOrWhiteSpace(email)) {
+            throw new IncompleteFieldsException("Field EMAIL not defined or null in User");
+        } else if (Utils.isNullOrWhiteSpace(password)) {
+            throw new IncompleteFieldsException("Field PASSWORD not defined or null in User");
+        }
     }
 
 

@@ -4,7 +4,6 @@ import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
-import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
