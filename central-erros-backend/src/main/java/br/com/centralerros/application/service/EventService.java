@@ -20,4 +20,5 @@ public interface EventService {
     List<EventVO> findAll();
     List<EventVO> findAllFromUser(UserVO userVO);
     List<EventVO> findAllFromUser(User user);
+    List<EventVO> findAllFromUserById(Long id);
 }
