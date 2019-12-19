@@ -29,13 +29,9 @@ public class UserController extends BasicController{
         return ResponseEntity.ok(userService.delete(id));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity findById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(userService.findById(id));
-    }
 
     @GetMapping("/{email}")
-    public ResponseEntity findById(@PathVariable("email") String email){
+    public ResponseEntity findByEmail(@PathVariable("email") String email){
         return ResponseEntity.ok(userService.findByEmailVO(email));
     }
 
