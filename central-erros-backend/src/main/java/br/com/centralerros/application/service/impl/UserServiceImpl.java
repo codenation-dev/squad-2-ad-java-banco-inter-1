@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
     public User findByEmailLoginSecurity(String email) {
         User user = findByEmail(email);
 
-        //nao testado
         if (user != null) {
             user.setLast_login(LocalDateTime.now());
             save(user);

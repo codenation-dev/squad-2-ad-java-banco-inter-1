@@ -10,7 +10,7 @@ import br.com.centralerros.application.domain.repository.impl.EventRepositoryImp
 import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.exception.IncompleteFieldsException;
-import br.com.centralerros.application.exception.NotFoundException;
+import br.com.centralerros.application.exception.NotFoundObjectException;
 import br.com.centralerros.application.service.ApplicationService;
 import br.com.centralerros.application.service.EventService;
 import br.com.centralerros.application.utils.MapperUtils;
@@ -141,7 +141,7 @@ public class EventServiceImpl implements EventService {
         }
         Optional<Event> event = findById(id);
         if (!event.isPresent()) {
-            throw new NotFoundException(String.format("Event with id: %s was not found", id));
+            throw new NotFoundObjectException(String.format("Event with id: %s was not found", id));
         }
     }
 
@@ -155,7 +155,7 @@ public class EventServiceImpl implements EventService {
         } else if (event.getEnvironment() == null) {
             throw new IncompleteFieldsException("Field ENVIRONMENT not defined Event");
         } else if (event.getCategory() == null) {
-            throw new IncompleteFieldsException("Field CATEGORORY not defined Event");
+            throw new IncompleteFieldsException("Field CATEGORY not defined Event");
         } else if (event.getApplication() == null) {
             throw new NullPointerException("Application object cannot be null");
         } else if (event.getApplication().getId() == null) {
@@ -170,14 +170,14 @@ public class EventServiceImpl implements EventService {
     private void validarApplication(Application application) {
         if (application == null) {
             throw new NullPointerException("Application object cannot be null");
-        } else if (application.getId() == null) {
+        } else if (application.getId() == null) {//response.setHeader("Access-Control-Allow-Origin", req.get);
             throw new IncompleteFieldsException("Field ID not defined or null in Application");
         }
 
 
         Optional<Application> applicationResponse = applicationService.findById(application.getId());
         if (!applicationResponse.isPresent()) {
-            throw new NotFoundException(String.format("Application with id: %s was not found", application.getId()));
+            throw new NotFoundObjectException(String.format("Application with id: %s was not found", application.getId()));
         }
     }
 
