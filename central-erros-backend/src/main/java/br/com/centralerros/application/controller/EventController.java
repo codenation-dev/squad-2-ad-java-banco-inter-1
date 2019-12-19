@@ -42,6 +42,11 @@ public class EventController extends BasicController {
         return ResponseEntity.ok(eventService.findAllFromUser(user));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity findAllFromUser(@PathVariable("id") Long id){
+        return ResponseEntity.ok(eventService.findAllFromUserById(id));
+    }
+
     @PostMapping("/filter")
     public ResponseEntity findEvent(@RequestBody EventFilterDto filter){
         return ResponseEntity.ok(utils.listMap(eventService.findEvents(filter), EventVO.class));
