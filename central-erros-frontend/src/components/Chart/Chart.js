@@ -17,7 +17,7 @@ const data = [
   createData('15:00', 2000),
   createData('18:00', 2400),
   createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('24:00', undefined)
 ];
 
 export default function Chart() {
@@ -37,15 +37,7 @@ export default function Chart() {
           }}
         >
           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
-            <Label
-              angle={270}
-              position="left"
-              style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
+          <YAxis stroke={theme.palette.text.secondary} />
           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
         </LineChart>
       </ResponsiveContainer>
