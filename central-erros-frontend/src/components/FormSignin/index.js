@@ -42,7 +42,7 @@ function FormSignin ({ onClick, history }) {
 
     headers.append('Authorization', 'Basic ' + base64.encode(centralUser + ":" + centralPass))
 
-    fetch('http://localhost:8100/oauth/token', {
+    fetch('http://localhost:8080/oauth/token', {
       method: 'POST',
       headers: headers,
       body: form
