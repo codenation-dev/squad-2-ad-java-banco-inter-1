@@ -70,16 +70,16 @@ public class EventRepositoryImpl implements EventRepository {
         }
 
         if(filter.getPageSize() > 0 && filter.getPage() > 0){
-            query.setFirstResult(filter.getPage() * filter.getPageSize());
+            query.setFirstResult((filter.getPage() - 1) * filter.getPageSize());
             query.setMaxResults(filter.getPageSize());
         }
     }
     
     private String getSqlForQuery(EventFilterDto filter){
-        String sql = "SELECT e FROM event e WHERE";
+        String sql = "SELECT e FROM event as e JOIN e.user u WHERE";
 
         if(filter.getId() != null && filter.getId() > 0){
-            sql += " AND id = :id";
+            sql += " AND e.id = :id";
         }else{
             if(!Utils.isNullOrWhiteSpace(filter.getDescription())){
                 sql += " AND e.description = :description";
@@ -109,7 +109,7 @@ public class EventRepositoryImpl implements EventRepository {
                 sql += " AND e.create_date <=:createDateEnd";
             }
             if(filter.getUserId() > 0){
-                sql += " AND e.user_id =:userId";
+                sql += " AND u.id =:userId";
             }
         }
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum StatusEnum {
+    EMPTY(0),
     OPEN(1),
     VERIFYING(2),
     CLOSED(3);

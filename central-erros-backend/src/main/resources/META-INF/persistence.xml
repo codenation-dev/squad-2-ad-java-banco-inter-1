@@ -10,7 +10,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- entidade mapeada -->
+        <class>br.com.centralerros.application.domain.entity.Application</class>
         <class>br.com.centralerros.application.domain.entity.User</class>
+        <class>br.com.centralerros.application.domain.entity.Event</class>
 
         <properties>
             <!-- dados da conexao -->

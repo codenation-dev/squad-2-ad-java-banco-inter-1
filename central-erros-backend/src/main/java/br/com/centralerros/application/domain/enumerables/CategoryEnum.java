@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum CategoryEnum {
+    EMPTY(0),
     APPLICATION(1),
     BUSINESS(2);
 

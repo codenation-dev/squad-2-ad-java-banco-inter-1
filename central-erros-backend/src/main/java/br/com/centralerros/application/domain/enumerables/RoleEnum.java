@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RoleEnum {
+    EMPTY(0),
     ADMINISTRATOR(1),
     APPLICATION(2),
     DEVELOPER(3);
