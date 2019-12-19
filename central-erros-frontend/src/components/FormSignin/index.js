@@ -1,12 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react'
 import base64 from 'base-64'
+import { withRouter } from "react-router-dom"
+import { login } from "./../../services/auth"
 
 // assets
 import './style.scss';
 
-function FormSignin ({ onClick }) {
+function FormSignin ({ onClick, history }) {
   const messageSignin = useRef()
-  const [formMessage, setFormMessage] = useState('')
+  const [formMessage, setFormMessage] = useState('Something went wrong.')
   const [inputValue, setInputValue] = useState({
     email: '',
     password: ''
@@ -29,15 +31,15 @@ function FormSignin ({ onClick }) {
 
   function signinUser () {
     const { email, password } = inputValue
-    const centralUser = 'centralerros'
     const centralPass = 'centralerros'
+    const centralUser = 'centralerros'
     let form = new FormData()
     let headers = new Headers()
 
     form.append("grant_type", "password")
     form.append("username", email)
     form.append("password", password)
-    
+
     headers.append('Authorization', 'Basic ' + base64.encode(centralUser + ":" + centralPass))
 
     fetch('http://localhost:8100/oauth/token', {
@@ -46,11 +48,13 @@ function FormSignin ({ onClick }) {
       body: form
     })
     .then(response => response.json())
-    .then(json => console.log(json))
-    .catch((err) => {
-      console.log('error: ', err)
+    .then(json => {
+      login(json.access_token)
+      history.push('/dashboard')
     })
-
+    .catch((err) => {
+      showMessage()
+    })
   }
 
   function showMessage (callbackSuccess) {
@@ -62,6 +66,7 @@ function FormSignin ({ onClick }) {
         callbackSuccess()
       }
     }, 2000)
+    setFormMessage('')
   }
 
   return (
@@ -86,4 +91,4 @@ function FormSignin ({ onClick }) {
   )
 }
 
-export default FormSignin
+export default withRouter(FormSignin)
