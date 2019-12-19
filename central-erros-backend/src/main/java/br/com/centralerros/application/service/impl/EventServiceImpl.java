@@ -70,10 +70,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Long delete(Long id) {
-        validarDadosDeletarEvento(id);
+    public EventVO delete(Long id) {
+        Optional<Event> event = validarDadosDeletarEvento(id);
         eventRepository.deleteById(id);
-        return id;
+        return MapperUtils.instance().map(event.get(), EventVO.class);
     }
 
     @Override
@@ -135,13 +135,15 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    private void validarDadosDeletarEvento(Long id) {
+    private Optional<Event> validarDadosDeletarEvento(Long id) {
         if (id == null) {
             throw new NullPointerException("Event id was null");
         }
         Optional<Event> event = findById(id);
         if (!event.isPresent()) {
             throw new NotFoundObjectException(String.format("Event with id: %s was not found", id));
+        }else{
+            return event;
         }
     }
 

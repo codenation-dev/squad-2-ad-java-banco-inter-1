@@ -40,7 +40,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public Application save(Application application){
         return applicationRepository.save(application);
-
     }
 
 
