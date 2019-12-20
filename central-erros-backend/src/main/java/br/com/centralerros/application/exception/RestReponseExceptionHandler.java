@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class RestReponseExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class, IncompleteFieldsException.class})
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
         String bodyOfResponse = "Não foi possível resolver a solicitação com os parâmetros informados!";

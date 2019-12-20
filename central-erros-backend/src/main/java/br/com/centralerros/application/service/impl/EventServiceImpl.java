@@ -209,8 +209,6 @@ public class EventServiceImpl implements EventService {
             throw new IncompleteFieldsException("Field ID not defined or null in Application from Event");
         }
 
-        //voltar //testar com debug
-        //validarUsuario(event.getUser());
         validarApplication(event.getApplication());
     }
 
