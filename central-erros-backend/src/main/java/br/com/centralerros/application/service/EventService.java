@@ -21,6 +21,7 @@ public interface EventService {
     List<EventVO> findAllFromUser(UserVO userVO);
     List<EventVO> findAllFromUser(User user);
     List<EventVO> findAllFromUserById(Long id);
+    EventVO associarUser(Long id, Long user_id);
 
     int findEventsCount(EventFilterDto filter);
 }

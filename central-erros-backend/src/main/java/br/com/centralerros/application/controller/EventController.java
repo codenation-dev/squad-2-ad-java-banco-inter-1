@@ -7,6 +7,7 @@ import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.ListaVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,12 @@ public class EventController extends BasicController {
         event.setUser(utils.getLoggedUser());
         return validadeRetorno(eventService.save(event));
     }
+
+    @PutMapping
+    public ResponseEntity associarUser(@Param("id") Long id, @Param("user_id") Long user_id) {
+        return ResponseEntity.ok(eventService.associarUser(id,user_id));
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
