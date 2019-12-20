@@ -19,7 +19,7 @@ public class CategoryServicesTest {
     @Autowired
     CategoryServiceImpl categoryService;
 
-    @Test
+    /*@Test
     @Transactional
     public void whenFindById(){
 
@@ -60,6 +60,6 @@ public class CategoryServicesTest {
         List<Category> result = categoryService.findAll();
 
         assertThat(result,hasSize(2));
-    }
+    }*/
 
 }

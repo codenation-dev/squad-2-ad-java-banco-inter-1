@@ -45,8 +45,9 @@ public class Event {
     @Column(name = "level")
     private LevelEnum level;
 
-    @Column(name = "category")
-    private CategoryEnum category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate

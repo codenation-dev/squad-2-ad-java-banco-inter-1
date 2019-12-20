@@ -2,6 +2,7 @@ package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Application;
+import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
@@ -11,13 +12,16 @@ import br.com.centralerros.application.domain.vo.EventVO;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.exception.IncompleteFieldsException;
 import br.com.centralerros.application.exception.NotFoundObjectException;
+import br.com.centralerros.application.exception.NullObjectException;
 import br.com.centralerros.application.service.ApplicationService;
+import br.com.centralerros.application.service.CategoryService;
 import br.com.centralerros.application.service.EventService;
 import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.rmi.CORBA.Util;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +35,9 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     EventRepositoryJpa eventRepository;
+
+    @Autowired
+    CategoryServiceImpl categoryService;
 
     @Autowired
     ApplicationService applicationService;
@@ -64,6 +71,27 @@ public class EventServiceImpl implements EventService {
         if (event.getStatus() == null) {
             event.setStatus(StatusEnum.OPEN);
         }
+
+        Category category = null;
+        Long applicationId = event.getApplication().getId();
+        if (event.getCategory() != null) {
+            if (event.getCategory().getId() != null && event.getCategory().getId() != 0) {
+                category = categoryService.findByIdEApplicationId(event.getCategory().getId(), applicationId);
+            }
+            if (category == null && !Utils.isNullOrWhiteSpace(event.getCategory().getName())) {
+                category = categoryService.findByNameEApplicationId(event.getCategory().getName(), applicationId);
+            }
+
+            if (category == null) {
+
+                Category newCategory = new Category();
+                newCategory.setName((event.getCategory().getName()));
+                newCategory.setApplication(applicationService.findById(applicationId).orElse(null));
+
+                category = categoryService.saveComum(newCategory);
+            }
+        }
+        event.setCategory(category);
 
         Event eventPersist = eventRepository.save(event);
         return MapperUtils.instance().map(eventPersist, EventVO.class);
@@ -127,7 +155,7 @@ public class EventServiceImpl implements EventService {
 
     private void validarDadosDeletarEvento(EventVO eventVO) {
         if (eventVO == null) {
-            throw new NullPointerException("Event object was null");
+            throw new NullObjectException("Event object was null");
         }
 
 
@@ -136,7 +164,7 @@ public class EventServiceImpl implements EventService {
     private void validarDadosDeletarEvento(Event event) {
 
         if (event == null) {
-            throw new NullPointerException("Event object was null");
+            throw new NullObjectException("Event object was null");
         }
 
 
@@ -144,12 +172,12 @@ public class EventServiceImpl implements EventService {
 
     private Optional<Event> validarDadosDeletarEvento(Long id) {
         if (id == null) {
-            throw new NullPointerException("Event id was null");
+            throw new NullObjectException("Event id was null");
         }
         Optional<Event> event = findById(id);
         if (!event.isPresent()) {
             throw new NotFoundObjectException(String.format("Event with id: %s was not found", id));
-        }else{
+        } else {
             return event;
         }
     }
@@ -166,7 +194,7 @@ public class EventServiceImpl implements EventService {
         } else if (event.getCategory() == null) {
             throw new IncompleteFieldsException("Field CATEGORY not defined Event");
         } else if (event.getApplication() == null) {
-            throw new NullPointerException("Application object cannot be null");
+            throw new NullObjectException("Application object cannot be null");
         } else if (event.getApplication().getId() == null) {
             throw new IncompleteFieldsException("Field ID not defined or null in Application from Event");
         }
@@ -178,7 +206,7 @@ public class EventServiceImpl implements EventService {
 
     private void validarApplication(Application application) {
         if (application == null) {
-            throw new NullPointerException("Application object cannot be null");
+            throw new NullObjectException("Application object cannot be null");
         } else if (application.getId() == null) {//response.setHeader("Access-Control-Allow-Origin", req.get);
             throw new IncompleteFieldsException("Field ID not defined or null in Application");
         }
@@ -192,7 +220,7 @@ public class EventServiceImpl implements EventService {
 
     private void validarUsuario(UserVO userVO) {
         if (userVO == null) {
-            throw new NullPointerException("UserVO object cannot be null");
+            throw new NullObjectException("UserVO object cannot be null");
         } else if (userVO.getId() == null) {
             throw new IncompleteFieldsException("Field id not defined or null in UserVO");
         }
@@ -200,7 +228,7 @@ public class EventServiceImpl implements EventService {
 
     private void validarUsuario(User user) {
         if (user == null) {
-            throw new NullPointerException("User object cannot be null");
+            throw new NullObjectException("User object cannot be null");
         } else if (user.getId() == null) {
             throw new IncompleteFieldsException("Field id not defined or null in User");
         }
@@ -208,7 +236,7 @@ public class EventServiceImpl implements EventService {
 
     private void validarUsuario(Long id) {
         if (id == null) {
-            throw new NullPointerException("User id was null");
+            throw new NullObjectException("User id was null");
         }
     }
 }

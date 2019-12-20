@@ -5,6 +5,7 @@ import br.com.centralerros.application.domain.repository.UserRepository;
 import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.exception.IncompleteFieldsException;
 import br.com.centralerros.application.exception.NotFoundObjectException;
+import br.com.centralerros.application.exception.NullObjectException;
 import br.com.centralerros.application.service.UserService;
 import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
@@ -126,7 +127,7 @@ public class UserServiceImpl implements UserService {
 
     private void validarDadosDeletarUsuario(Long id) {
         if (id == null) {
-            throw new NullPointerException("User id was null");
+            throw new NullObjectException("User id was null");
         }
         Optional<User> user = findById(id);
         if (!user.isPresent()) {
@@ -136,7 +137,7 @@ public class UserServiceImpl implements UserService {
 
     private void validarUsuario(User user) {
         if (user == null) {
-            throw new NullPointerException("User object cannot be null");
+            throw new NullObjectException("User object cannot be null");
         } else if (user.getId() == null) {
             throw new IncompleteFieldsException("Field id not defined or null in User");
         }

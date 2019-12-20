@@ -18,7 +18,8 @@ public class EventController extends BasicController {
 
     @PostMapping("")
     public ResponseEntity save(@RequestBody Event event){
-        event.setUser(user);
+        //event.setUser(user);
+
         return ResponseEntity.ok(eventService.save(event));
     }
 

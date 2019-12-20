@@ -1,6 +1,7 @@
 package br.com.centralerros.application;
 
 import br.com.centralerros.application.domain.entity.Application;
+import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.enumerables.*;
@@ -12,8 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -96,7 +99,8 @@ public class EventServiceTest {
         event.setStatus(status);
         event.setEnvironment(environment);
         event.setLevel(level);
-        event.setCategory(category);
+        //event.setCategory(category);
+        event.setCategory(getRandomCategory());
         event.setUser(getUser());
         event.setApplication(getApplication());
         return event;
@@ -122,6 +126,23 @@ public class EventServiceTest {
 
         application.setName(name_app);
         return application;
+    }
+
+
+    private Category getRandomCategory() {
+        Random r = new Random();
+        List<String> arrayCateogoriaAleatoria = new ArrayList<>();
+        arrayCateogoriaAleatoria.add("NullPointer");
+        arrayCateogoriaAleatoria.add("XAXAXAXA");
+        arrayCateogoriaAleatoria.add("NotFound");
+        arrayCateogoriaAleatoria.add("Invalid Date");
+
+        int i = r.nextInt(3);
+
+        Category c = new Category();
+        c.setName(arrayCateogoriaAleatoria.get(i));
+
+        return c;
     }
 
 
