@@ -14,14 +14,13 @@ import br.com.centralerros.application.exception.IncompleteFieldsException;
 import br.com.centralerros.application.exception.NotFoundObjectException;
 import br.com.centralerros.application.exception.NullObjectException;
 import br.com.centralerros.application.service.ApplicationService;
-import br.com.centralerros.application.service.CategoryService;
 import br.com.centralerros.application.service.EventService;
 import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.rmi.CORBA.Util;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,10 +52,13 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventVO findByIdVO(Long id) {
         validarUsuario(id);
-        Optional<Event> event = eventRepository.findById(id);
-        return MapperUtils.instance().map(event, EventVO.class);
+        Event event = eventRepository.findById(id).orElse(null);
+        EventVO eventVO = null;
+        if (event != null) {
+            eventVO = Utils.map(event, EventVO.class);
+        }
+        return eventVO;
     }
-
 
     @Override
     public Optional<Event> findById(Long id) {
@@ -91,7 +93,7 @@ public class EventServiceImpl implements EventService {
 
                 category = categoryService.saveComum(newCategory);
             }
-        }else{
+        } else {
             Category newCategory = new Category();
             newCategory.setName("Categoria (Padrão)");
             newCategory.setApplication(applicationService.findById(applicationId).get());
@@ -108,14 +110,20 @@ public class EventServiceImpl implements EventService {
     public EventVO delete(Long id) {
         Optional<Event> event = validarDadosDeletarEvento(id);
         eventRepository.deleteById(id);
-        return MapperUtils.instance().map(event.get(), EventVO.class);
+        EventVO eventVO = null;
+        if (event.isPresent())
+            eventVO = MapperUtils.instance().map(event.get(), EventVO.class);
+
+        return eventVO;
     }
 
     @Override
     public EventVO delete(Event event) {
         validarDadosDeletarEvento(event);
         eventRepository.delete(event);
-        return MapperUtils.instance().map(event, EventVO.class);
+        EventVO eventVO = null;
+
+        return Utils.map(event, EventVO.class);
     }
 
 
@@ -163,6 +171,8 @@ public class EventServiceImpl implements EventService {
     }
 
 
+
+
     /*VALIDATES*/
 
     private void validarDadosDeletarEvento(EventVO eventVO) {
@@ -203,7 +213,7 @@ public class EventServiceImpl implements EventService {
             throw new IncompleteFieldsException("Field SOURCE not defined or null in Event");
         } else if (event.getEnvironment() == null) {
             throw new IncompleteFieldsException("Field ENVIRONMENT not defined Event");
-        }else if (event.getApplication() == null) {
+        } else if (event.getApplication() == null) {
             throw new NullObjectException("Application object cannot be null");
         } else if (event.getApplication().getId() == null) {
             throw new IncompleteFieldsException("Field ID not defined or null in Application from Event");
