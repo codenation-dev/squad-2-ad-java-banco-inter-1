@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -88,10 +88,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Dashboard({ id }) {
+export default function Dashboard({ id, accessToken }) {
+  const [numEvents, setNumEvents] = useState('')
+
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  console.log(id)
+  
+  useEffect(() => {
+    async function getUserEvent () {
+      const headers = new Headers()
+
+      headers.append('Authorization', 'Bearer ' + accessToken)
+
+      try {
+        const res = await fetch(`http://localhost:8080/api/v1/event/user/6`, {
+          method: 'GET',
+          headers: headers
+        })
+        const data = await res.json()
+        await console.log(data)
+        setNumEvents(data.length)
+      } catch (err) {
+        console.log(err)
+      }
+    
+    }
+
+    getUserEvent()
+  }, [])
+
   return (
     <div className={classes.root}>
       <main className={classes.content}>
@@ -106,7 +131,7 @@ export default function Dashboard({ id }) {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits numEvents={numEvents} />
               </Paper>
             </Grid>
             {/* Recent Orders */}

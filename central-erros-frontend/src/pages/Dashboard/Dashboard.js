@@ -46,7 +46,7 @@ function Dashboard ({ location }) {
       <div style={{ background: 'gray' }} className='mb-4'>
         <Menu name={userInfo.name} accessToken={accessToken} />
       </div>
-      <DashboardComponent id={userInfo.id} />
+      <DashboardComponent id={userInfo.id} accessToken={accessToken} />
     </>
   )
 }

@@ -14,16 +14,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Deposits() {
+export default function Deposits({ numEvents }) {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Number of Events Created</Title>
-      <Typography component="p" variant="h4">
-        17 Events
-      </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+      <Title>Number of Events Created for the user</Title>
+      <Typography component='p' variant='h4'>
+        {numEvents} Events Created
       </Typography>
     </React.Fragment>
   );
