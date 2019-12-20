@@ -2,17 +2,14 @@ package br.com.centralerros.application.domain.dto;
 
 import br.com.centralerros.application.domain.entity.Application;
 import br.com.centralerros.application.domain.entity.Category;
-import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
-import br.com.centralerros.application.utils.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data

@@ -4,10 +4,11 @@ import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.vo.CategoryVO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
     List<CategoryVO> findAll();
-    Category findById(Long id);
+    Optional<Category> findById(Long id);
     Category findByIdEApplicationId(Long id, Long applicationId);
     CategoryVO findByNameVo(String name);
     CategoryVO findByNameVoEApplicationId(String name, Long applicationId);

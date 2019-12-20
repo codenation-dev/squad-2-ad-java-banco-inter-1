@@ -1,7 +1,6 @@
 package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Category;
-import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.repository.CategoryRepository;
 import br.com.centralerros.application.domain.vo.CategoryVO;
 import br.com.centralerros.application.exception.IncompleteFieldsException;
@@ -12,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,8 +33,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findById(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+    public Optional<Category> findById(Long id) {
+        return categoryRepository.findById(id);
     }
 
     @Override
