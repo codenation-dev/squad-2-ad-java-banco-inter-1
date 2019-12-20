@@ -4,6 +4,7 @@ import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
+import br.com.centralerros.application.utils.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

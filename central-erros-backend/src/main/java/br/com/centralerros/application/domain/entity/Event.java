@@ -5,12 +5,14 @@ import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
+import br.com.centralerros.application.utils.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -51,6 +53,7 @@ public class Event {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate
     @Column(name = "created_date")
+    @Convert(converter = DateTimeUtils.class)
     private LocalDateTime createDate;
 
     @ManyToOne
