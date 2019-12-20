@@ -1,7 +1,6 @@
 package br.com.centralerros.application.domain.entity;
 
 
-import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
@@ -12,7 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

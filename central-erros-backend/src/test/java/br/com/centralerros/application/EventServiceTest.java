@@ -33,7 +33,6 @@ public class EventServiceTest {
     private static final StatusEnum status = StatusEnum.OPEN;
     private static final EnvironmentEnum environment = EnvironmentEnum.DEVELOPMENT;
     private static final LevelEnum level = LevelEnum.DEBUG;
-    private static final CategoryEnum category = CategoryEnum.APPLICATION;
 
 
     private static final String name_app = "Unix";
@@ -82,7 +81,7 @@ public class EventServiceTest {
         assertThat(result.getStatus(), equalTo(status));
         assertThat(result.getEnvironment(), equalTo(environment));
         assertThat(result.getLevel(), equalTo(level));
-        assertThat(result.getCategory(), equalTo(category));
+        assertThat(result.getCategory(), equalTo(getRandomCategory()));
 
 
     }
@@ -99,7 +98,6 @@ public class EventServiceTest {
         event.setStatus(status);
         event.setEnvironment(environment);
         event.setLevel(level);
-        //event.setCategory(category);
         event.setCategory(getRandomCategory());
         event.setUser(getUser());
         event.setApplication(getApplication());

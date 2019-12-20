@@ -1,7 +1,6 @@
 package br.com.centralerros.application.domain.vo;
 
 import br.com.centralerros.application.domain.entity.Category;
-import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
