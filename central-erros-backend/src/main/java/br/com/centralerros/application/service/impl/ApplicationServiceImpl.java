@@ -2,7 +2,9 @@ package br.com.centralerros.application.service.impl;
 
 import br.com.centralerros.application.domain.entity.Application;
 import br.com.centralerros.application.domain.repository.ApplicationRepository;
+import br.com.centralerros.application.domain.vo.ApplicationVO;
 import br.com.centralerros.application.service.ApplicationService;
+import br.com.centralerros.application.utils.MapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +40,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public Application save(Application application){
-        return applicationRepository.save(application);
+    public ApplicationVO save(Application application){
+        Application salvo = applicationRepository.save(application);
+        return MapperUtils.instance().map(salvo,ApplicationVO.class);
+
     }
 
 

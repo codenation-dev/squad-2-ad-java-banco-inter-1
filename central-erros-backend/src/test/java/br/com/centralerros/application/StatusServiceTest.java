@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @SpringBootTest
+//@Sql("/user_service_test.sql")
 public class StatusServiceTest {
 
     @Autowired

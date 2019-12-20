@@ -1,6 +1,5 @@
 package br.com.centralerros.application.domain.vo;
 
-import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.enumerables.EnvironmentEnum;
 import br.com.centralerros.application.domain.enumerables.LevelEnum;
 import br.com.centralerros.application.domain.enumerables.StatusEnum;
@@ -24,7 +23,7 @@ public class EventVO {
     private String details;
     private LevelEnum level;
     private EnvironmentEnum environment;
-    private Category category;
+    private CategoryVO category;
     private StatusEnum status;
     private UserVO user;
     private ApplicationVO application;
