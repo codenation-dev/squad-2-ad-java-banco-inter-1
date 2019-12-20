@@ -17,7 +17,6 @@ import br.com.centralerros.application.service.ApplicationService;
 import br.com.centralerros.application.service.EventService;
 import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +65,19 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findById(id);
     }
 
+    @Override
+    public EventVO associarUser(Long id, Long user_id){
+
+        eventRepository.findEventByIdAndUpdateUserId(id,user_id);
+
+        Event event = eventRepository.findById(id).get();
+        EventVO eventVO = MapperUtils.instance().map(event, EventVO.class);
+
+
+        return eventVO;
+
+
+    }
 
     @Override
     public EventVO save(Event event) {
