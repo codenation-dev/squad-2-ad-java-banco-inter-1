@@ -51,7 +51,7 @@ public class EventRepositoryImpl implements EventRepository {
                 query.setParameter("level", filter.getLevel());
             }
             if (filter.getCategory() != null) {
-                if (filter.getCategory().getId() > 0) {
+                if (filter.getCategory().getId() != null && filter.getCategory().getId() > 0) {
                     query.setParameter("categoryId", filter.getCategory().getId());
                 } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
                     query.setParameter("categoryName", filter.getCategory().getName());
@@ -101,7 +101,7 @@ public class EventRepositoryImpl implements EventRepository {
                 sql += " AND e.level = :level ";
             }
             if (filter.getCategory() != null) {
-                if (filter.getCategory().getId() > 0) {
+                if (filter.getCategory().getId() != null && filter.getCategory().getId() > 0) {
                     sql += " AND e.category.id = :categoryId ";
                 } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
                     sql += " AND e.category.name = :categoryName ";

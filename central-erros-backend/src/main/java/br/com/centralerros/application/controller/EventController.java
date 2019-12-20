@@ -58,4 +58,12 @@ public class EventController extends BasicController {
                         .build()
         );
     }
+
+    public ResponseEntity<? extends Object> validadeRetorno(Object object) {
+        if (object != null) {
+            return ResponseEntity.ok(object);
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
 }
