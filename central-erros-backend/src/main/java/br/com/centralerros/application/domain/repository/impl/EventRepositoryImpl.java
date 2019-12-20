@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,20 +21,13 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Override
     public List<Event> findEvents(EventFilterDto filter) {
-        String sql = getSqlForQuery(filter);
+        String sql = getSqlForQuery(filter, false);
         TypedQuery<Event> query = em.createQuery(sql, Event.class);
-        setParameters(query, filter);
+        setParameters(query, filter, false);
         return query.getResultList();
     }
 
-    @Override
-    @Transactional
-    public Event save(Event event) {
-        em.persist(event);
-        return em.find(Event.class, event.getId());
-    }
-
-    private void setParameters(TypedQuery<Event> query, EventFilterDto filter) {
+    private void setParameters(Query query, EventFilterDto filter, boolean count) {
         if(filter.getId() != null && filter.getId() > 0){
             query.setParameter("id", filter.getId());
         }else{
@@ -53,7 +47,7 @@ public class EventRepositoryImpl implements EventRepository {
                 query.setParameter("environment", filter.getEnvironment().getValue());
             }
             if(filter.getLevel() != null && filter.getLevel().getValue() > 0){
-                query.setParameter("level", filter.getLevel().getValue());
+                query.setParameter("level", filter.getLevel());
             }
             if(filter.getCategory() != null && filter.getCategory().getValue() > 0){
                 query.setParameter("category", filter.getCategory().getValue());
@@ -69,14 +63,15 @@ public class EventRepositoryImpl implements EventRepository {
             }
         }
 
-        if(filter.getPageSize() > 0 && filter.getPage() > 0){
+        if(filter.getPageSize() > 0 && filter.getPage() > 0 && !count){
             query.setFirstResult((filter.getPage() - 1) * filter.getPageSize());
             query.setMaxResults(filter.getPageSize());
         }
     }
     
-    private String getSqlForQuery(EventFilterDto filter){
-        String sql = "SELECT e FROM event as e JOIN e.user u WHERE";
+    private String getSqlForQuery(EventFilterDto filter, boolean count){
+        String sql = "SELECT " + (count ? "COUNT(e)": "e")
+                + " FROM event as e JOIN e.user u WHERE";
 
         if(filter.getId() != null && filter.getId() > 0){
             sql += " AND e.id = :id";
@@ -103,10 +98,10 @@ public class EventRepositoryImpl implements EventRepository {
                 sql += " AND e.category = :category";
             }
             if(filter.getCreateDateStart() != null){
-                sql += " AND e.create_date >=:createDateStart";
+                sql += " AND e.createDate >=:createDateStart";
             }
             if(filter.getCreateDateEnd() != null){
-                sql += " AND e.create_date <=:createDateEnd";
+                sql += " AND e.createDate <=:createDateEnd";
             }
             if(filter.getUserId() > 0){
                 sql += " AND u.id =:userId";
@@ -114,5 +109,14 @@ public class EventRepositoryImpl implements EventRepository {
         }
 
         return sql.replace("WHERE AND","WHERE");
+    }
+
+    public int findEventsCount(EventFilterDto filter) {
+        String sql = getSqlForQuery(filter, true);
+        Query query = em.createQuery(sql);
+        setParameters(query, filter, true);
+        return query.getSingleResult() != null
+                ? Integer.parseInt(query.getSingleResult().toString())
+                : 0;
     }
 }

@@ -12,6 +12,5 @@ import java.util.List;
 @Service
 public interface EventRepository {
     List<Event> findEvents(EventFilterDto filter);
-    Event save(Event event);
 }
 

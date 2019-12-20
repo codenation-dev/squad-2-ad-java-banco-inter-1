@@ -24,6 +24,10 @@ function Menu ({ history }) {
     history.push('/')
   }
 
+  function handleMenuClose () {
+    setAnchorEl(null)
+  }
+
   return (
     <div className='container py-3'>
       <div className='row'>
@@ -37,7 +41,7 @@ function Menu ({ history }) {
             anchorEl={anchorEl}
             keepMounted
             open={open}
-            onClose={handleClose}
+            onClose={handleMenuClose}
             TransitionComponent={Fade}
           >
             <MenuItem onClick={handleClose}>Logout</MenuItem>

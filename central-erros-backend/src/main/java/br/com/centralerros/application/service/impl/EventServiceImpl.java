@@ -38,6 +38,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> findEvents(EventFilterDto filter) {
+        Utils.getLoggedUser();
         return eventRepositoryHibernate.findEvents(filter);
     }
 
@@ -113,6 +114,11 @@ public class EventServiceImpl implements EventService {
 
         List<Event> events = eventRepository.findAllFromUser(id);
         return events.stream().map(event -> MapperUtils.instance().map(event, EventVO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public int findEventsCount(EventFilterDto filter) {
+        return eventRepositoryHibernate.findEventsCount(filter);
     }
 
     @Override

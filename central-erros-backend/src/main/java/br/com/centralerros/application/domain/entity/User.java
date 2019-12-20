@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -45,7 +46,6 @@ public class User {
 
     @Column(name = "environment")
     private EnvironmentEnum environment = EnvironmentEnum.ALL;
-
 
     @Column(name = "role")
     private RoleEnum role = RoleEnum.ADMINISTRATOR;

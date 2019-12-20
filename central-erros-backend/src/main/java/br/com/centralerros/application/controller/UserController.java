@@ -1,11 +1,15 @@
 package br.com.centralerros.application.controller;
 
 import br.com.centralerros.application.domain.entity.User;
+import br.com.centralerros.application.domain.vo.UserVO;
 import br.com.centralerros.application.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 
 @RestController
@@ -23,7 +27,6 @@ public class UserController extends BasicController{
     public ResponseEntity save(@RequestBody User user){
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
         return ResponseEntity.ok(userService.save(user));
-
     }
 
 
@@ -48,5 +51,10 @@ public class UserController extends BasicController{
         return ResponseEntity.ok(userService.findAll());
     }
 
+    @GetMapping("/details")
+    public ResponseEntity getUserDetails(){
+        UserVO userDetails = utils.map(utils.getLoggedUser(), UserVO.class);
+        return ResponseEntity.ok(userDetails);
 
+    }
 }

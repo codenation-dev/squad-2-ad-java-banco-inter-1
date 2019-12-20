@@ -12,5 +12,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BasicController {
     public Utils utils;
-    public User user = utils.getLoggedUser();
 }
