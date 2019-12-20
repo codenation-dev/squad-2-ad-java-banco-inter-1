@@ -29,7 +29,7 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     private void setParameters(Query query, EventFilterDto filter, boolean count) {
-        if (filter.getId() != null && filter.getId() > 0) {
+            if (filter.getId() != null && filter.getId() > 0) {
             query.setParameter("id", filter.getId());
         } else {
             if (!Utils.isNullOrWhiteSpace(filter.getDescription())) {
@@ -42,16 +42,18 @@ public class EventRepositoryImpl implements EventRepository {
                 query.setParameter("details", filter.getDetails());
             }
             if (filter.getStatus() != null && filter.getStatus().getValue() > 0) {
-                query.setParameter("status", filter.getStatus().getValue());
+                query.setParameter("status", filter.getStatus());
             }
             if (filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0) {
-                query.setParameter("environment", filter.getEnvironment().getValue());
+                query.setParameter("environment", filter.getEnvironment());
             }
+
             if (filter.getLevel() != null && filter.getLevel().getValue() > 0) {
                 query.setParameter("level", filter.getLevel());
             }
+
             if (filter.getCategory() != null) {
-                if (filter.getCategory().getId() > 0) {
+                if (filter.getCategory().getId() != null && filter.getCategory().getId() > 0) {
                     query.setParameter("categoryId", filter.getCategory().getId());
                 } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
                     query.setParameter("categoryName", filter.getCategory().getName());
@@ -64,7 +66,7 @@ public class EventRepositoryImpl implements EventRepository {
             if (filter.getCreateDateEnd() != null) {
                 query.setParameter("createDateEnd", filter.getCreateDateEnd());
             }
-            if (filter.getUserId() > 0) {
+            if (filter.getUserId() != null && filter.getUserId() > 0) {
                 query.setParameter("userId", filter.getUserId());
             }
         }
@@ -101,7 +103,7 @@ public class EventRepositoryImpl implements EventRepository {
                 sql += " AND e.level = :level ";
             }
             if (filter.getCategory() != null) {
-                if (filter.getCategory().getId() > 0) {
+                if (filter.getCategory().getId() != null && filter.getCategory().getId() > 0) {
                     sql += " AND e.category.id = :categoryId ";
                 } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
                     sql += " AND e.category.name = :categoryName ";
@@ -113,7 +115,7 @@ public class EventRepositoryImpl implements EventRepository {
             if (filter.getCreateDateEnd() != null) {
                 sql += " AND e.createDate <=:createDateEnd ";
             }
-            if (filter.getUserId() > 0) {
+            if (filter.getUserId() != null && filter.getUserId() > 0) {
                 sql += " AND u.id =:userId ";
             }
         }

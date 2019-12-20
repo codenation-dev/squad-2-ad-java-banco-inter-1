@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @SpringBootTest
+//@Sql("/user_service_test.sql")
 public class LevelServiceTest {
 
     @Autowired
@@ -64,7 +65,7 @@ public class LevelServiceTest {
 
         List<Level> result = levelService.findAll();
 
-        assertThat(result,hasSize(5));
+        assertThat(result,hasSize(6));
     }
 
     @Test

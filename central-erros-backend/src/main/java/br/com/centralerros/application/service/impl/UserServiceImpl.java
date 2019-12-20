@@ -12,9 +12,11 @@ import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.rmi.CORBA.Util;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,25 +31,27 @@ public class UserServiceImpl implements UserService {
         validarSalvarUsuario(user);
 
         User userSave = userRepository.save(user);
-        UserVO userVO = MapperUtils.instance().map(userSave, UserVO.class);
+        UserVO userVO = null;
+        if (userSave != null) {
+            userVO = MapperUtils.instance().map(userSave, UserVO.class);
+        }
+
         return userVO;
 
     }
 
 
     @Override
-    public Long delete(Long id) {
+    public void delete(Long id) {
         validarDadosDeletarUsuario(id);
         userRepository.deleteById(id);
-        return id;
+
     }
 
     @Override
-    public User delete(User user) {
+    public void delete(User user) {
         validarUsuario(user);
-
         userRepository.delete(user);
-        return user;
     }
 
     @Override
@@ -58,7 +62,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByEmailVO(String email) {
         User user = userRepository.findByEmail(email);
-        UserVO uservo = MapperUtils.instance().map(user, UserVO.class);
+        UserVO uservo = null;
+        if (user != null) {
+            uservo = MapperUtils.instance().map(user, UserVO.class);
+        }
+
         return uservo;
     }
 
@@ -82,6 +90,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserVO findByIdVO(Long id) {
+        User user = findById(id).orElse(null);
+        UserVO userVO = null;
+        if (user != null) {
+            userVO = Utils.map(user, UserVO.class);
+        }
+        return userVO;
+    }
+
+    @Override
     public User findByEmailEPassword(String email, String password) {
         validarUsuario(email, password);
         return userRepository.findUserByEmailAndPassword(email, password);
@@ -102,7 +120,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
 
+    @Override
+    public List<UserVO> findAllVO() {
+        List<User> users = userRepository.findAll();
+
+        if (users == null) {
+            return null;
+        }
+
+        return users.stream().map(user -> Utils.map(user, UserVO.class)).collect(Collectors.toList());
     }
 
 
@@ -112,6 +140,7 @@ public class UserServiceImpl implements UserService {
             throw new IncompleteFieldsException("Field NAME not defined or null in Application");
         }
     }
+
     private void validarSalvarUsuario(User user) {
 
         if (Utils.isNullOrWhiteSpace(user.getName())) {

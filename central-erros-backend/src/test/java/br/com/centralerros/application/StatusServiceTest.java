@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @SpringBootTest
+//@Sql("/user_service_test.sql")
 public class StatusServiceTest {
 
     @Autowired
@@ -49,7 +50,7 @@ public class StatusServiceTest {
 
         List<Status> result = statusService.findAll();
 
-        assertThat(result,hasSize(3));
+        assertThat(result,hasSize(4));
     }
 
     @Test

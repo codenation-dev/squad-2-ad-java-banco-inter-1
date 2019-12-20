@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/event")
 public class EventController extends BasicController {
@@ -18,38 +20,43 @@ public class EventController extends BasicController {
     EventServiceImpl eventService;
 
     @PostMapping("")
-    public ResponseEntity save(@RequestBody Event event){
+    public ResponseEntity save(@RequestBody Event event) {
         event.setUser(utils.getLoggedUser());
-        return ResponseEntity.ok(eventService.save(event));
+        return validadeRetorno(eventService.save(event));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable("id") Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(eventService.delete(id));
     }
 
     @DeleteMapping("")
-    public ResponseEntity deleteEvent(@RequestBody Event event){
+    public ResponseEntity deleteEvent(@RequestBody Event event) {
         return ResponseEntity.ok(eventService.delete(event));
     }
 
     @GetMapping("")
-    public ResponseEntity findAll(){
-        return ResponseEntity.ok(eventService.findAll());
-    }
-
-    @GetMapping("/{user}")
-    public ResponseEntity findAllFromUser(@PathVariable("user") User user){
-        return ResponseEntity.ok(eventService.findAllFromUser(user));
+    public ResponseEntity findAll() {
+        return validadeRetorno(eventService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity findAllFromUser(@PathVariable("id") Long id){
-        return ResponseEntity.ok(eventService.findAllFromUserById(id));
+    public ResponseEntity findById(@PathVariable("id") Long id) {
+        return validadeRetorno(eventService.findByIdVO(id));
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity findAllFromUser(@RequestBody User user) {
+        return validadeRetorno(eventService.findAllFromUser(user));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity findAllFromUser(@PathVariable("id") Long id) {
+        return validadeRetorno(eventService.findAllFromUserById(id));
     }
 
     @PostMapping("/filter")
-    public ResponseEntity findEvent(@RequestBody EventFilterDto filter){
+    public ResponseEntity findEvent(@RequestBody EventFilterDto filter) {
         return ResponseEntity.ok(
                 ListaVO.builder().filter(filter).items(utils.listMap(
                         eventService.findEvents(filter),
@@ -57,5 +64,21 @@ public class EventController extends BasicController {
                         .count(eventService.findEventsCount(filter))
                         .build()
         );
+    }
+
+    public ResponseEntity<? extends Object> validadeRetorno(List<Object> list) {
+        if (list != null) {
+            return ResponseEntity.ok(list);
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
+
+    public ResponseEntity<? extends Object> validadeRetorno(Object object) {
+        if (object != null) {
+            return ResponseEntity.ok(object);
+        } else {
+            return ResponseEntity.ok().build();
+        }
     }
 }

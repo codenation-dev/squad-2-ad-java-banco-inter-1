@@ -11,12 +11,14 @@ public interface UserService {
     User findByEmail(String email);
     User findByEmailLoginSecurity(String email);
     Optional<User> findById(Long id);
+    UserVO findByIdVO(Long id);
     User findByEmailEPassword(String email, String password);
     User findByApplication(String name);
     User findByName(String name);
     List<User> findAll();
-    User delete(User user);
-    Long delete(Long id);
+    List<UserVO> findAllVO();
+    void delete(User user);
+    void delete(Long id);
     UserVO findByEmailVO(String email);
 
 }

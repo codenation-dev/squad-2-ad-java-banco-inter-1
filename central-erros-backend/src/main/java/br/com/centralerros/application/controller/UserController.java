@@ -10,11 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UserController extends BasicController{
+public class UserController extends BasicController {
 
     @Autowired
     protected UserServiceImpl userService;
@@ -24,37 +25,45 @@ public class UserController extends BasicController{
 
     @CrossOrigin
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody User user){
+    public ResponseEntity save(@RequestBody User user) {
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
-        return ResponseEntity.ok(userService.save(user));
+        return validadeRetorno(userService.save(user));
     }
-
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(userService.delete(id));
+    public ResponseEntity deleteById(@PathVariable("id") Long id) {
+        userService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
+
     @GetMapping("/id/{id}")
-    public ResponseEntity findById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(userService.findById(id));
+    public ResponseEntity findById(@PathVariable("id") Long id) {
+        return validadeRetorno(userService.findByIdVO(id));
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity findByEmail(@PathVariable("email") String email){
-        return ResponseEntity.ok(userService.findByEmailVO(email));
+    public ResponseEntity findByEmail(@PathVariable("email") String email) {
+        return validadeRetorno(userService.findByEmailVO(email));
     }
 
     @GetMapping("")
-
-    public ResponseEntity findByAll(){
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity findByAll() {
+        return validadeRetorno(userService.findAllVO());
     }
 
     @GetMapping("/details")
-    public ResponseEntity getUserDetails(){
+    public ResponseEntity getUserDetails() {
         UserVO userDetails = utils.map(utils.getLoggedUser(), UserVO.class);
-        return ResponseEntity.ok(userDetails);
+        return validadeRetorno(userDetails);
 
+    }
+
+    public ResponseEntity<? extends Object> validadeRetorno(Object object) {
+        if (object != null) {
+            return ResponseEntity.ok(object);
+        } else {
+            return ResponseEntity.ok().build();
+        }
     }
 }

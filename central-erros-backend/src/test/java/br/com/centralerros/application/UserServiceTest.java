@@ -6,7 +6,6 @@ import br.com.centralerros.application.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,11 +18,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @SpringBootTest
-@Sql("/user_service_test.sql")
+//@Sql("/user_service_test.sql")
 public class UserServiceTest {
 
-    private static final String name_user = "Guilherme";
-    private static final String password = "senha";
+    private static final String name_user = "user";
+    private static final String password = "$2a$10$OPCfEfh5dMI82/h/QKXy2O/Q1sSQ.AXCt7hIkTXjhByMtgoGCTCk6";
     private static final String email = "email@email.com";
 
     @Autowired
@@ -63,7 +62,7 @@ public class UserServiceTest {
     public void whenFindAll(){
 
         List<User> result = userService.findAll();
-        assertThat(result,hasSize(1));
+        assertThat(result,hasSize(7));
     }
 
     private void assertUser(UserVO result){
