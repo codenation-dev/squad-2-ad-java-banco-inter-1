@@ -47,6 +47,12 @@ public class UserController extends BasicController {
         return validadeRetorno(userService.findByEmailVO(email));
     }
 
+    @GetMapping("/recovery/{email}")
+    public ResponseEntity recuperarSenha(@PathVariable("email") String email) {
+        userService.recuperarSenha(email);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("")
     public ResponseEntity findByAll() {
         return validadeRetorno(userService.findAllVO());

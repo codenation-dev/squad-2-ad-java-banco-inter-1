@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Data
@@ -15,6 +16,11 @@ public class Utils {
 
     public static User getLoggedUser() {
         return userUtils.getLoggedUser();
+    }
+
+    public static int getRandomPassword(){
+        Random r = new Random();
+        return r.ints(111111, 999999).limit(1).findFirst().getAsInt();
     }
 
     public static boolean isNullOrWhiteSpace(String string){

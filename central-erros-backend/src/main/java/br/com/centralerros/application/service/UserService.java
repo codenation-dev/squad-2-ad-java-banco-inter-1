@@ -20,5 +20,6 @@ public interface UserService {
     void delete(User user);
     void delete(Long id);
     UserVO findByEmailVO(String email);
+    void recuperarSenha(String email);
 
 }
