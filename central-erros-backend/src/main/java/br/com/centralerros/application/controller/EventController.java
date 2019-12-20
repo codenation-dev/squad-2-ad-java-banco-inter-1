@@ -28,7 +28,7 @@ public class EventController extends BasicController {
 
     @PutMapping
     public ResponseEntity associarUser(@Param("id") Long id, @Param("user_id") Long user_id) {
-        return ResponseEntity.ok(eventService.associarUser(id,user_id));
+        return validadeRetorno(eventService.associarUser(id,user_id));
     }
 
 

@@ -15,6 +15,7 @@ import br.com.centralerros.application.exception.NotFoundObjectException;
 import br.com.centralerros.application.exception.NullObjectException;
 import br.com.centralerros.application.service.ApplicationService;
 import br.com.centralerros.application.service.EventService;
+import br.com.centralerros.application.service.UserService;
 import br.com.centralerros.application.utils.MapperUtils;
 import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,10 @@ public class EventServiceImpl implements EventService {
     CategoryServiceImpl categoryService;
 
     @Autowired
-    ApplicationService applicationService;
+    UserServiceImpl userService;
+
+    @Autowired
+    ApplicationServiceImpl applicationService;
 
 
     @Override
@@ -50,7 +54,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventVO findByIdVO(Long id) {
-        validarUsuario(id);
+        validarIdRequestUsuario(id);
         Event event = eventRepository.findById(id).orElse(null);
         EventVO eventVO = null;
         if (event != null) {
@@ -61,22 +65,39 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Optional<Event> findById(Long id) {
-        validarUsuario(id);
+        validarIdRequestUsuario(id);
         return eventRepository.findById(id);
     }
 
+
+    private void validarUsuarioDatabase(Long userId) {
+        if (!userService.findById(userId).isPresent()) {
+            throw new NullObjectException("Usuário inexiste");
+        }
+    }
+
+    private void validarEventoDatabase(Long eventId) {
+        if (!eventRepository.findById(eventId).isPresent()) {
+            throw new NullObjectException("Evento inexiste");
+        }
+    }
+
     @Override
-    public EventVO associarUser(Long id, Long user_id){
+    public EventVO associarUser(Long id, Long user_id) {
 
-        eventRepository.findEventByIdAndUpdateUserId(id,user_id);
+        validarIdRequestEvent(id);
+        validarIdRequestUsuario(user_id);
+        validarUsuarioDatabase(user_id);
+        validarEventoDatabase(id);
 
-        Event event = eventRepository.findById(id).get();
-        EventVO eventVO = MapperUtils.instance().map(event, EventVO.class);
+        eventRepository.findEventByIdAndUpdateUserId(id, user_id);
 
-
+        Event event = eventRepository.findById(id).orElse(null);
+        EventVO eventVO = null;
+        if (event != null) {
+            eventVO = MapperUtils.instance().map(event, EventVO.class);
+        }
         return eventVO;
-
-
     }
 
     @Override
@@ -264,7 +285,12 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-    private void validarUsuario(Long id) {
+    private void validarIdRequestUsuario(Long id) {
+        if (id == null) {
+            throw new NullObjectException("User id was null");
+        }
+    }
+    private void validarIdRequestEvent(Long id) {
         if (id == null) {
             throw new NullObjectException("User id was null");
         }
