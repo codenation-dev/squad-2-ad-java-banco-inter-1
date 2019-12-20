@@ -88,10 +88,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard({ id }) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  console.log(id)
   return (
     <div className={classes.root}>
       <main className={classes.content}>
@@ -119,5 +119,5 @@ export default function Dashboard() {
         </Container>
       </main>
     </div>
-  );
+  )
 }
