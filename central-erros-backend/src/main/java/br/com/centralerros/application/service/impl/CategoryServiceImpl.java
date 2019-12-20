@@ -4,6 +4,8 @@ import br.com.centralerros.application.domain.entity.Category;
 import br.com.centralerros.application.domain.enumerables.CategoryEnum;
 import br.com.centralerros.application.domain.repository.CategoryRepository;
 import br.com.centralerros.application.domain.vo.CategoryVO;
+import br.com.centralerros.application.exception.IncompleteFieldsException;
+import br.com.centralerros.application.exception.NullObjectException;
 import br.com.centralerros.application.service.CategoryService;
 import br.com.centralerros.application.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,14 +72,27 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryVO save(Category category) {
+        validarSaveCategory(category);
         Category categorySaved = categoryRepository.save(category);
         return Utils.map(categorySaved, CategoryVO.class);
     }
 
     @Override
     public Category saveComum(Category category) {
+        validarSaveCategory(category);
         return categoryRepository.save(category);
     }
 
+
+    public void validarSaveCategory(Category category) {
+        if (category == null) {
+            throw new NullObjectException("Category Object was null");
+        } else if (category.getApplication() == null) {
+            throw new NullObjectException("Application Object was null FROM Category");
+        } else if (category.getApplication().getId() == null) {
+            throw new IncompleteFieldsException("Field ID not defined or null in Application FROM Category");
+        }
+
+    }
 
 }

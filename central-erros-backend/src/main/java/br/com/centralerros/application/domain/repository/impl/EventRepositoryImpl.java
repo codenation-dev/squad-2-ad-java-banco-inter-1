@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.rmi.CORBA.Util;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -28,87 +29,96 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     private void setParameters(Query query, EventFilterDto filter, boolean count) {
-        if(filter.getId() != null && filter.getId() > 0){
+        if (filter.getId() != null && filter.getId() > 0) {
             query.setParameter("id", filter.getId());
-        }else{
-            if(!Utils.isNullOrWhiteSpace(filter.getDescription())){
+        } else {
+            if (!Utils.isNullOrWhiteSpace(filter.getDescription())) {
                 query.setParameter("description", filter.getDescription());
             }
-            if(!Utils.isNullOrWhiteSpace(filter.getSource())){
+            if (!Utils.isNullOrWhiteSpace(filter.getSource())) {
                 query.setParameter("source", filter.getSource());
             }
-            if(!Utils.isNullOrWhiteSpace(filter.getDetails())){
+            if (!Utils.isNullOrWhiteSpace(filter.getDetails())) {
                 query.setParameter("details", filter.getDetails());
             }
-            if(filter.getStatus() != null && filter.getStatus().getValue() > 0){
+            if (filter.getStatus() != null && filter.getStatus().getValue() > 0) {
                 query.setParameter("status", filter.getStatus().getValue());
             }
-            if(filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0){
+            if (filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0) {
                 query.setParameter("environment", filter.getEnvironment().getValue());
             }
-            if(filter.getLevel() != null && filter.getLevel().getValue() > 0){
+            if (filter.getLevel() != null && filter.getLevel().getValue() > 0) {
                 query.setParameter("level", filter.getLevel());
             }
-            if(filter.getCategory() != null && filter.getCategory().getValue() > 0){
-                query.setParameter("category", filter.getCategory().getValue());
+            if (filter.getCategory() != null) {
+                if (filter.getCategory().getId() > 0) {
+                    query.setParameter("categoryId", filter.getCategory().getId());
+                } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
+                    query.setParameter("categoryName", filter.getCategory().getName());
+                }
             }
-            if(filter.getCreateDateStart() != null){
+
+            if (filter.getCreateDateStart() != null) {
                 query.setParameter("createDateStart", filter.getCreateDateStart());
             }
-            if(filter.getCreateDateEnd() != null){
+            if (filter.getCreateDateEnd() != null) {
                 query.setParameter("createDateEnd", filter.getCreateDateEnd());
             }
-            if(filter.getUserId() > 0){
+            if (filter.getUserId() > 0) {
                 query.setParameter("userId", filter.getUserId());
             }
         }
 
-        if(filter.getPageSize() > 0 && filter.getPage() > 0 && !count){
+        if (filter.getPageSize() > 0 && filter.getPage() > 0 && !count) {
             query.setFirstResult((filter.getPage() - 1) * filter.getPageSize());
             query.setMaxResults(filter.getPageSize());
         }
     }
-    
-    private String getSqlForQuery(EventFilterDto filter, boolean count){
-        String sql = "SELECT " + (count ? "COUNT(e)": "e")
+
+    private String getSqlForQuery(EventFilterDto filter, boolean count) {
+        String sql = "SELECT " + (count ? "COUNT(e)" : "e")
                 + " FROM event as e JOIN e.user u WHERE";
 
-        if(filter.getId() != null && filter.getId() > 0){
-            sql += " AND e.id = :id";
-        }else{
-            if(!Utils.isNullOrWhiteSpace(filter.getDescription())){
-                sql += " AND e.description = :description";
+        if (filter.getId() != null && filter.getId() > 0) {
+            sql += " AND e.id = :id ";
+        } else {
+            if (!Utils.isNullOrWhiteSpace(filter.getDescription())) {
+                sql += " AND e.description = :description ";
             }
-            if(!Utils.isNullOrWhiteSpace(filter.getSource())){
-                sql += " AND e.source = :source";
+            if (!Utils.isNullOrWhiteSpace(filter.getSource())) {
+                sql += " AND e.source = :source ";
             }
-            if(!Utils.isNullOrWhiteSpace(filter.getDetails())){
-                sql += " AND e.details = :details";
+            if (!Utils.isNullOrWhiteSpace(filter.getDetails())) {
+                sql += " AND e.details = :details ";
             }
-            if(filter.getStatus() != null && filter.getStatus().getValue() > 0){
-                sql += " AND e.status = :status";
+            if (filter.getStatus() != null && filter.getStatus().getValue() > 0) {
+                sql += " AND e.status = :status ";
             }
-            if(filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0){
-                sql += " AND e.environment = :environment";
+            if (filter.getEnvironment() != null && filter.getEnvironment().getValue() > 0) {
+                sql += " AND e.environment = :environment ";
             }
-            if(filter.getLevel() != null && filter.getLevel().getValue() > 0){
-                sql += " AND e.level = :level";
+            if (filter.getLevel() != null && filter.getLevel().getValue() > 0) {
+                sql += " AND e.level = :level ";
             }
-            if(filter.getCategory() != null && filter.getCategory().getValue() > 0){
-                sql += " AND e.category = :category";
+            if (filter.getCategory() != null) {
+                if (filter.getCategory().getId() > 0) {
+                    sql += " AND e.category.id = :categoryId ";
+                } else if (!Utils.isNullOrWhiteSpace(filter.getCategory().getName())) {
+                    sql += " AND e.category.name = :categoryName ";
+                }
             }
-            if(filter.getCreateDateStart() != null){
-                sql += " AND e.createDate >=:createDateStart";
+            if (filter.getCreateDateStart() != null) {
+                sql += " AND e.createDate >=:createDateStart ";
             }
-            if(filter.getCreateDateEnd() != null){
-                sql += " AND e.createDate <=:createDateEnd";
+            if (filter.getCreateDateEnd() != null) {
+                sql += " AND e.createDate <=:createDateEnd ";
             }
-            if(filter.getUserId() > 0){
-                sql += " AND u.id =:userId";
+            if (filter.getUserId() > 0) {
+                sql += " AND u.id =:userId ";
             }
         }
 
-        return sql.replace("WHERE AND","WHERE");
+        return sql.replace("WHERE AND", "WHERE");
     }
 
     public int findEventsCount(EventFilterDto filter) {

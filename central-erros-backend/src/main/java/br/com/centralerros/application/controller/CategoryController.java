@@ -24,8 +24,13 @@ public class CategoryController extends BasicController {
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
-    @GetMapping("/name/{id}")
-    public ResponseEntity finByName(@PathVariable String name) {
+    @GetMapping("/name/{name}")
+    public ResponseEntity findByName(@PathVariable String name) {
+        return ResponseEntity.ok(categoryService.findByName(name));
+    }
+
+    @GetMapping("/name/{id}/{application_id}")
+    public ResponseEntity findByNameEApplication(@PathVariable String name) {
         return ResponseEntity.ok(categoryService.findByName(name));
     }
 }

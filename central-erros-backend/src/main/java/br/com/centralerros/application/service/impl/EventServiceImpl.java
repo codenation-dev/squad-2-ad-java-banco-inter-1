@@ -87,10 +87,16 @@ public class EventServiceImpl implements EventService {
 
                 Category newCategory = new Category();
                 newCategory.setName((event.getCategory().getName()));
-                newCategory.setApplication(applicationService.findById(applicationId).orElse(null));
+                newCategory.setApplication(applicationService.findById(applicationId).get());
 
                 category = categoryService.saveComum(newCategory);
             }
+        }else{
+            Category newCategory = new Category();
+            newCategory.setName("Categoria (Padrão)");
+            newCategory.setApplication(applicationService.findById(applicationId).get());
+
+            category = categoryService.saveComum(newCategory);
         }
         event.setCategory(category);
 
@@ -197,9 +203,7 @@ public class EventServiceImpl implements EventService {
             throw new IncompleteFieldsException("Field SOURCE not defined or null in Event");
         } else if (event.getEnvironment() == null) {
             throw new IncompleteFieldsException("Field ENVIRONMENT not defined Event");
-        } else if (event.getCategory() == null) {
-            throw new IncompleteFieldsException("Field CATEGORY not defined Event");
-        } else if (event.getApplication() == null) {
+        }else if (event.getApplication() == null) {
             throw new NullObjectException("Application object cannot be null");
         } else if (event.getApplication().getId() == null) {
             throw new IncompleteFieldsException("Field ID not defined or null in Application from Event");
