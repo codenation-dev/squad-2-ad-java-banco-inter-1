@@ -32,12 +32,7 @@ public class EnvironmentController extends BasicController {
     public ResponseEntity findById(@PathVariable("id") int id){
         return ResponseEntity.ok(environmentService.findById(id));
     }
-
-    //@GetMapping("")
-    //public ResponseEntity findByAll(){
-//        return ResponseEntity.ok(environmentService.findAll());
-  //  }
-
+    
     @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){
         return ResponseEntity.ok(environmentService.findByName(name));

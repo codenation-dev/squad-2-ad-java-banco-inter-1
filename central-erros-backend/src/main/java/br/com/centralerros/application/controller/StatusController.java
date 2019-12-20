@@ -31,11 +31,6 @@ public class StatusController extends BasicController{
         return ResponseEntity.ok(statusService.findById(id));
     }
 
-    /*@GetMapping("")
-    public ResponseEntity findByAll(){
-        return ResponseEntity.ok(statusService.findAll());
-    }*/
-
     @GetMapping("/{name}")
     public ResponseEntity findByName(@PathVariable String name){
         return ResponseEntity.ok(statusService.findByName(name));

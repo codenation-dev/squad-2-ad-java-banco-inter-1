@@ -1,0 +1,14 @@
+[
+  {
+    "numEvents": 155,
+    "name": "Critical"
+  },
+  {
+    "numEvents": 500,
+    "name": "Normal"
+  },
+  {
+    "numEvents": 320,
+    "name": "Warning"
+  }
+]

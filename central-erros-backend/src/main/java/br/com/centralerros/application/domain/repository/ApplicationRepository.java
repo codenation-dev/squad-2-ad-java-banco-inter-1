@@ -11,5 +11,4 @@ import javax.transaction.Transactional;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     @Transactional
     Application findApplicationByName(@Param("name") String name);
-
 }

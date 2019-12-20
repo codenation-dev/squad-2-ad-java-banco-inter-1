@@ -4,6 +4,7 @@ import br.com.centralerros.application.domain.dto.EventFilterDto;
 import br.com.centralerros.application.domain.entity.Event;
 import br.com.centralerros.application.domain.entity.User;
 import br.com.centralerros.application.domain.vo.EventVO;
+import br.com.centralerros.application.domain.vo.ListaVO;
 import br.com.centralerros.application.service.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,7 @@ public class EventController extends BasicController {
 
     @PostMapping("")
     public ResponseEntity save(@RequestBody Event event){
-        //event.setUser(user);
-
+        event.setUser(utils.getLoggedUser());
         return ResponseEntity.ok(eventService.save(event));
     }
 
@@ -50,6 +50,12 @@ public class EventController extends BasicController {
 
     @PostMapping("/filter")
     public ResponseEntity findEvent(@RequestBody EventFilterDto filter){
-        return ResponseEntity.ok(utils.listMap(eventService.findEvents(filter), EventVO.class));
+        return ResponseEntity.ok(
+                ListaVO.builder().filter(filter).items(utils.listMap(
+                        eventService.findEvents(filter),
+                        EventVO.class))
+                        .count(eventService.findEventsCount(filter))
+                        .build()
+        );
     }
 }

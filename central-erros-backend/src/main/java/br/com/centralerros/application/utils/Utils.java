@@ -3,6 +3,7 @@ package br.com.centralerros.application.utils;
 import br.com.centralerros.application.domain.entity.User;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class Utils {
                 .map(objeto, destino);
     };
 
-    public static <U,T> List<U> listMap(List<T> objeto, Class<U> destino){
+    public static <U,T> List<U> listMap(List<T> objeto, Class<U> destino) {
         return objeto.stream()
                 .map(o -> mapperUtils.instance()
                         .map(o, destino))

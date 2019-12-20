@@ -1,68 +1,66 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Title from './../Title/Title';
+import React, { useEffect, useState } from 'react'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Title from './../Title/Title'
 
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
+// data that will be consumed by the API
+import data from './orders.json'
+
+function createData(id, environment, level, status, description, createdDate) {
+  return { id, environment, level, status, description, createdDate }
 }
 
 const rows = [
-  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-  createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-];
+  createData(0, 'Environment goes here', 'Level goes here', 'Status goes here', 'Description goes here', 'Created date goes here'),
+  createData(1, 'Environment goes here', 'Level goes here', 'Status goes here', 'Description goes here', 'Created date goes here'),
+  createData(2, 'Environment goes here', 'Level goes here', 'Status goes here', 'Description goes here', 'Created date goes here'),
+  createData(3, 'Environment goes here', 'Level goes here', 'Status goes here', 'Description goes here', 'Created date goes here'),
+  createData(4, 'Environment goes here', 'Level goes here', 'Status goes here', 'Description goes here', 'Created date goes here')
+]
 
-function preventDefault(event) {
-  event.preventDefault();
-}
-
-const useStyles = makeStyles(theme => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
+// populate the rows from the request. For each event, a new createData will be pushed to the rows
+// then map the rows accordingly
 
 export default function Orders() {
-  const classes = useStyles();
+  const [dataTable, setDataTable] = useState([])
+
+  useEffect(() => {
+    const newRow = []
+    data.map((item, index) => {
+      newRow.push(item)
+    })
+
+    setDataTable(newRow)
+  }, [])
+
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Environment</TableCell>
+            <TableCell>Level</TableCell>
+            <TableCell>Status</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell align="right">Created date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+          {dataTable && dataTable.map(item => (
+            <TableRow key={item.id}>
+              <TableCell>{item.environment}</TableCell>
+              <TableCell>{item.level}</TableCell>
+              <TableCell>{item.status}</TableCell>
+              <TableCell>{item.description}</TableCell>
+              <TableCell align="right">{item.created_date}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
     </React.Fragment>
-  );
+  )
 }
