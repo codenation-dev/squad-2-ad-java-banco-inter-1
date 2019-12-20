@@ -1,11 +1,11 @@
 package br.com.centralerros.application;
 
 import br.com.centralerros.application.domain.entity.Application;
+import br.com.centralerros.application.domain.vo.ApplicationVO;
 import br.com.centralerros.application.service.impl.ApplicationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,10 +19,10 @@ import static org.junit.Assert.assertThat;
 
 
 @SpringBootTest
-@Sql("/user_service_test.sql")
+//@Sql("/user_service_test.sql")
 public class ApplicationServiceTest {
 
-    private static final String NAME = "Windows";
+    private static final String NAME = "CodenationApplication";
 
     @Autowired
     private ApplicationServiceImpl applicationService;
@@ -33,7 +33,7 @@ public class ApplicationServiceTest {
 
         Application application = getApplication();
 
-        Application result =applicationService.save(application);
+        ApplicationVO result =applicationService.save(application);
         assertApplication(result);
 
     }
@@ -61,10 +61,10 @@ public class ApplicationServiceTest {
     public void whenFindAll(){
 
         List<Application> result = applicationService.findAll();
-        assertThat(result,hasSize(1));
+        assertThat(result,hasSize(3));
     }
 
-    private void assertApplication(Application result){
+    private void assertApplication(ApplicationVO result){
         assertThat(result.getId(),notNullValue());
         assertThat(result.getName(),equalTo(NAME));
 

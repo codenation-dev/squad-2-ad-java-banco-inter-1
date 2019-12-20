@@ -1,7 +1,7 @@
 package br.com.centralerros.application;
 
-import br.com.centralerros.application.domain.entity.Application;
 import br.com.centralerros.application.domain.entity.Category;
+import br.com.centralerros.application.domain.vo.ApplicationVO;
 import br.com.centralerros.application.domain.vo.CategoryVO;
 import br.com.centralerros.application.service.impl.CategoryServiceImpl;
 import br.com.centralerros.application.utils.MapperUtils;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,6 @@ public class CategoryServicesTest {
 
     private static final String name = "CreditCardError";
     private static final String name_app = "CodenationApplication";
-    private static final LocalDateTime date = LocalDateTime.parse("2019-12-19T00:11:29");
 
 
 
@@ -39,7 +37,7 @@ public class CategoryServicesTest {
         CategoryVO category = getCategory();
 
         Category result = MapperUtils.instance().map(category, Category.class);
-        Category savo = categoryService.saveComum(result);
+        CategoryVO savo = categoryService.save(result);
 
         assertCategory(savo);
 
@@ -70,7 +68,7 @@ public class CategoryServicesTest {
         assertThat(result,hasSize(3));
     }
 
-    private void assertCategory(Category result){
+    private void assertCategory(CategoryVO result){
         assertThat(result.getId(),notNullValue());
         assertThat(result.getName(),equalTo(name));
         assertThat(result.getApplication(),equalTo(getApplication()));
@@ -89,13 +87,12 @@ public class CategoryServicesTest {
         return category;
     }
 
-    private Application getApplication() {
+    private ApplicationVO getApplication() {
 
-        Application application = new Application();
+        ApplicationVO application = new ApplicationVO();
 
         application.setId(Long.valueOf(1));
         application.setName(name_app);
-        application.setCreated_date(date);
        return application;
     }
 
