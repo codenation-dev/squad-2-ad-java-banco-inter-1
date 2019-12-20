@@ -48,12 +48,21 @@ function FormSignin ({ onClick, history }) {
       body: form
     })
     .then(response => response.json())
-    .then(json => {
-      login(json.access_token)
-      history.push('/dashboard')
-    })
+      .then(json => {
+        if (!json.error) {
+          login(json.access_token)
+          history.push({
+            pathname: '/dashboard',
+            state: {
+              email: email,
+              accessToken: json.access_token
+            }
+          })
+        } else {
+          showMessage()
+        }
+      })
     .catch((err) => {
-      showMessage()
     })
   }
 
@@ -66,7 +75,6 @@ function FormSignin ({ onClick, history }) {
         callbackSuccess()
       }
     }, 2000)
-    setFormMessage('')
   }
 
   return (

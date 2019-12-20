@@ -11,7 +11,7 @@ import { logout } from './../../services/auth'
 // icons
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-function Menu ({ history }) {
+function Menu ({ history, name, accessToken }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -31,8 +31,8 @@ function Menu ({ history }) {
   return (
     <div className='container py-3'>
       <div className='row'>
-        <div className='col-12 d-flex justify-content-end align-items-center'>
-          <p className='mr-3'>Welcome, Hyalen! Your token is <strong>AdKadJhb3338103</strong></p>
+        <div className='col-12 d-flex justify-content-between align-items-center'>
+          <p className='mr-3'>Welcome, {name}!<br/>Your access token is <strong>{accessToken}</strong></p>
           <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
             <AccountCircleIcon style={{ fontSize: 40 }} />
           </Button>
