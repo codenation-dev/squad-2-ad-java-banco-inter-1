@@ -64,7 +64,7 @@ public class LevelServiceTest {
 
         List<Level> result = levelService.findAll();
 
-        assertThat(result,hasSize(5));
+        assertThat(result,hasSize(6));
     }
 
     @Test

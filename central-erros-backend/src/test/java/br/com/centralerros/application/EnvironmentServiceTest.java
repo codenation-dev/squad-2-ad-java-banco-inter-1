@@ -56,7 +56,7 @@ public class EnvironmentServiceTest {
 
         List<Environment> result = environmentService.findAll();
 
-        assertThat(result,hasSize(4));
+        assertThat(result,hasSize(6));
     }
 
     @Test

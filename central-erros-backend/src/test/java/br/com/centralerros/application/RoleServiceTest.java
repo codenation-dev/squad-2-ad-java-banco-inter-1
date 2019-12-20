@@ -72,7 +72,7 @@ public class RoleServiceTest {
 
         List<Role> result = roleService.findAll();
 
-        assertThat(result,hasSize(3));
+        assertThat(result,hasSize(4));
     }
 
 }

@@ -49,7 +49,7 @@ public class StatusServiceTest {
 
         List<Status> result = statusService.findAll();
 
-        assertThat(result,hasSize(3));
+        assertThat(result,hasSize(4));
     }
 
     @Test
