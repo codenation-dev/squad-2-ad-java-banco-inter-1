@@ -90,6 +90,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard({ id, accessToken }) {
   const [numEvents, setNumEvents] = useState('')
+  const [data, setData] = useState('')
+
 
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -106,12 +108,13 @@ export default function Dashboard({ id, accessToken }) {
           headers: headers
         })
         const data = await res.json()
-        await console.log(data)
-        setNumEvents(data.length)
+        .then(res => {
+          setData(res)
+          setNumEvents(res.length)
+        })
       } catch (err) {
         console.log(err)
-      }
-    
+      }    
     }
 
     getUserEvent()
@@ -137,7 +140,7 @@ export default function Dashboard({ id, accessToken }) {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <Orders innerData={data} />
               </Paper>
             </Grid>
           </Grid>
