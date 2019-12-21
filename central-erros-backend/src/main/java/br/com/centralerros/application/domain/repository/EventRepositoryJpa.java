@@ -24,9 +24,8 @@ public interface EventRepositoryJpa extends JpaRepository<Event, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE event SET user_id =:user_id WHERE id=:id",nativeQuery = true)
-    void findEventByIdAndUpdateUserId (@Param("user_id") Long user_id,
-                                                  @Param("id") Long id);
+    @Query(value = "UPDATE event SET user_id =:user_id WHERE id=:id", nativeQuery = true)
+    void findEventByIdAndUpdateUserId(@Param("user_id") Long user_id, @Param("id") Long id);
 
 
 }

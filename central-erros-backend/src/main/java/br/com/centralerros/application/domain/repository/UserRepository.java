@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
-    @Query(value = "SELECT u.* FROM user u WHERE u.email = :email", nativeQuery = true)
+    @Query(value = "SELECT u.* FROM user u WHERE u.email = :email LIMIT 1", nativeQuery = true)
     User findByEmail(@Param("email") String email);
 
     @Transactional

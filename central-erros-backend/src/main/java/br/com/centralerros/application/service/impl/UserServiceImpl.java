@@ -24,6 +24,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    SendEmailImpl emailService;
 
     @Override
     public UserVO save(User user) {
@@ -68,6 +70,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return uservo;
+    }
+
+    @Override
+    public void recuperarSenha(String email) {
+        emailService.sendEmailRecuperarSenha(email);
     }
 
     @Override
