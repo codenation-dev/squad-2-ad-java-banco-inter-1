@@ -186,7 +186,6 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventVO> findAllFromUserById(Long id) {
-
         List<Event> events = eventRepository.findAllFromUser(id);
         return events.stream().map(event -> MapperUtils.instance().map(event, EventVO.class)).collect(Collectors.toList());
     }
